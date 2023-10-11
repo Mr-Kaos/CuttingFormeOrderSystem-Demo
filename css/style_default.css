@@ -1,0 +1,259 @@
+/* style_default
+	This is the default styles stylesheet.
+
+	This stylesheet should only affect visual appearances of elements such as colour, borders, shadows etc.
+	It is also used to style basic elements. 
+	Positioning of elements using, width, height, float, display, margin, padding and other similar tags should not be used here.
+	Positioning styles are to be done in the layout_default stylesheet. 
+
+	All other "style" stylesheets should contain the same root variables, but with their own colours/styles.
+*/
+:root {
+	/* Main Page Colours */
+	--main-bg-colour: #fff;
+	--main-bg-accent: #f3f3f3;
+	--main-bg-accent-dark: #dddddd;
+	--main-element-bg-colour: #2c2a28;
+	--main-element-colour: #d75332;
+	--main-text-dark: #000;
+	--main-text-light: #fff;
+	--modal-bg-colour: #55555549;
+
+	--heading-bg: #d3d3d3;
+	--heading-button-default: #d66b50;
+	--heading-button-default--border: #b96753;
+	/* Font Styles */
+	--font-fam: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	--font-size: 14px;
+	--hyperlink: #080;
+
+	/* Message/Alert Styles */
+	--alert-text-default: #061;
+	--alert-text-warning: #e09200;
+	--alert-text-important: #f00;
+	--alert-bg-default: #cef8ba;
+	--alert-bg-warning: #fff4c4;
+	--alert-bg-important: #ffc4c4;
+
+	/* Generic Element Effects */
+	--box-shadow-nav: 0px 2px 16px 2px #000000a1;
+	--box-shadow-menu: drop-shadow(4px 2px 2px #000000);
+	--box-shadow-modal: 0px 8px 8px 0px #00000050;
+
+	/* Generic Element Styles */
+	--border-thin: thin solid #222;
+	--border-standard: 2px solid #222;
+	--border-thick: thick solid #222;
+	--border-radius-small: 4px;
+	--border-radius-med: 7px;
+	--border-radius-large: 10px;
+	--border-radius-xlarge: 15px;
+
+	/* Input Elements */
+	--btn-confirm: #0fb800;
+	--btn-confirm-hover: #0c9200;
+	--btn-cancel: #f13;
+	--btn-cancel-hover: #db0727;
+	--btn-disabled: #dbacac;
+	--btn-text-light: #fff;
+	--btn-text-dark: #000;
+	--input-bg: #dfdfdf;
+	--input-bg-edited: #ffffe0;
+	--input-active: #f3c794;
+	--input-active-bg: #ffedd9;
+	--input-invalid: #ffd2d2;
+	--disabledInputBG: #ccc;
+	--disabled-input-text: #5c5c5c;
+
+	/* Table Styles */
+	--tbl-header: #77b871;
+	--tbl-row-even: #f5f5f5;
+	--tbl-row-odd: #e7e7e7;
+	--tbl-row-border: solid thin #e7e7e7;
+
+	/* Formula Editor Styles */
+	--formula-toolbox-bg: #22ccff;
+
+	/* Jobs Page Styles*/
+	--jobPage-list: #ccc;
+	--jobPage-list-border: #acacac;
+	--jobPage-hover: #e7e6e6;
+
+	/* Temporary */
+	--jobStatus-InProgress: #feac27;
+	--jobStatus-OnHold: #eb5228;
+	--jobStatus-WaitingForApproval: #2c99ff;
+	--jobStatus-completed: #13db00;
+	--jobStatus-Ordered: #bcfff9;
+	--jobStatus-Quoted: #d630ff;
+	--jobStatus-Ready: #e5ff00;
+
+	--jobPage-sublist: #a9a8a8;
+	--jobPage-sublist-hover: #949494;
+
+
+
+	/* TEMPORARY STYLES FOR DEVELOPMENT ONLY */
+	--timeline-current-bg: #d9eb98;
+	--timeline-completed-bg: #76db69;
+}
+
+.logo-acf {
+	background-image: url("../img/favicon.ico");
+	background-repeat: no-repeat;
+}
+
+/* Input Elements */
+button {
+	border: var(--border-standard);
+	border-radius: var(--border-radius-small);
+}
+
+button[type=submit] {
+	background-color: var(--btn-confirm);
+	color: #fff;
+}
+
+button[type=submit]:hover {
+	color: #fff;
+	cursor: pointer;
+}
+
+button[type=reset] {
+	background-color: var(--btn-cancel);
+	color: #fff;
+}
+
+.nav-dropdown-list a {
+	text-decoration: none;
+}
+
+/* Main Menu Box styles */
+
+.container-menu-box {
+	transition: ease-in 0.05s;
+}
+
+.container-menu-box a {
+	text-decoration: none;
+	transition: ease-in-out 0.15s;
+}
+
+.container-menu-box a:hover {
+	cursor: pointer;
+}
+
+/* Table Styles */
+.table-head-sort a {
+	text-decoration: unset;
+	text-decoration: underline;
+}
+
+.table-pagination a {
+	text-decoration: none;
+	color: var(--hyperlink);
+}
+
+/* Modal Styles */
+
+.modal-window {
+	border-radius: var(--border-radius-large);
+}
+
+.modal-close {
+	cursor: pointer;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: larger;
+}
+
+/* Temporary styles for development purposes. */
+.menu-item-disabled {
+	cursor: not-allowed;
+	transition: none;
+	background-color: var(--btn-disabled);
+	text-decoration: line-through;
+}
+
+.menu-item-disabled:hover {
+	cursor: not-allowed;
+	transition: none;
+	background-color: var(--btn-disabled);
+}
+
+.disabled,
+.disabled a {
+	text-decoration: line-through;
+	cursor: not-allowed;
+}
+
+input[readonly],
+textarea[readonly] {
+	cursor: not-allowed;
+}
+
+/* Formula Editor */
+
+.block-text-light {
+	color: #fff;
+}
+
+.block-text-dark {
+	color: #000;
+}
+
+.block-fill-default {
+	fill: #aaa;
+}
+
+.connector-fill-default {
+	fill: #888888;
+}
+
+.block-fill-constant {
+	fill: #ebe840;
+}
+
+.connector-fill-constant {
+	fill: #bdba2c;
+}
+
+.block-fill-function {
+	fill: #2288ee;
+}
+
+.connector-fill-function {
+	fill: #195999;
+}
+
+.block-fill-lookup {
+	fill: #ff6598;
+}
+
+.connector-fill-lookup {
+	fill: #bb4c71;
+}
+
+.block-fill-formula {
+	fill: #8f87fd;
+}
+
+.connector-fill-formula {
+	fill: #5c56af;
+}
+
+.block-fill-variable {
+	fill: #12da00;
+}
+
+.connector-fill-variable {
+	fill: #0da100;
+}
+
+.block-fill-operator {
+	fill: #ffbb83
+}
+
+.connector-fill-operator {
+	fill: #d38c52;
+}

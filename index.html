@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en" class="fa-events-icons-ready">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>War Room - Orders - new</title>
+	<link rel="icon" type="image/x-icon" href="img/favicon.ico">
+	<link id="theme" href="css/style_default.css" rel="stylesheet" type="text/css">
+	<link href="css/layout_default.css" rel="stylesheet" type="text/css">
+	<script src="https://use.fontawesome.com/1f8670fa31.js"></script>
+</head>
+
+<body>
+	<nav>
+		<ul>
+			<li class="nav-logo">
+				<a href="#"><i class="logo-acf"></i></a>
+			</li>
+			<li class="nav-dropdown">
+				<a href="#" class="btn-dropdown"><i class="fa fa-cubes" aria-hidden="true"></i>Orders</a>
+				<ul class="nav-dropdown-list">
+					<li><a href="#">New Order</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<main>
+		<h2>New Order</h2>
+		<div>
+			<p>Select a customer to create a new order.</p>
+			<span>Note: You can only create orders for customers who have a machine configuration set up.</span>
+
+			<form id="OrderInitialiser">
+				<h3>Select a customer and a machine</h3>
+				<label for="Customer">Customer</label><select id="Customer" name="Customer" selected="192">
+					<option value="">Select an option</option>
+					<option value="314">A1 Cutting Formes</option>
+					<option value="40">Abaris</option>
+					<option value="73">Abbe Corrugated</option>
+					<option value="95">Academy Graphics</option>
+					<option value="182">Acron Plastics P/L</option>
+					<option value="6">AMR Hewitts</option>
+					<option value="96">Any Color you like</option>
+					<option value="146">Bambra Press</option>
+					<option value="3">Bindweld Plastics</option>
+					<option value="21">Boxes To Go</option>
+					<option value="39">C.P. Gluing</option>
+					<option value="92">Carton Finishing</option>
+					<option value="169">Cartonlux</option>
+					<option value="42">Centa-Pak</option>
+					<option value="43">Centre State Printing</option>
+					<option value="140">CMYK Hub</option>
+					<option value="202">Complete Rubber</option>
+					<option value="266">Darkos Packaging</option>
+					<option value="25">Detmold Packaging</option>
+					<option value="84">Duncan Packaging</option>
+					<option value="81">Echo Cartons</option>
+					<option value="270">Gibson Display &amp; Packaging</option>
+					<option value="71">Greenbean Packaging</option>
+					<option value="170">Gunn &amp; Taylor Printers</option>
+					<option value="236">Highlight Printing</option>
+					<option value="10">Hornet Press</option>
+					<option value="178">Immij</option>
+					<option value="174">Inbox Group</option>
+					<option value="224">IVE Display</option>
+					<option value="11">JacPak</option>
+					<option value="282">Johnston Packaging</option>
+					<option value="27">K&amp;G Cartons</option>
+					<option value="29">Kebet Corrugated Cartons</option>
+					<option value="293">KwikKopy (Richmond)</option>
+					<option value="195">Lakeside Packaging</option>
+					<option value="265">LEP Colour Printers</option>
+					<option value="103">Litho Superpak</option>
+					<option value="142">Lithocraft Pty Ltd</option>
+					<option value="1">MAD MAN PRINTING</option>
+					<option value="200">Megara</option>
+					<option value="201">Mercury Walch</option>
+					<option value="67">Micor Packaging</option>
+					<option value="7">MIG Packaging</option>
+					<option value="151">Multi-Color Pty Ltd</option>
+					<option value="136">Network Pak</option>
+					<option value="226">Norwood Industries</option>
+					<option value="22">OJI Cardboard Cartons Solutions</option>
+					<option value="192" selected="selected">Opal</option>
+					<option value="297">Park Douglas</option>
+					<option value="303">Percival Packaging</option>
+					<option value="300">Platypus Graphics</option>
+					<option value="2">PMS Lithography</option>
+					<option value="284">Press Print Solutions</option>
+					<option value="248">Printgraphics</option>
+					<option value="14">Production Packaging</option>
+					<option value="9">Proficient Packaging</option>
+					<option value="16">Sovereign Press</option>
+					<option value="215">Spectra Litho</option>
+					<option value="62">Streamline Cartons</option>
+					<option value="185">Styleprint</option>
+					<option value="167">TC Printing Australia</option>
+					<option value="162">WestRock</option>
+					<option value="275">WM Formecutting</option>
+					<option value="184">Zacpac</option>
+				</select> <label for="Machine">Machine Type</label><select id="Machine" name="Machine" value="1">
+					<option value="">Select an option</option>
+					<option value="1" selected="selected">Flatbed</option>
+				</select>
+			</form>
+		</div>
+
+		<!-- sd -->
+		<form id="NewOrder" method="post" action="../Orders?mode=add">
+			<h2>Create a new order</h2>
+			<input id="CustomerId" name="CustomerId" type="hidden" value="192"> <input id="MachineType"
+				name="MachineType" type="hidden" value="1">
+			<fieldset class="flex-container">
+				<legend>Order Details</legend>
+				<div class="flex-col-quarter">
+					<label for="CADNumber">CAD Number</label><input id="CADNumber" name="CADNumber" type="text"
+						maxlength="64"> <label for="OrderDescription">Description *</label><input id="OrderDescription"
+						name="OrderDescription" type="text" maxlength="255" required="">
+				</div>
+				<div class="flex-col-quarter">
+					<label for="DateDue">Due Date *</label><input id="DateDue" name="DateDue" type="datetime-local"
+						value="" min="2023-10-12T10:57" required="" data-deliveryoffset="0"
+						data-beginworkingoffset="6" data-defaultduetime="16:00"> <label for="PONumber">Purchase Order
+						Number</label><input id="PONumber" name="PONumber" type="text" maxlength="50">
+				</div>
+				<div class="flex-col-quarter">
+					<label for="Notes">Notes</label><textarea id="Notes" name="Notes" maxlength="1024"></textarea>
+				</div>
+				<div class="flex-col-quarter">
+					<h3>Machine Details</h3>
+					<div class="form-input-wrapper"><label for="BoardType">Board Type *</label><select id="BoardType"
+							name="BoardType" required="1" modal="Modal_BoardType">
+							<option value="4">E Flute</option>
+							<option value="9">400µm </option>
+							<option value="10" selected="selected">450µm </option>
+							<option value="12">550µm </option>
+							<option value="15">700µm </option>
+						</select></div>
+				</div>
+			</fieldset>
+			<fieldset id="ProductItems" class="flex-grid">
+				<legend>Products</legend>
+				<fieldset id="Prod_FlatbedDie">
+					<legend>Flatbed Die</legend><label for="Add_FlatbedDie">Add to Order</label><input
+						id="hidden-Add_FlatbedDie" name="Add_FlatbedDie" type="hidden"
+						onclick="toggleProduct('FlatbedDie')" value="0" disabled="disabled"><input id="Add_FlatbedDie"
+						name="Add_FlatbedDie" type="checkbox" onclick="toggleProduct('FlatbedDie')">
+					<div class="form-input-wrapper"><label for="FlatbedDie_Modification">Modification</label><select
+							id="FlatbedDie_Modification" name="FlatbedDie_Modification" disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Alteration</option>
+							<option value="2">Repair</option>
+							<option value="3">Re-rule</option>
+						</select></div>
+					<div class="form-input-wrapper"><label for="FlatbedDie_FormeType">Forme Type *</label><select
+							id="FlatbedDie_FormeType" name="FlatbedDie_FormeType" required="1"
+							modal="Modal_FlatbedDie_FormeType" disabled="disabled">
+							<option value="1" selected="selected">Regular</option>
+							<option value="2">SBD</option>
+							<option value="3">Premium</option>
+
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="FlatbedDie_TimberType">Timber Type
+							*</label><select id="FlatbedDie_TimberType" name="FlatbedDie_TimberType" required="1"
+							data-toggledisplay="true" modal="Modal_FlatbedDie_TimberType" disabled="disabled">
+							<option value="1" selected="selected">18mm Poplar</option>
+							<option value="2">15mm Poplar</option>
+							<option value="3">12mm Poplar</option>
+							<option value="4">18mm Birch</option>
+							<option value="5">15mm Birch</option>
+							<option value="6">18mm Multi</option>
+							<option value="7">12mm Multi</option>
+							<option value="8">9mm Multi</option>
+							<option value="9">15mm Multi</option>
+							<option value="10">Misc</option>
+							<option value="11">7mm Multi</option>
+							<option value="12">18mm 3D</option>
+							<option value="13">15mm MDF</option>
+							<option value="14">12mm Birch</option>
+							<option value="15">18mm RAY</option>
+							<option value="16">18mm MDF</option>
+							<option value="17">9mm MDF</option>
+							<option value="18">8mm Grey PVC</option>
+							<option value="19">12mm Premium</option>
+							<option value="20">8mm Acrylic</option>
+
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Rules">Rules
+							Options</label><select id="multi-FlatbedDie_Rules" name="multi-FlatbedDie_Rules"
+							maxlength="2048" data-toggledisplay="true" disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Cut 2pt 23.80mm</option>
+							<option value="2">Crease 2pt 23.30mm</option>
+							<option value="3">Cut 3pt 23.80mm</option>
+							<option value="4">Crease 2pt 23.60mm</option>
+							<option value="5">Cut 2pt 23.30mm</option>
+							<option value="6">Crease 2pt 22.60mm</option>
+							<option value="7">Score 2pt 23.60mm</option>
+							<option value="8">Crease 2pt 23.20mm</option>
+							<option value="9">Crease 2pt 23.80mm</option>
+							<option value="10">Cut 2pt 0.00mm</option>
+							<option value="11">Crease 2pt 0.00mm</option>
+							<option value="12">Crease 3pt 23.10mm</option>
+							<option value="13">Score 3pt 23.30mm</option>
+							<option value="14">Score 2pt 23.10mm</option>
+							<option value="15">Cut 3pt 0.00mm</option>
+							<option value="16">Crease 3pt 0.00mm</option>
+							<option value="17">Crease 3pt 23.15mm</option>
+							<option value="18">Score 2pt 23.50mm</option>
+							<option value="19">Crease 3pt 22.60mm</option>
+							<option value="20">Crease 3pt 22.95mm</option>
+							<option value="21">Crease 3pt 21.85mm</option>
+							<option value="22">Score 2pt 23.30mm</option>
+							<option value="23">Crease 2pt 23.40mm</option>
+							<option value="24">Crease 4pt 22.95mm</option>
+							<option value="25">Crease 2pt 22.70mm</option>
+							<option value="26">Crease 6pt 23.10mm</option>
+							<option value="27">Crease 3pt 23.05mm</option>
+							<option value="28">Crease 2pt 23.10mm</option>
+							<option value="29">Crease 3pt 22.90mm</option>
+							<option value="30">Crease 3pt 23.00mm</option>
+							<option value="31">Crease 2pt 23.50mm</option>
+							<option value="32">Crease 2pt 23.90mm</option>
+							<option value="33">Crease 3pt 23.25mm</option>
+							<option value="34">Crease 4pt 23.10mm</option>
+							<option value="35">Crease 2pt 23.65mm</option>
+							<option value="36">Cut 3pt 30.00mm</option>
+							<option value="37">Crease 4pt 22.60mm</option>
+							<option value="38">Crease 3pt 22.80mm</option>
+							<option value="39">Crease 3pt 22.96mm</option>
+							<option value="40">Crease 2pt 23.70mm</option>
+							<option value="41">Crease 3pt 23.50mm</option>
+							<option value="42">Crease 3pt 23.40mm</option>
+							<option value="43">Crease 3pt 23.80mm</option>
+							<option value="44">Crease 3pt 23.20mm</option>
+							<option value="45">Crease 2pt 23.55mm</option>
+							<option value="46">Cut 4pt 23.80mm</option>
+							<option value="47">Crease 2pt 22.75mm</option>
+							<option value="48">Crease 3pt 22.10mm</option>
+							<option value="49">Crease 4pt 22.80mm</option>
+							<option value="50">Score 3pt 23.50mm</option>
+							<option value="51">Crease 3pt 22.75mm</option>
+							<option value="52">Crease 2pt 23.25mm</option>
+							<option value="53">Crease 6pt 21.40mm</option>
+							<option value="54">Crease 2pt 23.85mm</option>
+							<option value="55">Crease 3pt 22.00mm</option>
+							<option value="56">Crease 2pt 23.35mm</option>
+							<option value="57">Crease 4pt 21.85mm</option>
+							<option value="58">Score 3pt 23.60mm</option>
+							<option value="59">misc</option>
+							<option value="60">Crease 2pt 23.00mm</option>
+							<option value="61">Crease 3pt 23.95mm</option>
+							<option value="62">Crease 3pt 23.30mm</option>
+							<option value="63">Crease 2pt 23.15mm</option>
+							<option value="64">Crease 2pt 22.95mm</option>
+							<option value="65">Crease 6pt 22.95mm</option>
+							<option value="66">Crease 4pt 21.80mm</option>
+							<option value="67">Cut 3pt 80.00mm</option>
+							<option value="68">Crease 2pt 22.65mm</option>
+							<option value="69">Cut 3pt 40.00mm</option>
+							<option value="70">Crease 3pt 22.70mm</option>
+							<option value="71">Crease 4pt 22.10mm</option>
+							<option value="72">Crease 2pt 22.85mm</option>
+							<option value="73">Crease 3pt 23.60mm</option>
+							<option value="74">Crease 4pt 22.75mm</option>
+							<option value="75">Crease 4pt 21.60mm</option>
+							<option value="76">Crease 6pt 22.60mm</option>
+							<option value="77">Crease 3pt 23.90mm</option>
+							<option value="78">Score 2pt 23.00mm</option>
+							<option value="79">Cut 3pt 50.00mm</option>
+							<option value="80">Score 3pt 0.00mm</option>
+							<option value="81">Crease 1pt on 2pt 23.30mm</option>
+							<option value="82">Crease 2pt 22.25mm</option>
+							<option value="83">Cut 4pt 25.40mm</option>
+							<option value="84">Cut 1pt 12.00mm</option>
+							<option value="85">Crease 1.5 on 2pt 23.80mm</option>
+							<option value="86">Crease 1pt on 2pt 23.90mm</option>
+							<option value="87">Crease 2pt 22.00mm</option>
+							<option value="88">Crease 2pt 22.80mm</option>
+							<option value="89">Crease 4pt 22.70mm</option>
+							<option value="90">Crease 1pt on 2pt 23.80mm</option>
+							<option value="91">Crease 2pt 22.10mm</option>
+							<option value="92">Crease 8pt on 4pt 21.85mm</option>
+							<option value="93">Cut 3pt 23.30mm</option>
+							<option value="94">Score 3pt 23.00mm</option>
+							<option value="95">Crease 3pt 22.35mm</option>
+							<option value="96">Crease 2pt 23.05mm</option>
+							<option value="97">Crease 3pt 23.85mm</option>
+							<option value="98">Crease 2pt 23.32mm</option>
+							<option value="99">Crease 4pt 23.15mm</option>
+							<option value="100">Crease 2pt 23.45mm</option>
+							<option value="101">Crease 1.5 on 2pt 23.90mm</option>
+							<option value="102">Crease 2pt 23.39mm</option>
+							<option value="103">Crease 1.5 on 2pt 23.10mm</option>
+							<option value="104">Crease 8pt 23.10mm</option>
+							<option value="105">Crease 3pt 22.85mm</option>
+							<option value="106">Crease 3pt 22.50mm</option>
+							<option value="107">Cut 2pt 22.30mm</option>
+							<option value="108">Crease 2pt 21.60mm</option>
+							<option value="109">Score 2pt 22.00mm</option>
+							<option value="110">Crease 4pt 23.80mm</option>
+							<option value="111">Crease 3pt 22.40mm</option>
+							<option value="112">Crease 6pt 22.80mm</option>
+							<option value="113">Crease 3pt 28.80mm</option>
+							<option value="114">Score 4pt 22.80mm</option>
+							<option value="115">Score 2pt 22.30mm</option>
+							<option value="116">Crease 3pt 21.35mm</option>
+							<option value="117">Score 2pt 23.70mm</option>
+							<option value="118">Crease 8pt on 4pt 22.10mm</option>
+							<option value="119">Crease 4pt 23.00mm</option>
+							<option value="120">Score 2pt 23.80mm</option>
+							<option value="121">Crease 2pt 22.90mm</option>
+							<option value="122">Cut 1pt 22.60mm</option>
+							<option value="123">Crease 1.5 on 2pt 22.60mm</option>
+							<option value="124">Score 1.5 on 2pt 22.60mm</option>
+							<option value="125">Cut 4pt 26.41mm</option>
+							<option value="126">Crease 4pt 22.96mm</option>
+							<option value="127">Crease 8pt 21.85mm</option>
+							<option value="128">Crease 6pt 22.96mm</option>
+							<option value="129">Crease N/A 21.85mm</option>
+							<option value="130">Cut 3pt 23.70mm</option>
+							<option value="131">Cut 4pt 26.16mm</option>
+							<option value="132">Crease 4pt 25.14mm</option>
+							<option value="133">Crease 8pt 22.60mm</option>
+							<option value="134">Crease 8pt 22.96mm</option>
+							<option value="135">Crease 4pt 23.20mm</option>
+							<option value="136">Cut 4pt 24.40mm</option>
+						</select>
+						<div id="pillbox-FlatbedDie_Rules" class="pill-box">
+						</div>
+					</div>
+					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Rubber">Rubber
+							Options</label><select id="multi-FlatbedDie_Rubber" name="multi-FlatbedDie_Rubber"
+							maxlength="2048" data-toggledisplay="true" disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">7.00mm Grey DMG</option>
+							<option value="2">Misc</option>
+							<option value="3">7.00mm Green Vulcan</option>
+							<option value="4">10.00mm Brown Vulcan</option>
+							<option value="5">10.00mm Red Vulcan</option>
+							<option value="6">7.00mm Grey Sprint</option>
+							<option value="7">10.00mm Black Vulcan</option>
+							<option value="8">10.00mm Grey Vulcan</option>
+							<option value="9">7.00mm Orange Vulcan</option>
+							<option value="10">7.00mm Orange Sprint</option>
+							<option value="11">7.00mm Tan Vulcan</option>
+							<option value="12">10.00mm Grey PCS</option>
+							<option value="13">10.00mm Cork</option>
+							<option value="14">7.00mm Vulcan</option>
+							<option value="15">7.00mm Brown Vulcan</option>
+							<option value="16">7.00mm Brown Sprint</option>
+							<option value="17">7.00mm Sprint</option>
+							<option value="18">4.00mm Grey Vulcan</option>
+							<option value="19">7.00mm Grey Soft</option>
+							<option value="20">10.00mm Black Sprint</option>
+							<option value="21">10.00mm Green Vulcan</option>
+							<option value="22">7.00mm Red Seaga</option>
+							<option value="23">7.00mm Red Sprint</option>
+							<option value="24">10.00mm Red Seaga</option>
+							<option value="25">10.00mm Red Sprint</option>
+							<option value="26">7.00mm Cork Vulcan</option>
+							<option value="27">10.00mm Tan Vulcan</option>
+							<option value="28">7.00mm Blue Cito</option>
+							<option value="29">7.00mm Orange Cito</option>
+						</select>
+						<div id="pillbox-FlatbedDie_Rubber" class="pill-box">
+						</div>
+					</div>
+					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Punches">Punches
+							Options</label><select id="multi-FlatbedDie_Punches" name="multi-FlatbedDie_Punches"
+							maxlength="2048" data-toggledisplay="true" disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Generic Cup</option>
+							<option value="2" class="hidden">Generic Side Eject</option>
+							<option value="3">Generic Spring</option>
+							<option value="4">Generic Tube</option>
+						</select>
+						<div id="pillbox-FlatbedDie_Punches" class="pill-box">
+						</div>
+					</div>
+					<div class="form-input-wrapper"><label for="FlatbedDie_GripEdge">Grip Edge *</label><input
+							id="FlatbedDie_GripEdge" name="FlatbedDie_GripEdge" type="number" min="0" max="999"
+							step="0.1" required="" disabled="disabled" value="14"></div>
+					<div class="form-input-wrapper"><label for="FlatbedDie_CuttingSide">Cutting Side *</label><select
+							id="FlatbedDie_CuttingSide" name="FlatbedDie_CuttingSide" required="1"
+							modal="Modal_FlatbedDie_CuttingSide" disabled="disabled">
+							<option value="1" selected="selected">Cut from Front</option>
+							<option value="2">Cut from Back</option>
+							<option value="3">Unspecified</option>
+						</select></div>
+				</fieldset>
+				<fieldset id="Prod_StripperMale">
+					<legend>Male Stripper</legend><label for="Add_StripperMale">Add to Order</label><input
+						id="hidden-Add_StripperMale" name="Add_StripperMale" type="hidden"
+						onclick="toggleProduct('StripperMale')" value="0" disabled="disabled"><input
+						id="Add_StripperMale" name="Add_StripperMale" type="checkbox"
+						onclick="toggleProduct('StripperMale')">
+					<div class="form-input-wrapper"><label for="StripperMale_Modification">Modification</label><select
+							id="StripperMale_Modification" name="StripperMale_Modification" disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Alteration</option>
+							<option value="2">Repair</option>
+							<option value="3">Re-rule</option>
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="StripperMale_TimberType">Timber Type
+							*</label><select id="StripperMale_TimberType" name="StripperMale_TimberType" required="1"
+							data-toggledisplay="true" modal="Modal_StripperMale_TimberType" disabled="disabled">
+							<option value="1" selected="selected">18mm Poplar</option>
+							<option value="2">15mm Poplar</option>
+							<option value="3">12mm Poplar</option>
+							<option value="4">18mm Birch</option>
+							<option value="5">15mm Birch</option>
+							<option value="6">18mm Multi</option>
+							<option value="7">12mm Multi</option>
+							<option value="8">9mm Multi</option>
+							<option value="9">15mm Multi</option>
+							<option value="10">Misc</option>
+							<option value="11">7mm Multi</option>
+							<option value="12">18mm 3D</option>
+							<option value="13">15mm MDF</option>
+							<option value="14">12mm Birch</option>
+							<option value="15">18mm RAY</option>
+							<option value="16">18mm MDF</option>
+							<option value="17">9mm MDF</option>
+							<option value="18">8mm Grey PVC</option>
+							<option value="19">12mm Premium</option>
+							<option value="20">8mm Acrylic</option>
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="StripperMale_BuildHeight">Build Height
+							*</label><input id="StripperMale_BuildHeight" name="StripperMale_BuildHeight" type="number"
+							min="0" max="99" step="0.01" required="" data-toggledisplay="true" disabled="disabled">
+					</div>
+					<div class="form-input-wrapper"><label for="StripperMale_OutsidePinType">Outside Pin
+							Type</label><select id="StripperMale_OutsidePinType" name="StripperMale_OutsidePinType"
+							disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Boxplan</option>
+							<option value="2">Wood</option>
+							<option value="3">Claws</option>
+							<option value="4">Misc</option>
+						</select></div>
+					<div class="form-input-wrapper"><label for="StripperMale_InternalPinType">Internal Pin
+							Type</label><select id="StripperMale_InternalPinType" name="StripperMale_InternalPinType"
+							disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Boxplan</option>
+							<option value="2">Wood</option>
+							<option value="3">Claws</option>
+							<option value="4">Misc</option>
+						</select></div>
+					<div class="form-input-wrapper"><label for="StripperMale_PresserPlate">Presser Plate?</label><input
+							id="hidden-StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="hidden" min="0"
+							max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input
+							id="StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="checkbox" min="0"
+							max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper"><label for="StripperMale_GripEdge">Grip Edge *</label><input
+							id="StripperMale_GripEdge" name="StripperMale_GripEdge" type="number" min="0" max="99"
+							step="1" required="" disabled="disabled"></div>
+				</fieldset>
+				<fieldset id="Prod_StripperFemale">
+					<legend>Female Stripper</legend><label for="Add_StripperFemale">Add to Order</label><input
+						id="hidden-Add_StripperFemale" name="Add_StripperFemale" type="hidden"
+						onclick="toggleProduct('StripperFemale')" value="0" disabled="disabled"><input
+						id="Add_StripperFemale" name="Add_StripperFemale" type="checkbox"
+						onclick="toggleProduct('StripperFemale')">
+					<div class="form-input-wrapper"><label for="StripperFemale_Modification">Modification</label><select
+							id="StripperFemale_Modification" name="StripperFemale_Modification" disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Alteration</option>
+							<option value="2">Repair</option>
+							<option value="3">Re-rule</option>
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="StripperFemale_FemaleType">Female Type
+							*</label><select id="StripperFemale_FemaleType" name="StripperFemale_FemaleType"
+							required="1" data-toggledisplay="true" modal="Modal_StripperFemale_FemaleType"
+							disabled="disabled">
+							<option value="1" selected="selected">Regular</option>
+							<option value="2">Steel Top and Bars</option>
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="StripperFemale_TimberType">Timber Type
+							*</label><select id="StripperFemale_TimberType" name="StripperFemale_TimberType"
+							required="1" data-toggledisplay="true" modal="Modal_StripperFemale_TimberType"
+							disabled="disabled">
+							<option value="1" selected="selected">18mm Poplar</option>
+							<option value="2">15mm Poplar</option>
+							<option value="3">12mm Poplar</option>
+							<option value="4">18mm Birch</option>
+							<option value="5">15mm Birch</option>
+							<option value="6">18mm Multi</option>
+							<option value="7">12mm Multi</option>
+							<option value="8">9mm Multi</option>
+							<option value="9">15mm Multi</option>
+							<option value="10">Misc</option>
+							<option value="11">7mm Multi</option>
+							<option value="12">18mm 3D</option>
+							<option value="13">15mm MDF</option>
+							<option value="14">12mm Birch</option>
+							<option value="15">18mm RAY</option>
+							<option value="16">18mm MDF</option>
+							<option value="17">9mm MDF</option>
+							<option value="18">8mm Grey PVC</option>
+							<option value="19">12mm Premium</option>
+							<option value="20">8mm Acrylic</option>
+						</select></div>
+					<div class="form-input-wrapper"><label for="StripperFemale_BarType">Bar Type</label><select
+							id="StripperFemale_BarType" name="StripperFemale_BarType" disabled="disabled">
+							<option selected="selected">No options available</option>
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="StripperFemale_GripEdge">Grip Edge
+							*</label><input id="StripperFemale_GripEdge" name="StripperFemale_GripEdge" type="number"
+							min="0" max="99" step="1" required="" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper hidden"><label for="StripperFemale_BreakerType">Breaker
+							Type</label><select id="StripperFemale_BreakerType" name="StripperFemale_BreakerType"
+							data-toggledisplay="true" disabled="disabled">
+							<option selected="selected">No options available</option>
+						</select></div>
+					<div class="form-input-wrapper"><label for="StripperFemale_Flyovers">Flyovers?</label><input
+							id="hidden-StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="hidden" min="0"
+							max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input
+							id="StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="checkbox" min="0" max="9"
+							step="1" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper"><label for="StripperFemale_SheetLifters">Sheet
+							Lifters?</label><input id="hidden-StripperFemale_SheetLifters"
+							name="StripperFemale_SheetLifters" type="hidden" min="0" max="9" step="1"
+							data-toggledisplay="true" value="0" disabled="disabled"><input
+							id="StripperFemale_SheetLifters" name="StripperFemale_SheetLifters" type="checkbox" min="0"
+							max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
+				</fieldset>
+				<fieldset id="Prod_EngravedPlate">
+					<legend>Engraved Plate</legend><label for="Add_EngravedPlate">Add to Order</label><input
+						id="hidden-Add_EngravedPlate" name="Add_EngravedPlate" type="hidden"
+						onclick="toggleProduct('EngravedPlate')" value="0" disabled="disabled"><input
+						id="Add_EngravedPlate" name="Add_EngravedPlate" type="checkbox"
+						onclick="toggleProduct('EngravedPlate')">
+					<div class="form-input-wrapper"><label for="EngravedPlate_Modification">Modification</label><select
+							id="EngravedPlate_Modification" name="EngravedPlate_Modification" disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Alteration</option>
+							<option value="2">Repair</option>
+							<option value="3">Re-rule</option>
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="EngravedPlate_ChannelHeightMM">Channel Height
+							(mm) *</label><input id="EngravedPlate_ChannelHeightMM" name="EngravedPlate_ChannelHeightMM"
+							type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true"
+							disabled="disabled"></div>
+					<div class="form-input-wrapper hidden"><label for="EngravedPlate_ChannelWidthAgainstGrainMM">Channel
+							Width Against Grain (m *</label><input id="EngravedPlate_ChannelWidthAgainstGrainMM"
+							name="EngravedPlate_ChannelWidthAgainstGrainMM" type="number" min="0" max="9" step="0.01"
+							required="" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper hidden"><label for="EngravedPlate_ChannelWidthWithGrainMM">Channel
+							Width With Grain (mm) *</label><input id="EngravedPlate_ChannelWidthWithGrainMM"
+							name="EngravedPlate_ChannelWidthWithGrainMM" type="number" min="0" max="9" step="0.01"
+							required="" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper hidden"><label for="EngravedPlate_Thickness">Plate Thickness
+							*</label><input id="EngravedPlate_Thickness" name="EngravedPlate_Thickness" type="number"
+							min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper hidden"><label for="EngravedPlate_RockwellHardness">Rockwell Hardness
+							*</label><input id="EngravedPlate_RockwellHardness" name="EngravedPlate_RockwellHardness"
+							type="number" min="0" max="99" step="1" required="" data-toggledisplay="true"
+							disabled="disabled"></div>
+					<div class="form-input-wrapper"><label for="EngravedPlate_Chromed">Chromed</label><input
+							id="hidden-EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="hidden" min="0" max="9"
+							step="1" data-toggledisplay="true" value="0" disabled="disabled"><input
+							id="EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="checkbox" min="0" max="9"
+							step="1" data-toggledisplay="true" disabled="disabled"></div>
+				</fieldset>
+				<fieldset id="Prod_EmbossingBlockMale">
+					<legend>Male Embossing Block</legend><label for="Add_EmbossingBlockMale">Add to Order</label><input
+						id="hidden-Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="hidden"
+						onclick="toggleProduct('EmbossingBlockMale')" value="0" disabled="disabled"><input
+						id="Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="checkbox"
+						onclick="toggleProduct('EmbossingBlockMale')">
+					<div class="form-input-wrapper"><label
+							for="EmbossingBlockMale_Modification">Modification</label><select
+							id="EmbossingBlockMale_Modification" name="EmbossingBlockMale_Modification"
+							disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Alteration</option>
+							<option value="2">Repair</option>
+							<option value="3">Re-rule</option>
+						</select></div>
+				</fieldset>
+				<fieldset id="Prod_EmbossingBlockFemale">
+					<legend>Female Embossing Block</legend><label for="Add_EmbossingBlockFemale">Add to
+						Order</label><input id="hidden-Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale"
+						type="hidden" onclick="toggleProduct('EmbossingBlockFemale')" value="0"
+						disabled="disabled"><input id="Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale"
+						type="checkbox" onclick="toggleProduct('EmbossingBlockFemale')">
+					<div class="form-input-wrapper"><label
+							for="EmbossingBlockFemale_Modification">Modification</label><select
+							id="EmbossingBlockFemale_Modification" name="EmbossingBlockFemale_Modification"
+							disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Alteration</option>
+							<option value="2">Repair</option>
+							<option value="3">Re-rule</option>
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="EmbossingBlockFemale_Material">Material
+							*</label><select id="EmbossingBlockFemale_Material" name="EmbossingBlockFemale_Material"
+							required="1" data-toggledisplay="true" modal="Modal_EmbossingBlockFemale_Material"
+							disabled="disabled">
+							<option value="1" selected="selected">Board</option>
+							<option value="2">Card</option>
+							<option value="3">Steel</option>
+							<option value="4">Rubber</option>
+							<option value="5">Timber</option>
+							<option value="6">Brass</option>
+
+						</select></div>
+				</fieldset>
+				<fieldset id="Prod_BlankerSeparatorLower" class="">
+					<legend>Blanker Separator Lower</legend><label for="Add_BlankerSeparatorLower">Add to
+						Order</label><input id="hidden-Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower"
+						type="hidden" onclick="toggleProduct('BlankerSeparatorLower')" value="0"
+						disabled="disabled"><input id="Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower"
+						type="checkbox" onclick="toggleProduct('BlankerSeparatorLower')">
+					<div class="form-input-wrapper"><label
+							for="BlankerSeparatorLower_Modification">Modification</label><select
+							id="BlankerSeparatorLower_Modification" name="BlankerSeparatorLower_Modification"
+							disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Alteration</option>
+							<option value="2">Repair</option>
+							<option value="3">Re-rule</option>
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="BlankerSeparatorLower_FrameType">Frame Type
+							*</label><select id="BlankerSeparatorLower_FrameType" name="BlankerSeparatorLower_FrameType"
+							required="1" data-toggledisplay="true" modal="Modal_BlankerSeparatorLower_FrameType"
+							disabled="disabled">
+							<option value="1" selected="selected">Full</option>
+							<option value="2">Light</option>
+							<option value="3">Cable</option>
+
+						</select></div>
+					<div class="form-input-wrapper hidden"><label for="BlankerSeparatorLower_BarType">Bar
+							Type</label><select id="BlankerSeparatorLower_BarType" name="BlankerSeparatorLower_BarType"
+							data-toggledisplay="true" disabled="disabled">
+							<option selected="selected">No options available</option>
+						</select></div>
+					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_Tube">Tube?</label><input
+							id="hidden-BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="hidden"
+							min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input
+							id="BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="checkbox" min="0"
+							max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_MountingBracket">Mounting
+							Bracket?</label><input id="hidden-BlankerSeparatorLower_MountingBracket"
+							name="BlankerSeparatorLower_MountingBracket" type="hidden" min="0" max="9" step="1"
+							data-toggledisplay="true" value="0" disabled="disabled"><input
+							id="BlankerSeparatorLower_MountingBracket" name="BlankerSeparatorLower_MountingBracket"
+							type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled">
+					</div>
+				</fieldset>
+				<fieldset id="Prod_BlankerSeparatorUpper">
+					<legend>Blanker Separator Upper</legend><label for="Add_BlankerSeparatorUpper">Add to
+						Order</label><input id="hidden-Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper"
+						type="hidden" onclick="toggleProduct('BlankerSeparatorUpper')" value="0"
+						disabled="disabled"><input id="Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper"
+						type="checkbox" onclick="toggleProduct('BlankerSeparatorUpper')">
+					<div class="form-input-wrapper"><label
+							for="BlankerSeparatorUpper_Modification">Modification</label><select
+							id="BlankerSeparatorUpper_Modification" name="BlankerSeparatorUpper_Modification"
+							disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Alteration</option>
+							<option value="2">Repair</option>
+							<option value="3">Re-rule</option>
+						</select></div>
+					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_PresserType">Presser
+							Type</label><select id="BlankerSeparatorUpper_PresserType"
+							name="BlankerSeparatorUpper_PresserType" disabled="disabled">
+							<option value="" selected="selected">Select an option</option>
+							<option value="1">Spot Presser</option>
+							<option value="2">Presser Plate</option>
+							<option value="3">Bar Presser</option>
+						</select></div>
+					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_FoamType">Foam Type</label><select
+							id="BlankerSeparatorUpper_FoamType" name="BlankerSeparatorUpper_FoamType"
+							disabled="disabled">
+							<option selected="selected">No options available</option>
+						</select></div>
+				</fieldset>
+			</fieldset>
+			<button type="submit">Submit Order</button>
+			<button type="reset">Reset Order</button>
+		</form>
+	</main>
+	<script defer="defer" src="js/FormManagement.js"></script>
+	<script defer="defer" src="js/liveFieldValidator.js"></script>
+	<script defer="defer" src="js/OrderQuoteHelper.js"></script>
+	<footer>
+		<p>This page is made up of code adapted from my in-house "War Room" Job Management system.</p>
+	</footer>
+</body>
+
+</html>
