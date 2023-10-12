@@ -8,7 +8,6 @@
 	<link rel="icon" type="image/x-icon" href="img/favicon.ico">
 	<link id="theme" href="css/style_default.css" rel="stylesheet" type="text/css">
 	<link href="css/layout_default.css" rel="stylesheet" type="text/css">
-	<script src="https://use.fontawesome.com/1f8670fa31.js"></script>
 </head>
 
 <body>
@@ -18,7 +17,7 @@
 				<a href="#"><i class="logo-acf"></i></a>
 			</li>
 			<li class="nav-dropdown">
-				<a href="#" class="btn-dropdown"><i class="fa fa-cubes" aria-hidden="true"></i>Orders</a>
+				<a href="#" class="btn-dropdown"><i aria-hidden="true"></i>Orders</a>
 				<ul class="nav-dropdown-list">
 					<li><a href="#">New Order</a></li>
 				</ul>
@@ -29,141 +28,135 @@
 		<h2>New Order</h2>
 		<div>
 			<p>Select a customer to create a new order.</p>
-			<span>Note: You can only create orders for customers who have a machine configuration set up.</span>
 
 			<form id="OrderInitialiser">
 				<h3>Select a customer and a machine</h3>
-				<label for="Customer">Customer</label><select id="Customer" name="Customer" selected="192">
-					<option value="">Select an option</option>
-					<option value="314">A1 Cutting Formes</option>
-					<option value="40">Abaris</option>
-					<option value="73">Abbe Corrugated</option>
-					<option value="95">Academy Graphics</option>
-					<option value="182">Acron Plastics P/L</option>
-					<option value="6">AMR Hewitts</option>
-					<option value="96">Any Color you like</option>
-					<option value="146">Bambra Press</option>
-					<option value="3">Bindweld Plastics</option>
-					<option value="21">Boxes To Go</option>
-					<option value="39">C.P. Gluing</option>
-					<option value="92">Carton Finishing</option>
-					<option value="169">Cartonlux</option>
-					<option value="42">Centa-Pak</option>
-					<option value="43">Centre State Printing</option>
-					<option value="140">CMYK Hub</option>
-					<option value="202">Complete Rubber</option>
-					<option value="266">Darkos Packaging</option>
-					<option value="25">Detmold Packaging</option>
-					<option value="84">Duncan Packaging</option>
-					<option value="81">Echo Cartons</option>
-					<option value="270">Gibson Display &amp; Packaging</option>
-					<option value="71">Greenbean Packaging</option>
-					<option value="170">Gunn &amp; Taylor Printers</option>
-					<option value="236">Highlight Printing</option>
-					<option value="10">Hornet Press</option>
-					<option value="178">Immij</option>
-					<option value="174">Inbox Group</option>
-					<option value="224">IVE Display</option>
-					<option value="11">JacPak</option>
-					<option value="282">Johnston Packaging</option>
-					<option value="27">K&amp;G Cartons</option>
-					<option value="29">Kebet Corrugated Cartons</option>
-					<option value="293">KwikKopy (Richmond)</option>
-					<option value="195">Lakeside Packaging</option>
-					<option value="265">LEP Colour Printers</option>
-					<option value="103">Litho Superpak</option>
-					<option value="142">Lithocraft Pty Ltd</option>
-					<option value="1">MAD MAN PRINTING</option>
-					<option value="200">Megara</option>
-					<option value="201">Mercury Walch</option>
-					<option value="67">Micor Packaging</option>
-					<option value="7">MIG Packaging</option>
-					<option value="151">Multi-Color Pty Ltd</option>
-					<option value="136">Network Pak</option>
-					<option value="226">Norwood Industries</option>
-					<option value="22">OJI Cardboard Cartons Solutions</option>
-					<option value="192" selected="selected">Opal</option>
-					<option value="297">Park Douglas</option>
-					<option value="303">Percival Packaging</option>
-					<option value="300">Platypus Graphics</option>
-					<option value="2">PMS Lithography</option>
-					<option value="284">Press Print Solutions</option>
-					<option value="248">Printgraphics</option>
-					<option value="14">Production Packaging</option>
-					<option value="9">Proficient Packaging</option>
-					<option value="16">Sovereign Press</option>
-					<option value="215">Spectra Litho</option>
-					<option value="62">Streamline Cartons</option>
-					<option value="185">Styleprint</option>
-					<option value="167">TC Printing Australia</option>
-					<option value="162">WestRock</option>
-					<option value="275">WM Formecutting</option>
-					<option value="184">Zacpac</option>
+				<label for="Customer">Customer</label>
+				<select id="Customer" name="Customer">
+					<option>Select an option</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="5" data-defaultduetime="16:00">A1 Cutting Formes</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Abaris</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Abbe Corrugated</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Academy Graphics</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Acron Plastics P/L</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">AMR Hewitts</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Any Color you like</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Bambra Press</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Bindweld Plastics</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Boxes To Go</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">C.P. Gluing</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Carton Finishing</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Cartonlux</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Centa-Pak</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Centre State Printing</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">CMYK Hub</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="13:00">Complete Rubber</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="13:00">Darkos Packaging</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="13:00">Detmold Packaging</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="13:00">Duncan Packaging</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Echo Cartons</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Gibson Display &amp; Packaging</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Greenbean Packaging</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Gunn &amp; Taylor Printers</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Highlight Printing</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Hornet Press</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Immij</option>
+					<option data-deliveryoffset="3" data-beginworkingoffset="6" data-defaultduetime="16:00">Inbox Group</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">IVE Display</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">JacPak</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Johnston Packaging</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">K&amp;G Cartons</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Kebet Corrugated Cartons</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="12:00">KwikKopy (Richmond)</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="12:00">Lakeside Packaging</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="12:00">LEP Colour Printers</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="12:00">Litho Superpak</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Lithocraft Pty Ltd</option>
+					<option data-deliveryoffset="3" data-beginworkingoffset="6" data-defaultduetime="16:00">MAD MAN PRINTING</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Megara</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="17:00">Mercury Walch</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="17:00">Micor Packaging</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="17:00">MIG Packaging</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="17:00">Multi-Color Pty Ltd</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Network Pak</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Norwood Industries</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">OJI Cardboard Cartons Solutions</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="17:00" selected="selected">Opal</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Park Douglas</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Percival Packaging</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Platypus Graphics</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">PMS Lithography</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Press Print Solutions</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="17:00">Printgraphics</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Production Packaging</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Proficient Packaging</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Sovereign Press</option>
+					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Spectra Litho</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Streamline Cartons</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Styleprint</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">TC Printing Australia</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">WestRock</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">WM Formecutting</option>
+					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Zacpac</option>
 				</select> <label for="Machine">Machine Type</label><select id="Machine" name="Machine" value="1">
-					<option value="">Select an option</option>
 					<option value="1" selected="selected">Flatbed</option>
+					<option value="2" selected="selected">Rotary</option>
 				</select>
 			</form>
 		</div>
 
-		<!-- sd -->
 		<form id="NewOrder" method="post" action="../Orders?mode=add">
 			<h2>Create a new order</h2>
-			<input id="CustomerId" name="CustomerId" type="hidden" value="192"> <input id="MachineType"
-				name="MachineType" type="hidden" value="1">
+			<fieldset>
+				<label for="toggleExtraFields">Toggle Extra Overrides</label>
+				<input type="checkbox" id="toggleExtraFields">
+			</fieldset>
+			<input id="CustomerId" name="CustomerId" type="hidden" value="192"> <input id="MachineType" name="MachineType" type="hidden" value="1">
 			<fieldset class="flex-container">
 				<legend>Order Details</legend>
 				<div class="flex-col-quarter">
-					<label for="CADNumber">CAD Number</label><input id="CADNumber" name="CADNumber" type="text"
-						maxlength="64"> <label for="OrderDescription">Description *</label><input id="OrderDescription"
-						name="OrderDescription" type="text" maxlength="255" required="">
+					<label for="CADNumber">CAD Number</label><input id="CADNumber" name="CADNumber" type="text" maxlength="64"> <label for="OrderDescription">Description*</label><input id="OrderDescription" name="OrderDescription" type="text" maxlength="255" required="">
 				</div>
 				<div class="flex-col-quarter">
-					<label for="DateDue">Due Date *</label><input id="DateDue" name="DateDue" type="datetime-local"
-						value="" min="2023-10-12T10:57" required="" data-deliveryoffset="0"
-						data-beginworkingoffset="6" data-defaultduetime="16:00"> <label for="PONumber">Purchase Order
-						Number</label><input id="PONumber" name="PONumber" type="text" maxlength="50">
+					<label for="DateDue">Due Date*</label>
+					<input id="DateDue" name="DateDue" type="datetime-local" value="" min="2023-10-12T10:57" required="">
+					<label for="PONumber">Purchase Order Number</label>
+					<input id="PONumber" name="PONumber" type="text" maxlength="50">
 				</div>
 				<div class="flex-col-quarter">
 					<label for="Notes">Notes</label><textarea id="Notes" name="Notes" maxlength="1024"></textarea>
 				</div>
 				<div class="flex-col-quarter">
 					<h3>Machine Details</h3>
-					<div class="form-input-wrapper"><label for="BoardType">Board Type *</label><select id="BoardType"
-							name="BoardType" required="1" modal="Modal_BoardType">
+					<div class="form-input-wrapper"><label for="BoardType">Board Type*</label>
+						<select id="BoardType" name="BoardType" required="1" modal="Modal_BoardType">
 							<option value="4">E Flute</option>
 							<option value="9">400µm </option>
 							<option value="10" selected="selected">450µm </option>
 							<option value="12">550µm </option>
 							<option value="15">700µm </option>
-						</select></div>
+						</select>
+					</div>
 				</div>
 			</fieldset>
 			<fieldset id="ProductItems" class="flex-grid">
 				<legend>Products</legend>
 				<fieldset id="Prod_FlatbedDie">
-					<legend>Flatbed Die</legend><label for="Add_FlatbedDie">Add to Order</label><input
-						id="hidden-Add_FlatbedDie" name="Add_FlatbedDie" type="hidden"
-						onclick="toggleProduct('FlatbedDie')" value="0" disabled="disabled"><input id="Add_FlatbedDie"
-						name="Add_FlatbedDie" type="checkbox" onclick="toggleProduct('FlatbedDie')">
-					<div class="form-input-wrapper"><label for="FlatbedDie_Modification">Modification</label><select
-							id="FlatbedDie_Modification" name="FlatbedDie_Modification" disabled="disabled">
+					<legend>Flatbed Die</legend><label for="Add_FlatbedDie">Add to Order</label><input id="hidden-Add_FlatbedDie" name="Add_FlatbedDie" type="hidden" onclick="toggleProduct('FlatbedDie')" value="0" disabled="disabled"><input id="Add_FlatbedDie" name="Add_FlatbedDie" type="checkbox" onclick="toggleProduct('FlatbedDie')">
+					<div class="form-input-wrapper"><label for="FlatbedDie_Modification">Modification</label><select id="FlatbedDie_Modification" name="FlatbedDie_Modification" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="FlatbedDie_FormeType">Forme Type *</label><select
-							id="FlatbedDie_FormeType" name="FlatbedDie_FormeType" required="1"
-							modal="Modal_FlatbedDie_FormeType" disabled="disabled">
+					<div class="form-input-wrapper"><label for="FlatbedDie_FormeType">Forme Type*</label><select id="FlatbedDie_FormeType" name="FlatbedDie_FormeType" required="1" modal="Modal_FlatbedDie_FormeType" disabled="disabled">
 							<option value="1" selected="selected">Regular</option>
 							<option value="2">SBD</option>
 							<option value="3">Premium</option>
 
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="FlatbedDie_TimberType">Timber Type
-							*</label><select id="FlatbedDie_TimberType" name="FlatbedDie_TimberType" required="1"
-							data-toggledisplay="true" modal="Modal_FlatbedDie_TimberType" disabled="disabled">
+							*</label><select id="FlatbedDie_TimberType" name="FlatbedDie_TimberType" required="1" data-toggledisplay="true" modal="Modal_FlatbedDie_TimberType" disabled="disabled">
 							<option value="1" selected="selected">18mm Poplar</option>
 							<option value="2">15mm Poplar</option>
 							<option value="3">12mm Poplar</option>
@@ -187,8 +180,7 @@
 
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Rules">Rules
-							Options</label><select id="multi-FlatbedDie_Rules" name="multi-FlatbedDie_Rules"
-							maxlength="2048" data-toggledisplay="true" disabled="disabled">
+							Options</label><select id="multi-FlatbedDie_Rules" name="multi-FlatbedDie_Rules" maxlength="2048" data-toggledisplay="true" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Cut 2pt 23.80mm</option>
 							<option value="2">Crease 2pt 23.30mm</option>
@@ -331,8 +323,7 @@
 						</div>
 					</div>
 					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Rubber">Rubber
-							Options</label><select id="multi-FlatbedDie_Rubber" name="multi-FlatbedDie_Rubber"
-							maxlength="2048" data-toggledisplay="true" disabled="disabled">
+							Options</label><select id="multi-FlatbedDie_Rubber" name="multi-FlatbedDie_Rubber" maxlength="2048" data-toggledisplay="true" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">7.00mm Grey DMG</option>
 							<option value="2">Misc</option>
@@ -368,8 +359,7 @@
 						</div>
 					</div>
 					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Punches">Punches
-							Options</label><select id="multi-FlatbedDie_Punches" name="multi-FlatbedDie_Punches"
-							maxlength="2048" data-toggledisplay="true" disabled="disabled">
+							Options</label><select id="multi-FlatbedDie_Punches" name="multi-FlatbedDie_Punches" maxlength="2048" data-toggledisplay="true" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Generic Cup</option>
 							<option value="2" class="hidden">Generic Side Eject</option>
@@ -379,33 +369,23 @@
 						<div id="pillbox-FlatbedDie_Punches" class="pill-box">
 						</div>
 					</div>
-					<div class="form-input-wrapper"><label for="FlatbedDie_GripEdge">Grip Edge *</label><input
-							id="FlatbedDie_GripEdge" name="FlatbedDie_GripEdge" type="number" min="0" max="999"
-							step="0.1" required="" disabled="disabled" value="14"></div>
-					<div class="form-input-wrapper"><label for="FlatbedDie_CuttingSide">Cutting Side *</label><select
-							id="FlatbedDie_CuttingSide" name="FlatbedDie_CuttingSide" required="1"
-							modal="Modal_FlatbedDie_CuttingSide" disabled="disabled">
+					<div class="form-input-wrapper"><label for="FlatbedDie_GripEdge">Grip Edge*</label><input id="FlatbedDie_GripEdge" name="FlatbedDie_GripEdge" type="number" min="0" max="999" step="0.1" required="" disabled="disabled" value="14"></div>
+					<div class="form-input-wrapper"><label for="FlatbedDie_CuttingSide">Cutting Side*</label><select id="FlatbedDie_CuttingSide" name="FlatbedDie_CuttingSide" required="1" modal="Modal_FlatbedDie_CuttingSide" disabled="disabled">
 							<option value="1" selected="selected">Cut from Front</option>
 							<option value="2">Cut from Back</option>
 							<option value="3">Unspecified</option>
 						</select></div>
 				</fieldset>
 				<fieldset id="Prod_StripperMale">
-					<legend>Male Stripper</legend><label for="Add_StripperMale">Add to Order</label><input
-						id="hidden-Add_StripperMale" name="Add_StripperMale" type="hidden"
-						onclick="toggleProduct('StripperMale')" value="0" disabled="disabled"><input
-						id="Add_StripperMale" name="Add_StripperMale" type="checkbox"
-						onclick="toggleProduct('StripperMale')">
-					<div class="form-input-wrapper"><label for="StripperMale_Modification">Modification</label><select
-							id="StripperMale_Modification" name="StripperMale_Modification" disabled="disabled">
+					<legend>Male Stripper</legend><label for="Add_StripperMale">Add to Order</label><input id="hidden-Add_StripperMale" name="Add_StripperMale" type="hidden" onclick="toggleProduct('StripperMale')" value="0" disabled="disabled"><input id="Add_StripperMale" name="Add_StripperMale" type="checkbox" onclick="toggleProduct('StripperMale')">
+					<div class="form-input-wrapper"><label for="StripperMale_Modification">Modification</label><select id="StripperMale_Modification" name="StripperMale_Modification" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="StripperMale_TimberType">Timber Type
-							*</label><select id="StripperMale_TimberType" name="StripperMale_TimberType" required="1"
-							data-toggledisplay="true" modal="Modal_StripperMale_TimberType" disabled="disabled">
+							*</label><select id="StripperMale_TimberType" name="StripperMale_TimberType" required="1" data-toggledisplay="true" modal="Modal_StripperMale_TimberType" disabled="disabled">
 							<option value="1" selected="selected">18mm Poplar</option>
 							<option value="2">15mm Poplar</option>
 							<option value="3">12mm Poplar</option>
@@ -427,61 +407,58 @@
 							<option value="19">12mm Premium</option>
 							<option value="20">8mm Acrylic</option>
 						</select></div>
-					<div class="form-input-wrapper hidden"><label for="StripperMale_BuildHeight">Build Height
-							*</label><input id="StripperMale_BuildHeight" name="StripperMale_BuildHeight" type="number"
-							min="0" max="99" step="0.01" required="" data-toggledisplay="true" disabled="disabled">
+					<div class="form-input-wrapper hidden">
+						<label for="StripperMale_BuildHeight">Build Height*</label>
+						<input id="StripperMale_BuildHeight" name="StripperMale_BuildHeight" type="number" min="0" max="99" step="0.01" required="" data-toggledisplay="true" disabled="disabled">
 					</div>
-					<div class="form-input-wrapper"><label for="StripperMale_OutsidePinType">Outside Pin
-							Type</label><select id="StripperMale_OutsidePinType" name="StripperMale_OutsidePinType"
-							disabled="disabled">
+					<div class="form-input-wrapper">
+						<label for="StripperMale_OutsidePinType">Outside Pin
+							Type</label><select id="StripperMale_OutsidePinType" name="StripperMale_OutsidePinType" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Boxplan</option>
 							<option value="2">Wood</option>
 							<option value="3">Claws</option>
 							<option value="4">Misc</option>
-						</select></div>
-					<div class="form-input-wrapper"><label for="StripperMale_InternalPinType">Internal Pin
-							Type</label><select id="StripperMale_InternalPinType" name="StripperMale_InternalPinType"
-							disabled="disabled">
+						</select>
+					</div>
+					<div class="form-input-wrapper"><label for="StripperMale_InternalPinType">Internal Pin Type</label>
+						<select id="StripperMale_InternalPinType" name="StripperMale_InternalPinType" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Boxplan</option>
 							<option value="2">Wood</option>
 							<option value="3">Claws</option>
 							<option value="4">Misc</option>
-						</select></div>
-					<div class="form-input-wrapper"><label for="StripperMale_PresserPlate">Presser Plate?</label><input
-							id="hidden-StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="hidden" min="0"
-							max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input
-							id="StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="checkbox" min="0"
-							max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
-					<div class="form-input-wrapper"><label for="StripperMale_GripEdge">Grip Edge *</label><input
-							id="StripperMale_GripEdge" name="StripperMale_GripEdge" type="number" min="0" max="99"
-							step="1" required="" disabled="disabled"></div>
+						</select>
+					</div>
+					<div class="form-input-wrapper">
+						<label for="StripperMale_PresserPlate">Presser Plate?</label>
+						<input id="hidden-StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled">
+						<input id="StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled">
+					</div>
+					<div class="form-input-wrapper">
+						<label for="StripperMale_GripEdge">Grip Edge*</label>
+						<input id="StripperMale_GripEdge" name="StripperMale_GripEdge" type="number" min="0" max="99" step="1" required="" disabled="disabled">
+					</div>
 				</fieldset>
 				<fieldset id="Prod_StripperFemale">
-					<legend>Female Stripper</legend><label for="Add_StripperFemale">Add to Order</label><input
-						id="hidden-Add_StripperFemale" name="Add_StripperFemale" type="hidden"
-						onclick="toggleProduct('StripperFemale')" value="0" disabled="disabled"><input
-						id="Add_StripperFemale" name="Add_StripperFemale" type="checkbox"
-						onclick="toggleProduct('StripperFemale')">
-					<div class="form-input-wrapper"><label for="StripperFemale_Modification">Modification</label><select
-							id="StripperFemale_Modification" name="StripperFemale_Modification" disabled="disabled">
+					<legend>Female Stripper</legend><label for="Add_StripperFemale">Add to Order</label>
+					<input id="hidden-Add_StripperFemale" name="Add_StripperFemale" type="hidden" onclick="toggleProduct('StripperFemale')" value="0" disabled="disabled">
+					<input id="Add_StripperFemale" name="Add_StripperFemale" type="checkbox" onclick="toggleProduct('StripperFemale')">
+					<div class="form-input-wrapper"><label for="StripperFemale_Modification">Modification</label>
+						<select id="StripperFemale_Modification" name="StripperFemale_Modification" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
-						</select></div>
+						</select>
+					</div>
 					<div class="form-input-wrapper hidden"><label for="StripperFemale_FemaleType">Female Type
-							*</label><select id="StripperFemale_FemaleType" name="StripperFemale_FemaleType"
-							required="1" data-toggledisplay="true" modal="Modal_StripperFemale_FemaleType"
-							disabled="disabled">
+							*</label><select id="StripperFemale_FemaleType" name="StripperFemale_FemaleType" required="1" data-toggledisplay="true" modal="Modal_StripperFemale_FemaleType" disabled="disabled">
 							<option value="1" selected="selected">Regular</option>
 							<option value="2">Steel Top and Bars</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="StripperFemale_TimberType">Timber Type
-							*</label><select id="StripperFemale_TimberType" name="StripperFemale_TimberType"
-							required="1" data-toggledisplay="true" modal="Modal_StripperFemale_TimberType"
-							disabled="disabled">
+							*</label><select id="StripperFemale_TimberType" name="StripperFemale_TimberType" required="1" data-toggledisplay="true" modal="Modal_StripperFemale_TimberType" disabled="disabled">
 							<option value="1" selected="selected">18mm Poplar</option>
 							<option value="2">15mm Poplar</option>
 							<option value="3">12mm Poplar</option>
@@ -503,78 +480,42 @@
 							<option value="19">12mm Premium</option>
 							<option value="20">8mm Acrylic</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="StripperFemale_BarType">Bar Type</label><select
-							id="StripperFemale_BarType" name="StripperFemale_BarType" disabled="disabled">
+					<div class="form-input-wrapper"><label for="StripperFemale_BarType">Bar Type</label><select id="StripperFemale_BarType" name="StripperFemale_BarType" disabled="disabled">
 							<option selected="selected">No options available</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="StripperFemale_GripEdge">Grip Edge
-							*</label><input id="StripperFemale_GripEdge" name="StripperFemale_GripEdge" type="number"
-							min="0" max="99" step="1" required="" data-toggledisplay="true" disabled="disabled"></div>
+							*</label><input id="StripperFemale_GripEdge" name="StripperFemale_GripEdge" type="number" min="0" max="99" step="1" required="" data-toggledisplay="true" disabled="disabled"></div>
 					<div class="form-input-wrapper hidden"><label for="StripperFemale_BreakerType">Breaker
-							Type</label><select id="StripperFemale_BreakerType" name="StripperFemale_BreakerType"
-							data-toggledisplay="true" disabled="disabled">
+							Type</label><select id="StripperFemale_BreakerType" name="StripperFemale_BreakerType" data-toggledisplay="true" disabled="disabled">
 							<option selected="selected">No options available</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="StripperFemale_Flyovers">Flyovers?</label><input
-							id="hidden-StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="hidden" min="0"
-							max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input
-							id="StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="checkbox" min="0" max="9"
-							step="1" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper"><label for="StripperFemale_Flyovers">Flyovers?</label><input id="hidden-StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
 					<div class="form-input-wrapper"><label for="StripperFemale_SheetLifters">Sheet
-							Lifters?</label><input id="hidden-StripperFemale_SheetLifters"
-							name="StripperFemale_SheetLifters" type="hidden" min="0" max="9" step="1"
-							data-toggledisplay="true" value="0" disabled="disabled"><input
-							id="StripperFemale_SheetLifters" name="StripperFemale_SheetLifters" type="checkbox" min="0"
-							max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
+							Lifters?</label><input id="hidden-StripperFemale_SheetLifters" name="StripperFemale_SheetLifters" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="StripperFemale_SheetLifters" name="StripperFemale_SheetLifters" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
 				</fieldset>
 				<fieldset id="Prod_EngravedPlate">
-					<legend>Engraved Plate</legend><label for="Add_EngravedPlate">Add to Order</label><input
-						id="hidden-Add_EngravedPlate" name="Add_EngravedPlate" type="hidden"
-						onclick="toggleProduct('EngravedPlate')" value="0" disabled="disabled"><input
-						id="Add_EngravedPlate" name="Add_EngravedPlate" type="checkbox"
-						onclick="toggleProduct('EngravedPlate')">
-					<div class="form-input-wrapper"><label for="EngravedPlate_Modification">Modification</label><select
-							id="EngravedPlate_Modification" name="EngravedPlate_Modification" disabled="disabled">
+					<legend>Engraved Plate</legend><label for="Add_EngravedPlate">Add to Order</label><input id="hidden-Add_EngravedPlate" name="Add_EngravedPlate" type="hidden" onclick="toggleProduct('EngravedPlate')" value="0" disabled="disabled"><input id="Add_EngravedPlate" name="Add_EngravedPlate" type="checkbox" onclick="toggleProduct('EngravedPlate')">
+					<div class="form-input-wrapper"><label for="EngravedPlate_Modification">Modification</label><select id="EngravedPlate_Modification" name="EngravedPlate_Modification" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_ChannelHeightMM">Channel Height
-							(mm) *</label><input id="EngravedPlate_ChannelHeightMM" name="EngravedPlate_ChannelHeightMM"
-							type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true"
-							disabled="disabled"></div>
+							(mm)*</label><input id="EngravedPlate_ChannelHeightMM" name="EngravedPlate_ChannelHeightMM" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_ChannelWidthAgainstGrainMM">Channel
-							Width Against Grain (m *</label><input id="EngravedPlate_ChannelWidthAgainstGrainMM"
-							name="EngravedPlate_ChannelWidthAgainstGrainMM" type="number" min="0" max="9" step="0.01"
-							required="" data-toggledisplay="true" disabled="disabled"></div>
+							Width Against Grain (m*</label><input id="EngravedPlate_ChannelWidthAgainstGrainMM" name="EngravedPlate_ChannelWidthAgainstGrainMM" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_ChannelWidthWithGrainMM">Channel
-							Width With Grain (mm) *</label><input id="EngravedPlate_ChannelWidthWithGrainMM"
-							name="EngravedPlate_ChannelWidthWithGrainMM" type="number" min="0" max="9" step="0.01"
-							required="" data-toggledisplay="true" disabled="disabled"></div>
+							Width With Grain (mm)*</label><input id="EngravedPlate_ChannelWidthWithGrainMM" name="EngravedPlate_ChannelWidthWithGrainMM" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_Thickness">Plate Thickness
-							*</label><input id="EngravedPlate_Thickness" name="EngravedPlate_Thickness" type="number"
-							min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
+							*</label><input id="EngravedPlate_Thickness" name="EngravedPlate_Thickness" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_RockwellHardness">Rockwell Hardness
-							*</label><input id="EngravedPlate_RockwellHardness" name="EngravedPlate_RockwellHardness"
-							type="number" min="0" max="99" step="1" required="" data-toggledisplay="true"
-							disabled="disabled"></div>
-					<div class="form-input-wrapper"><label for="EngravedPlate_Chromed">Chromed</label><input
-							id="hidden-EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="hidden" min="0" max="9"
-							step="1" data-toggledisplay="true" value="0" disabled="disabled"><input
-							id="EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="checkbox" min="0" max="9"
-							step="1" data-toggledisplay="true" disabled="disabled"></div>
+							*</label><input id="EngravedPlate_RockwellHardness" name="EngravedPlate_RockwellHardness" type="number" min="0" max="99" step="1" required="" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper"><label for="EngravedPlate_Chromed">Chromed</label><input id="hidden-EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
 				</fieldset>
 				<fieldset id="Prod_EmbossingBlockMale">
-					<legend>Male Embossing Block</legend><label for="Add_EmbossingBlockMale">Add to Order</label><input
-						id="hidden-Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="hidden"
-						onclick="toggleProduct('EmbossingBlockMale')" value="0" disabled="disabled"><input
-						id="Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="checkbox"
-						onclick="toggleProduct('EmbossingBlockMale')">
-					<div class="form-input-wrapper"><label
-							for="EmbossingBlockMale_Modification">Modification</label><select
-							id="EmbossingBlockMale_Modification" name="EmbossingBlockMale_Modification"
-							disabled="disabled">
+					<legend>Male Embossing Block</legend><label for="Add_EmbossingBlockMale">Add to Order</label><input id="hidden-Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="hidden" onclick="toggleProduct('EmbossingBlockMale')" value="0" disabled="disabled"><input id="Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="checkbox" onclick="toggleProduct('EmbossingBlockMale')">
+					<div class="form-input-wrapper"><label for="EmbossingBlockMale_Modification">Modification</label><select id="EmbossingBlockMale_Modification" name="EmbossingBlockMale_Modification" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
@@ -583,23 +524,15 @@
 				</fieldset>
 				<fieldset id="Prod_EmbossingBlockFemale">
 					<legend>Female Embossing Block</legend><label for="Add_EmbossingBlockFemale">Add to
-						Order</label><input id="hidden-Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale"
-						type="hidden" onclick="toggleProduct('EmbossingBlockFemale')" value="0"
-						disabled="disabled"><input id="Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale"
-						type="checkbox" onclick="toggleProduct('EmbossingBlockFemale')">
-					<div class="form-input-wrapper"><label
-							for="EmbossingBlockFemale_Modification">Modification</label><select
-							id="EmbossingBlockFemale_Modification" name="EmbossingBlockFemale_Modification"
-							disabled="disabled">
+						Order</label><input id="hidden-Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale" type="hidden" onclick="toggleProduct('EmbossingBlockFemale')" value="0" disabled="disabled"><input id="Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale" type="checkbox" onclick="toggleProduct('EmbossingBlockFemale')">
+					<div class="form-input-wrapper"><label for="EmbossingBlockFemale_Modification">Modification</label><select id="EmbossingBlockFemale_Modification" name="EmbossingBlockFemale_Modification" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="EmbossingBlockFemale_Material">Material
-							*</label><select id="EmbossingBlockFemale_Material" name="EmbossingBlockFemale_Material"
-							required="1" data-toggledisplay="true" modal="Modal_EmbossingBlockFemale_Material"
-							disabled="disabled">
+							*</label><select id="EmbossingBlockFemale_Material" name="EmbossingBlockFemale_Material" required="1" data-toggledisplay="true" modal="Modal_EmbossingBlockFemale_Material" disabled="disabled">
 							<option value="1" selected="selected">Board</option>
 							<option value="2">Card</option>
 							<option value="3">Steel</option>
@@ -611,72 +544,45 @@
 				</fieldset>
 				<fieldset id="Prod_BlankerSeparatorLower" class="">
 					<legend>Blanker Separator Lower</legend><label for="Add_BlankerSeparatorLower">Add to
-						Order</label><input id="hidden-Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower"
-						type="hidden" onclick="toggleProduct('BlankerSeparatorLower')" value="0"
-						disabled="disabled"><input id="Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower"
-						type="checkbox" onclick="toggleProduct('BlankerSeparatorLower')">
-					<div class="form-input-wrapper"><label
-							for="BlankerSeparatorLower_Modification">Modification</label><select
-							id="BlankerSeparatorLower_Modification" name="BlankerSeparatorLower_Modification"
-							disabled="disabled">
+						Order</label><input id="hidden-Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower" type="hidden" onclick="toggleProduct('BlankerSeparatorLower')" value="0" disabled="disabled"><input id="Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower" type="checkbox" onclick="toggleProduct('BlankerSeparatorLower')">
+					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_Modification">Modification</label><select id="BlankerSeparatorLower_Modification" name="BlankerSeparatorLower_Modification" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="BlankerSeparatorLower_FrameType">Frame Type
-							*</label><select id="BlankerSeparatorLower_FrameType" name="BlankerSeparatorLower_FrameType"
-							required="1" data-toggledisplay="true" modal="Modal_BlankerSeparatorLower_FrameType"
-							disabled="disabled">
+							*</label><select id="BlankerSeparatorLower_FrameType" name="BlankerSeparatorLower_FrameType" required="1" data-toggledisplay="true" modal="Modal_BlankerSeparatorLower_FrameType" disabled="disabled">
 							<option value="1" selected="selected">Full</option>
 							<option value="2">Light</option>
 							<option value="3">Cable</option>
-
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="BlankerSeparatorLower_BarType">Bar
-							Type</label><select id="BlankerSeparatorLower_BarType" name="BlankerSeparatorLower_BarType"
-							data-toggledisplay="true" disabled="disabled">
+							Type</label><select id="BlankerSeparatorLower_BarType" name="BlankerSeparatorLower_BarType" data-toggledisplay="true" disabled="disabled">
 							<option selected="selected">No options available</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_Tube">Tube?</label><input
-							id="hidden-BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="hidden"
-							min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input
-							id="BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="checkbox" min="0"
-							max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_Tube">Tube?</label><input id="hidden-BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
 					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_MountingBracket">Mounting
-							Bracket?</label><input id="hidden-BlankerSeparatorLower_MountingBracket"
-							name="BlankerSeparatorLower_MountingBracket" type="hidden" min="0" max="9" step="1"
-							data-toggledisplay="true" value="0" disabled="disabled"><input
-							id="BlankerSeparatorLower_MountingBracket" name="BlankerSeparatorLower_MountingBracket"
-							type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled">
+							Bracket?</label><input id="hidden-BlankerSeparatorLower_MountingBracket" name="BlankerSeparatorLower_MountingBracket" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="BlankerSeparatorLower_MountingBracket" name="BlankerSeparatorLower_MountingBracket" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled">
 					</div>
 				</fieldset>
 				<fieldset id="Prod_BlankerSeparatorUpper">
 					<legend>Blanker Separator Upper</legend><label for="Add_BlankerSeparatorUpper">Add to
-						Order</label><input id="hidden-Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper"
-						type="hidden" onclick="toggleProduct('BlankerSeparatorUpper')" value="0"
-						disabled="disabled"><input id="Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper"
-						type="checkbox" onclick="toggleProduct('BlankerSeparatorUpper')">
-					<div class="form-input-wrapper"><label
-							for="BlankerSeparatorUpper_Modification">Modification</label><select
-							id="BlankerSeparatorUpper_Modification" name="BlankerSeparatorUpper_Modification"
-							disabled="disabled">
+						Order</label><input id="hidden-Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper" type="hidden" onclick="toggleProduct('BlankerSeparatorUpper')" value="0" disabled="disabled"><input id="Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper" type="checkbox" onclick="toggleProduct('BlankerSeparatorUpper')">
+					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_Modification">Modification</label><select id="BlankerSeparatorUpper_Modification" name="BlankerSeparatorUpper_Modification" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_PresserType">Presser
-							Type</label><select id="BlankerSeparatorUpper_PresserType"
-							name="BlankerSeparatorUpper_PresserType" disabled="disabled">
+							Type</label><select id="BlankerSeparatorUpper_PresserType" name="BlankerSeparatorUpper_PresserType" disabled="disabled">
 							<option value="" selected="selected">Select an option</option>
 							<option value="1">Spot Presser</option>
 							<option value="2">Presser Plate</option>
 							<option value="3">Bar Presser</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_FoamType">Foam Type</label><select
-							id="BlankerSeparatorUpper_FoamType" name="BlankerSeparatorUpper_FoamType"
-							disabled="disabled">
+					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_FoamType">Foam Type</label><select id="BlankerSeparatorUpper_FoamType" name="BlankerSeparatorUpper_FoamType" disabled="disabled">
 							<option selected="selected">No options available</option>
 						</select></div>
 				</fieldset>
@@ -684,6 +590,13 @@
 			<button type="submit">Submit Order</button>
 			<button type="reset">Reset Order</button>
 		</form>
+
+		<aside>
+			<h3>About this program</h3>
+			<p>This program is an excerpt from a larger program designed to manage the production of cutting forme manufacturing.</p>
+			<p>For demonstration purposes, the page has been heavily modified as the original program requires a connection to a database, which this demo cannot have. Due to this drawback, many values originally retrieved from the database have been hard-coded and slightly altered for use in this program.</p>
+			<p>The aspects of the program that have been altered from the original are the retrieval of a customer's delivery offset values. These are values that define how many days the order needs to be completed before it is despatched to the customer. These are typically retrieved from the database upon selecting a customer, however they have been hard-coded and altered for the sake of this demo.</p>
+		</aside>
 	</main>
 	<script defer="defer" src="js/FormManagement.js"></script>
 	<script defer="defer" src="js/liveFieldValidator.js"></script>

@@ -10,105 +10,6 @@
 
 "use strict";
 
-/**
- * Takes the machine config ID of the selected machine and retrieves all of its components from the database.
- * From the retrieved data, it prefills all component fields based on that data it received.
- * @param {Int} selection 
- */
-function prefillMachineProducts(configDropdown, customerId, machineType) {
-	fetch(`../ProductConfigs/request?config=${configDropdown.value}&type=${machineType}&customer=${customerId}`, {
-		method: "GET"
-	}).then(response => response.text()).then((responseData) => {
-		if (responseData !== '{}') {
-			let json;
-			try {
-				json = JSON.parse(responseData);
-				removeErrorMessage(configDropdown);
-			} catch {
-				appendErrorMessage(configDropdown, 'Product configuration is malformed or unreadable.');
-			}
-			if (json !== null) {
-				try {
-					autoFillFields(json);
-				} catch {
-					appendErrorMessage(configDropdown, 'This configuration is malformed. Please check its product configuration - A required value may not be set.');
-				}
-			}
-		} else if (configDropdown.value !== 'NULL') {
-			appendErrorMessage(configDropdown, 'No product configurations have been defined for this machine config.');
-		}
-	});
-}
-
-/**
- * This function handles the prefilling of fields from a preset selected by the user.
- * @param {JSON} JSONObj - The JSON object that contains the data to be used to prefill the fields on the page.
- */
-function autoFillFields(JSONObj) {
-	let fieldset;
-	// let addButton;
-	let input;
-
-	for (let [key, val] of Object.entries(JSONObj)) {
-		if (key === 'ProductDefaultsJSON') {
-			let products = JSON.parse(val)
-			for (let [product, settings] of Object.entries(products)) {
-				fieldset = document.getElementById(`Prod_${product}`);
-				// addButton = document.getElementById(`Add_${product}`);
-				if (fieldset !== null) {
-					// if (!addButton.checked) {
-					// 	toggleProduct(product);
-					// }
-					// addButton.checked = true;
-					fillProductFields(product, settings);
-				} else {
-					console.warn('could not find fieldset:', `Prod_${product}`)
-				}
-			}
-		} else {
-			if ((input = document.getElementById(key)) !== null) {
-				input.value = val;
-				if (input.selectedIndex == -1) {
-					appendErrorMessage(input, 'This field cannot be empty!', ALERT_ERROR);
-				}
-			}
-		}
-	}
-}
-
-/**
- * Takes the JSON of a particular component and sees if any fields for the
- * component exist on the page and prefills them.
- * @param {String} ProductId - The ID of the component to prefill fields for.
- * @param {Object} componentData The JSON data of the component. 
- */
-function fillProductFields(productName, componentJSON) {
-	let field;
-	let i = 0;
-
-	for (let [key, val] of Object.entries(componentJSON)) {
-		if (val.constructor === Array) {
-			field = document.getElementById(`multi-${productName}_${key}`);
-			clearPillBox(document.getElementById(`pillbox-${productName}_${key}`));
-		} else {
-			field = document.getElementById(`${productName}_${key}`);
-		}
-		if (field !== null) {
-			if (val.constructor === Array) {
-				field = document.getElementById(`multi-${productName}_${key}`);
-				for (i = 0; i < val.length; i++) {
-					field.selectedIndex = val[i];
-					addMultiForeignKeySelection(field);
-				}
-			} else {
-				field.value = val;
-			}
-		} else {
-			console.error('Failed to set value for field:', `${productName}_${key}`);
-		}
-	}
-}
-
 function toggleExtraFields() {
 	const toggleId = "data-ToggleDisplay";
 	let toggleable = document.querySelectorAll(`[${toggleId}="true"]`);
@@ -162,11 +63,13 @@ function toggleProduct(productName) {
  * Checks if the date entered is valid against the customer's delivery day offset and working day offsets
  * If it is not, a warning message is displayed.
  * @param {Element} dateField The due date input element
+ * @param {Element} customer The selected customer dropdown option
  */
-function validateDueDate(dateField) {
-	let deliveryDayOffset = dateField.getAttribute('data-DeliveryOffset');
-	let beginWorkingOffset = dateField.getAttribute('data-BeginWorkingOffset');
-	let defaultDueTime = dateField.getAttribute('data-DefaultDueTime');
+function validateDueDate(dateField, customer) {
+	console.log(customer);
+	let deliveryDayOffset = customer.getAttribute('data-DeliveryOffset');
+	let beginWorkingOffset = customer.getAttribute('data-BeginWorkingOffset');
+	let defaultDueTime = customer.getAttribute('data-DefaultDueTime');
 	let dueDate = new Date(dateField.value);
 
 	// Determine what the deadline of the job would be based on the delivery offset
@@ -194,56 +97,31 @@ function validateDueDate(dateField) {
 	}
 }
 
+/**
+ * 
+ * @param {*} element 
+ */
+function displayDeliveryOffsets(element) {
+
+}
+
 function init() {
-	let products = document.getElementById("ProductItems");
 	let toggleDisplayBtn = document.getElementById("toggleExtraFields");
 	let orderInitialiserForm = document.getElementById("OrderInitialiser");
-	let machineTypeDropdown = document.getElementById("Machine");
-	let configDropdown = document.getElementById("MachineConfig");
 	let customerDropdown = document.getElementById("Customer");
 	let dueDate = document.getElementById('DateDue');
 	// let calculateButtons = document.getElementsByClassName("btn-calculate");
 	let i = 0;
 
-	if (machineTypeDropdown != null) {
-		machineTypeDropdown.onchange = e => {
-			if (machineTypeDropdown.value != null) {
-				orderInitialiserForm.submit();
-			}
-		}
-	}
-
-	if (configDropdown !== null) {
-		configDropdown.onchange = e => {
-			prefillMachineProducts(e.target, customerDropdown.value, machineTypeDropdown.value);
-		}
-	}
-
 	if (toggleDisplayBtn !== null) {
 		toggleDisplayBtn.addEventListener("click", toggleExtraFields);
-		toggleExtraFields();
-	}
-
-	if (products != null) {
-		for (i; i < products.childElementCount; i++) {
-			if (products.children[i].tagName === 'FIELDSET') {
-				toggleProduct(products.children[i].id.replace('Prod_', ''));
-			}
-		}
 	}
 
 	if (dueDate !== null) {
 		dueDate.addEventListener('change', function (e) {
-			validateDueDate(this);
+			validateDueDate(this, customerDropdown.children[customerDropdown.selectedIndex]);
 		});
 	}
-
-	// for (i; i < calculateButtons.length; i++) {
-	// 	calculateButtons[i].addEventListener("click", function(e) {
-	// 		let itemName = e.target.id.replace("Calculate-", '');
-	// 		calculateProduct(document.getElementById("Item_" + itemName));
-	// 	})
-	// }
 
 	// Add event listeners for the customer and machine type dropdowns to automatically submit the page when they are selected
 	orderInitialiserForm.addEventListener("change", e => {
