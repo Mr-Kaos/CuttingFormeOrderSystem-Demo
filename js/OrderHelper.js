@@ -93,7 +93,7 @@ function validateDueDate(dateField, customer) {
 		appendErrorMessage(dateField, "The due date falls short of this customer's minimum required working days. You may have less time to complete this job than normal.\nRequired Despatch date:" + deadline.toDateString(), ALERT_WARN);
 	} else {
 		removeErrorMessage(dateField);
-		appendErrorMessage(dateField, "Required Despatch date:\n" + deadline.toDateString(), ALERT_NONE);
+		appendErrorMessage(dateField, "Required Despatch date:\n" + deadline.toDateString() + "\n", ALERT_NONE);
 	}
 }
 
