@@ -267,6 +267,7 @@ label+input[type=tel],
 label+input[type=email],
 label+input[type=password],
 label+input[type=file],
+label+input[type=time],
 label+textarea,
 label+select {
 	display: block;
@@ -342,6 +343,17 @@ input:focus {
 
 .form-input-wrapper:nth-child(odd) {
 	background-color: var(--main-bg-accent);
+}
+
+button:disabled,
+input:disabled,
+select:disabled {
+	cursor: not-allowed;
+	background-color: var(--disabledInputBG);
+	color: var(--disabled-input-text);
+}
+.input-edited{
+	background-color: var(--input-bg-edited);
 }
 
 .pill-box {

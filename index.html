@@ -69,7 +69,7 @@
 					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Network Pak</option>
 					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Norwood Industries</option>
 					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">OJI Cardboard Cartons Solutions</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="17:00" selected="selected">Opal</option>
+					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="17:00">Opal</option>
 					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Park Douglas</option>
 					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">PMS Lithography</option>
 					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Press Print Solutions</option>
@@ -86,9 +86,25 @@
 				</select>
 				<label for="Machine">Machine Type</label>
 				<select id="Machine" name="Machine" value="1">
-					<option value="1" selected="selected">Flatbed</option>
-					<option value="2" selected="selected">Rotary</option>
+					<option value="1">Flatbed</option>
+					<option value="2">Rotary</option>
 				</select>
+
+				<fieldset class="flex-container">
+					<legend>Delivery Offsets</legend>
+					<div class="form-input-wrapper">
+						<label for="deliveryOffset">Delivery Offset (Days)</label>
+						<input type="number" id="deliveryOffset">
+						<label for="beginworkingoffset">Begin Work Offset (Days)</label>
+						<input type="number" id="beginworkingoffset">
+						<label for="defaultduetime">Default Due Time</label>
+						<input type="time" id="defaultduetime">
+					</div>
+					<div class="form-input-wrapper">
+						<p>Since this demo is self-contained, you can use these inputs to change the offset days of the customer as if you were changing their preferences as stored in the database.</p>
+						<p>When selecting a customer, their predefined values will be prefilled into here as if they were retrieved from a database.</p>
+					</div>
+				</fieldset>
 			</form>
 		</div>
 
@@ -119,7 +135,7 @@
 						<select id="BoardType" name="BoardType" required="1" modal="Modal_BoardType">
 							<option value="4">E Flute</option>
 							<option value="9">400µm </option>
-							<option value="10" selected="selected">450µm </option>
+							<option value="10">450µm </option>
 							<option value="12">550µm </option>
 							<option value="15">700µm </option>
 						</select>
@@ -129,22 +145,22 @@
 			<fieldset id="ProductItems" class="flex-grid">
 				<legend>Products</legend>
 				<fieldset id="Prod_FlatbedDie">
-					<legend>Flatbed Die</legend><label for="Add_FlatbedDie">Add to Order</label><input id="hidden-Add_FlatbedDie" name="Add_FlatbedDie" type="hidden" onclick="toggleProduct('FlatbedDie')" value="0" disabled="disabled"><input id="Add_FlatbedDie" name="Add_FlatbedDie" type="checkbox" onclick="toggleProduct('FlatbedDie')">
-					<div class="form-input-wrapper"><label for="FlatbedDie_Modification">Modification</label><select id="FlatbedDie_Modification" name="FlatbedDie_Modification" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+					<legend>Flatbed Die</legend><label for="Add_FlatbedDie">Add to Order</label><input id="hidden-Add_FlatbedDie" name="Add_FlatbedDie" type="hidden" onclick="toggleProduct('FlatbedDie')" value="0" disabled="true"><input id="Add_FlatbedDie" name="Add_FlatbedDie" type="checkbox" onclick="toggleProduct('FlatbedDie')">
+					<div class="form-input-wrapper"><label for="FlatbedDie_Modification">Modification</label><select id="FlatbedDie_Modification" name="FlatbedDie_Modification" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="FlatbedDie_FormeType">Forme Type*</label><select id="FlatbedDie_FormeType" name="FlatbedDie_FormeType" required="1" modal="Modal_FlatbedDie_FormeType" disabled="disabled">
-							<option value="1" selected="selected">Regular</option>
+					<div class="form-input-wrapper"><label for="FlatbedDie_FormeType">Forme Type*</label><select id="FlatbedDie_FormeType" name="FlatbedDie_FormeType" required="1" modal="Modal_FlatbedDie_FormeType" disabled="true">
+							<option value="1">Regular</option>
 							<option value="2">SBD</option>
 							<option value="3">Premium</option>
 
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="FlatbedDie_TimberType">Timber Type
-							*</label><select id="FlatbedDie_TimberType" name="FlatbedDie_TimberType" required="1" data-toggledisplay="true" modal="Modal_FlatbedDie_TimberType" disabled="disabled">
-							<option value="1" selected="selected">18mm Poplar</option>
+							*</label><select id="FlatbedDie_TimberType" name="FlatbedDie_TimberType" required="1" data-toggledisplay="true" modal="Modal_FlatbedDie_TimberType" disabled="true">
+							<option value="1">18mm Poplar</option>
 							<option value="2">15mm Poplar</option>
 							<option value="3">12mm Poplar</option>
 							<option value="4">18mm Birch</option>
@@ -167,8 +183,8 @@
 
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Rules">Rules
-							Options</label><select id="multi-FlatbedDie_Rules" name="multi-FlatbedDie_Rules" maxlength="2048" data-toggledisplay="true" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+							Options</label><select id="multi-FlatbedDie_Rules" name="multi-FlatbedDie_Rules" maxlength="2048" data-toggledisplay="true" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Cut 2pt 23.80mm</option>
 							<option value="2">Crease 2pt 23.30mm</option>
 							<option value="3">Cut 3pt 23.80mm</option>
@@ -269,9 +285,9 @@
 						<div id="pillbox-FlatbedDie_Rules" class="pill-box">
 						</div>
 					</div>
-					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Rubber">Rubber
-							Options</label><select id="multi-FlatbedDie_Rubber" name="multi-FlatbedDie_Rubber" maxlength="2048" data-toggledisplay="true" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Rubber">Rubber Options</label>
+						<select id="multi-FlatbedDie_Rubber" name="multi-FlatbedDie_Rubber" maxlength="2048" data-toggledisplay="true" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">7.00mm Grey DMG</option>
 							<option value="2">Misc</option>
 							<option value="3">7.00mm Green Vulcan</option>
@@ -305,9 +321,9 @@
 						<div id="pillbox-FlatbedDie_Rubber" class="pill-box">
 						</div>
 					</div>
-					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Punches">Punches
-							Options</label><select id="multi-FlatbedDie_Punches" name="multi-FlatbedDie_Punches" maxlength="2048" data-toggledisplay="true" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+					<div class="form-input-wrapper hidden"><label for="multi-FlatbedDie_Punches">Punches Options</label>
+						<select id="multi-FlatbedDie_Punches" name="multi-FlatbedDie_Punches" maxlength="2048" data-toggledisplay="true" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Generic Cup</option>
 							<option value="2" class="hidden">Generic Side Eject</option>
 							<option value="3">Generic Spring</option>
@@ -316,24 +332,28 @@
 						<div id="pillbox-FlatbedDie_Punches" class="pill-box">
 						</div>
 					</div>
-					<div class="form-input-wrapper"><label for="FlatbedDie_GripEdge">Grip Edge*</label><input id="FlatbedDie_GripEdge" name="FlatbedDie_GripEdge" type="number" min="0" max="999" step="0.1" required="" disabled="disabled" value="14"></div>
-					<div class="form-input-wrapper"><label for="FlatbedDie_CuttingSide">Cutting Side*</label><select id="FlatbedDie_CuttingSide" name="FlatbedDie_CuttingSide" required="1" modal="Modal_FlatbedDie_CuttingSide" disabled="disabled">
-							<option value="1" selected="selected">Cut from Front</option>
+					<div class="form-input-wrapper"><label for="FlatbedDie_GripEdge">Grip Edge*</label>
+						<input id="FlatbedDie_GripEdge" name="FlatbedDie_GripEdge" type="number" min="0" max="999" step="0.1" required="" disabled="true" value="0">
+					</div>
+					<div class="form-input-wrapper"><label for="FlatbedDie_CuttingSide">Cutting Side*</label>
+						<select id="FlatbedDie_CuttingSide" name="FlatbedDie_CuttingSide" required="1" modal="Modal_FlatbedDie_CuttingSide" disabled="true">
+							<option value="1">Cut from Front</option>
 							<option value="2">Cut from Back</option>
 							<option value="3">Unspecified</option>
-						</select></div>
+						</select>
+					</div>
 				</fieldset>
 				<fieldset id="Prod_StripperMale">
-					<legend>Male Stripper</legend><label for="Add_StripperMale">Add to Order</label><input id="hidden-Add_StripperMale" name="Add_StripperMale" type="hidden" onclick="toggleProduct('StripperMale')" value="0" disabled="disabled"><input id="Add_StripperMale" name="Add_StripperMale" type="checkbox" onclick="toggleProduct('StripperMale')">
-					<div class="form-input-wrapper"><label for="StripperMale_Modification">Modification</label><select id="StripperMale_Modification" name="StripperMale_Modification" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+					<legend>Male Stripper</legend><label for="Add_StripperMale">Add to Order</label><input id="hidden-Add_StripperMale" name="Add_StripperMale" type="hidden" onclick="toggleProduct('StripperMale')" value="0" disabled="true"><input id="Add_StripperMale" name="Add_StripperMale" type="checkbox" onclick="toggleProduct('StripperMale')">
+					<div class="form-input-wrapper"><label for="StripperMale_Modification">Modification</label><select id="StripperMale_Modification" name="StripperMale_Modification" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="StripperMale_TimberType">Timber Type
-							*</label><select id="StripperMale_TimberType" name="StripperMale_TimberType" required="1" data-toggledisplay="true" modal="Modal_StripperMale_TimberType" disabled="disabled">
-							<option value="1" selected="selected">18mm Poplar</option>
+							*</label><select id="StripperMale_TimberType" name="StripperMale_TimberType" required="1" data-toggledisplay="true" modal="Modal_StripperMale_TimberType" disabled="true">
+							<option value="1">18mm Poplar</option>
 							<option value="2">15mm Poplar</option>
 							<option value="3">12mm Poplar</option>
 							<option value="4">18mm Birch</option>
@@ -355,12 +375,12 @@
 						</select></div>
 					<div class="form-input-wrapper hidden">
 						<label for="StripperMale_BuildHeight">Build Height*</label>
-						<input id="StripperMale_BuildHeight" name="StripperMale_BuildHeight" type="number" min="0" max="99" step="0.01" required="" data-toggledisplay="true" disabled="disabled">
+						<input id="StripperMale_BuildHeight" name="StripperMale_BuildHeight" type="number" min="0" max="99" step="0.01" required="" data-toggledisplay="true" disabled="true">
 					</div>
 					<div class="form-input-wrapper">
 						<label for="StripperMale_OutsidePinType">Outside Pin
-							Type</label><select id="StripperMale_OutsidePinType" name="StripperMale_OutsidePinType" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+							Type</label><select id="StripperMale_OutsidePinType" name="StripperMale_OutsidePinType" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Boxplan</option>
 							<option value="2">Wood</option>
 							<option value="3">Claws</option>
@@ -368,8 +388,8 @@
 						</select>
 					</div>
 					<div class="form-input-wrapper"><label for="StripperMale_InternalPinType">Internal Pin Type</label>
-						<select id="StripperMale_InternalPinType" name="StripperMale_InternalPinType" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+						<select id="StripperMale_InternalPinType" name="StripperMale_InternalPinType" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Boxplan</option>
 							<option value="2">Wood</option>
 							<option value="3">Claws</option>
@@ -377,34 +397,34 @@
 					</div>
 					<div class="form-input-wrapper">
 						<label for="StripperMale_PresserPlate">Presser Plate?</label>
-						<input id="hidden-StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled">
-						<input id="StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled">
+						<input id="hidden-StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="true">
+						<input id="StripperMale_PresserPlate" name="StripperMale_PresserPlate" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="true">
 					</div>
 					<div class="form-input-wrapper">
 						<label for="StripperMale_GripEdge">Grip Edge*</label>
-						<input id="StripperMale_GripEdge" name="StripperMale_GripEdge" type="number" min="0" max="99" step="1" required="" disabled="disabled">
+						<input id="StripperMale_GripEdge" name="StripperMale_GripEdge" type="number" min="0" max="99" step="1" required="" disabled="true">
 					</div>
 				</fieldset>
 				<fieldset id="Prod_StripperFemale">
 					<legend>Female Stripper</legend><label for="Add_StripperFemale">Add to Order</label>
-					<input id="hidden-Add_StripperFemale" name="Add_StripperFemale" type="hidden" onclick="toggleProduct('StripperFemale')" value="0" disabled="disabled">
+					<input id="hidden-Add_StripperFemale" name="Add_StripperFemale" type="hidden" onclick="toggleProduct('StripperFemale')" value="0" disabled="true">
 					<input id="Add_StripperFemale" name="Add_StripperFemale" type="checkbox" onclick="toggleProduct('StripperFemale')">
 					<div class="form-input-wrapper"><label for="StripperFemale_Modification">Modification</label>
-						<select id="StripperFemale_Modification" name="StripperFemale_Modification" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+						<select id="StripperFemale_Modification" name="StripperFemale_Modification" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select>
 					</div>
 					<div class="form-input-wrapper hidden"><label for="StripperFemale_FemaleType">Female Type
-							*</label><select id="StripperFemale_FemaleType" name="StripperFemale_FemaleType" required="1" data-toggledisplay="true" modal="Modal_StripperFemale_FemaleType" disabled="disabled">
-							<option value="1" selected="selected">Regular</option>
+							*</label><select id="StripperFemale_FemaleType" name="StripperFemale_FemaleType" required="1" data-toggledisplay="true" modal="Modal_StripperFemale_FemaleType" disabled="true">
+							<option value="1">Regular</option>
 							<option value="2">Steel Top and Bars</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="StripperFemale_TimberType">Timber Type
-							*</label><select id="StripperFemale_TimberType" name="StripperFemale_TimberType" required="1" data-toggledisplay="true" modal="Modal_StripperFemale_TimberType" disabled="disabled">
-							<option value="1" selected="selected">18mm Poplar</option>
+							*</label><select id="StripperFemale_TimberType" name="StripperFemale_TimberType" required="1" data-toggledisplay="true" modal="Modal_StripperFemale_TimberType" disabled="true">
+							<option value="1">18mm Poplar</option>
 							<option value="2">15mm Poplar</option>
 							<option value="3">12mm Poplar</option>
 							<option value="4">18mm Birch</option>
@@ -424,43 +444,43 @@
 							<option value="19">12mm Premium</option>
 							<option value="20">8mm Acrylic</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="StripperFemale_BarType">Bar Type</label><select id="StripperFemale_BarType" name="StripperFemale_BarType" disabled="disabled">
-							<option selected="selected">No options available</option>
+					<div class="form-input-wrapper"><label for="StripperFemale_BarType">Bar Type</label><select id="StripperFemale_BarType" name="StripperFemale_BarType" disabled="true">
+							<option>No options available</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="StripperFemale_GripEdge">Grip Edge
-							*</label><input id="StripperFemale_GripEdge" name="StripperFemale_GripEdge" type="number" min="0" max="99" step="1" required="" data-toggledisplay="true" disabled="disabled"></div>
+							*</label><input id="StripperFemale_GripEdge" name="StripperFemale_GripEdge" type="number" min="0" max="99" step="1" required="" data-toggledisplay="true" disabled="true"></div>
 					<div class="form-input-wrapper hidden"><label for="StripperFemale_BreakerType">Breaker
-							Type</label><select id="StripperFemale_BreakerType" name="StripperFemale_BreakerType" data-toggledisplay="true" disabled="disabled">
-							<option selected="selected">No options available</option>
+							Type</label><select id="StripperFemale_BreakerType" name="StripperFemale_BreakerType" data-toggledisplay="true" disabled="true">
+							<option>No options available</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="StripperFemale_Flyovers">Flyovers?</label><input id="hidden-StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper"><label for="StripperFemale_Flyovers">Flyovers?</label><input id="hidden-StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="true"><input id="StripperFemale_Flyovers" name="StripperFemale_Flyovers" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="true"></div>
 					<div class="form-input-wrapper"><label for="StripperFemale_SheetLifters">Sheet
-							Lifters?</label><input id="hidden-StripperFemale_SheetLifters" name="StripperFemale_SheetLifters" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="StripperFemale_SheetLifters" name="StripperFemale_SheetLifters" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
+							Lifters?</label><input id="hidden-StripperFemale_SheetLifters" name="StripperFemale_SheetLifters" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="true"><input id="StripperFemale_SheetLifters" name="StripperFemale_SheetLifters" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="true"></div>
 				</fieldset>
 				<fieldset id="Prod_EngravedPlate">
-					<legend>Engraved Plate</legend><label for="Add_EngravedPlate">Add to Order</label><input id="hidden-Add_EngravedPlate" name="Add_EngravedPlate" type="hidden" onclick="toggleProduct('EngravedPlate')" value="0" disabled="disabled"><input id="Add_EngravedPlate" name="Add_EngravedPlate" type="checkbox" onclick="toggleProduct('EngravedPlate')">
-					<div class="form-input-wrapper"><label for="EngravedPlate_Modification">Modification</label><select id="EngravedPlate_Modification" name="EngravedPlate_Modification" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+					<legend>Engraved Plate</legend><label for="Add_EngravedPlate">Add to Order</label><input id="hidden-Add_EngravedPlate" name="Add_EngravedPlate" type="hidden" onclick="toggleProduct('EngravedPlate')" value="0" disabled="true"><input id="Add_EngravedPlate" name="Add_EngravedPlate" type="checkbox" onclick="toggleProduct('EngravedPlate')">
+					<div class="form-input-wrapper"><label for="EngravedPlate_Modification">Modification</label><select id="EngravedPlate_Modification" name="EngravedPlate_Modification" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_ChannelHeightMM">Channel Height
-							(mm)*</label><input id="EngravedPlate_ChannelHeightMM" name="EngravedPlate_ChannelHeightMM" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
+							(mm)*</label><input id="EngravedPlate_ChannelHeightMM" name="EngravedPlate_ChannelHeightMM" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="true"></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_ChannelWidthAgainstGrainMM">Channel
-							Width Against Grain (m*</label><input id="EngravedPlate_ChannelWidthAgainstGrainMM" name="EngravedPlate_ChannelWidthAgainstGrainMM" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
+							Width Against Grain (m*</label><input id="EngravedPlate_ChannelWidthAgainstGrainMM" name="EngravedPlate_ChannelWidthAgainstGrainMM" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="true"></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_ChannelWidthWithGrainMM">Channel
-							Width With Grain (mm)*</label><input id="EngravedPlate_ChannelWidthWithGrainMM" name="EngravedPlate_ChannelWidthWithGrainMM" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
+							Width With Grain (mm)*</label><input id="EngravedPlate_ChannelWidthWithGrainMM" name="EngravedPlate_ChannelWidthWithGrainMM" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="true"></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_Thickness">Plate Thickness
-							*</label><input id="EngravedPlate_Thickness" name="EngravedPlate_Thickness" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="disabled"></div>
+							*</label><input id="EngravedPlate_Thickness" name="EngravedPlate_Thickness" type="number" min="0" max="9" step="0.01" required="" data-toggledisplay="true" disabled="true"></div>
 					<div class="form-input-wrapper hidden"><label for="EngravedPlate_RockwellHardness">Rockwell Hardness
-							*</label><input id="EngravedPlate_RockwellHardness" name="EngravedPlate_RockwellHardness" type="number" min="0" max="99" step="1" required="" data-toggledisplay="true" disabled="disabled"></div>
-					<div class="form-input-wrapper"><label for="EngravedPlate_Chromed">Chromed</label><input id="hidden-EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
+							*</label><input id="EngravedPlate_RockwellHardness" name="EngravedPlate_RockwellHardness" type="number" min="0" max="99" step="1" required="" data-toggledisplay="true" disabled="true"></div>
+					<div class="form-input-wrapper"><label for="EngravedPlate_Chromed">Chromed</label><input id="hidden-EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="true"><input id="EngravedPlate_Chromed" name="EngravedPlate_Chromed" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="true"></div>
 				</fieldset>
 				<fieldset id="Prod_EmbossingBlockMale">
-					<legend>Male Embossing Block</legend><label for="Add_EmbossingBlockMale">Add to Order</label><input id="hidden-Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="hidden" onclick="toggleProduct('EmbossingBlockMale')" value="0" disabled="disabled"><input id="Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="checkbox" onclick="toggleProduct('EmbossingBlockMale')">
-					<div class="form-input-wrapper"><label for="EmbossingBlockMale_Modification">Modification</label><select id="EmbossingBlockMale_Modification" name="EmbossingBlockMale_Modification" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+					<legend>Male Embossing Block</legend><label for="Add_EmbossingBlockMale">Add to Order</label><input id="hidden-Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="hidden" onclick="toggleProduct('EmbossingBlockMale')" value="0" disabled="true"><input id="Add_EmbossingBlockMale" name="Add_EmbossingBlockMale" type="checkbox" onclick="toggleProduct('EmbossingBlockMale')">
+					<div class="form-input-wrapper"><label for="EmbossingBlockMale_Modification">Modification</label><select id="EmbossingBlockMale_Modification" name="EmbossingBlockMale_Modification" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
@@ -468,16 +488,16 @@
 				</fieldset>
 				<fieldset id="Prod_EmbossingBlockFemale">
 					<legend>Female Embossing Block</legend><label for="Add_EmbossingBlockFemale">Add to
-						Order</label><input id="hidden-Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale" type="hidden" onclick="toggleProduct('EmbossingBlockFemale')" value="0" disabled="disabled"><input id="Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale" type="checkbox" onclick="toggleProduct('EmbossingBlockFemale')">
-					<div class="form-input-wrapper"><label for="EmbossingBlockFemale_Modification">Modification</label><select id="EmbossingBlockFemale_Modification" name="EmbossingBlockFemale_Modification" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+						Order</label><input id="hidden-Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale" type="hidden" onclick="toggleProduct('EmbossingBlockFemale')" value="0" disabled="true"><input id="Add_EmbossingBlockFemale" name="Add_EmbossingBlockFemale" type="checkbox" onclick="toggleProduct('EmbossingBlockFemale')">
+					<div class="form-input-wrapper"><label for="EmbossingBlockFemale_Modification">Modification</label><select id="EmbossingBlockFemale_Modification" name="EmbossingBlockFemale_Modification" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="EmbossingBlockFemale_Material">Material
-							*</label><select id="EmbossingBlockFemale_Material" name="EmbossingBlockFemale_Material" required="1" data-toggledisplay="true" modal="Modal_EmbossingBlockFemale_Material" disabled="disabled">
-							<option value="1" selected="selected">Board</option>
+							*</label><select id="EmbossingBlockFemale_Material" name="EmbossingBlockFemale_Material" required="1" data-toggledisplay="true" modal="Modal_EmbossingBlockFemale_Material" disabled="true">
+							<option value="1">Board</option>
 							<option value="2">Card</option>
 							<option value="3">Steel</option>
 							<option value="4">Rubber</option>
@@ -488,46 +508,46 @@
 				</fieldset>
 				<fieldset id="Prod_BlankerSeparatorLower" class="">
 					<legend>Blanker Separator Lower</legend><label for="Add_BlankerSeparatorLower">Add to
-						Order</label><input id="hidden-Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower" type="hidden" onclick="toggleProduct('BlankerSeparatorLower')" value="0" disabled="disabled"><input id="Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower" type="checkbox" onclick="toggleProduct('BlankerSeparatorLower')">
-					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_Modification">Modification</label><select id="BlankerSeparatorLower_Modification" name="BlankerSeparatorLower_Modification" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+						Order</label><input id="hidden-Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower" type="hidden" onclick="toggleProduct('BlankerSeparatorLower')" value="0" disabled="true"><input id="Add_BlankerSeparatorLower" name="Add_BlankerSeparatorLower" type="checkbox" onclick="toggleProduct('BlankerSeparatorLower')">
+					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_Modification">Modification</label><select id="BlankerSeparatorLower_Modification" name="BlankerSeparatorLower_Modification" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="BlankerSeparatorLower_FrameType">Frame Type
-							*</label><select id="BlankerSeparatorLower_FrameType" name="BlankerSeparatorLower_FrameType" required="1" data-toggledisplay="true" modal="Modal_BlankerSeparatorLower_FrameType" disabled="disabled">
-							<option value="1" selected="selected">Full</option>
+							*</label><select id="BlankerSeparatorLower_FrameType" name="BlankerSeparatorLower_FrameType" required="1" data-toggledisplay="true" modal="Modal_BlankerSeparatorLower_FrameType" disabled="true">
+							<option value="1">Full</option>
 							<option value="2">Light</option>
 							<option value="3">Cable</option>
 						</select></div>
 					<div class="form-input-wrapper hidden"><label for="BlankerSeparatorLower_BarType">Bar
-							Type</label><select id="BlankerSeparatorLower_BarType" name="BlankerSeparatorLower_BarType" data-toggledisplay="true" disabled="disabled">
-							<option selected="selected">No options available</option>
+							Type</label><select id="BlankerSeparatorLower_BarType" name="BlankerSeparatorLower_BarType" data-toggledisplay="true" disabled="true">
+							<option>No options available</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_Tube">Tube?</label><input id="hidden-BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled"></div>
+					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_Tube">Tube?</label><input id="hidden-BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="true"><input id="BlankerSeparatorLower_Tube" name="BlankerSeparatorLower_Tube" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="true"></div>
 					<div class="form-input-wrapper"><label for="BlankerSeparatorLower_MountingBracket">Mounting
-							Bracket?</label><input id="hidden-BlankerSeparatorLower_MountingBracket" name="BlankerSeparatorLower_MountingBracket" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="disabled"><input id="BlankerSeparatorLower_MountingBracket" name="BlankerSeparatorLower_MountingBracket" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="disabled">
+							Bracket?</label><input id="hidden-BlankerSeparatorLower_MountingBracket" name="BlankerSeparatorLower_MountingBracket" type="hidden" min="0" max="9" step="1" data-toggledisplay="true" value="0" disabled="true"><input id="BlankerSeparatorLower_MountingBracket" name="BlankerSeparatorLower_MountingBracket" type="checkbox" min="0" max="9" step="1" data-toggledisplay="true" disabled="true">
 					</div>
 				</fieldset>
 				<fieldset id="Prod_BlankerSeparatorUpper">
 					<legend>Blanker Separator Upper</legend><label for="Add_BlankerSeparatorUpper">Add to
-						Order</label><input id="hidden-Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper" type="hidden" onclick="toggleProduct('BlankerSeparatorUpper')" value="0" disabled="disabled"><input id="Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper" type="checkbox" onclick="toggleProduct('BlankerSeparatorUpper')">
-					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_Modification">Modification</label><select id="BlankerSeparatorUpper_Modification" name="BlankerSeparatorUpper_Modification" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+						Order</label><input id="hidden-Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper" type="hidden" onclick="toggleProduct('BlankerSeparatorUpper')" value="0" disabled="true"><input id="Add_BlankerSeparatorUpper" name="Add_BlankerSeparatorUpper" type="checkbox" onclick="toggleProduct('BlankerSeparatorUpper')">
+					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_Modification">Modification</label><select id="BlankerSeparatorUpper_Modification" name="BlankerSeparatorUpper_Modification" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Alteration</option>
 							<option value="2">Repair</option>
 							<option value="3">Re-rule</option>
 						</select></div>
 					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_PresserType">Presser
-							Type</label><select id="BlankerSeparatorUpper_PresserType" name="BlankerSeparatorUpper_PresserType" disabled="disabled">
-							<option value="" selected="selected">Select an option</option>
+							Type</label><select id="BlankerSeparatorUpper_PresserType" name="BlankerSeparatorUpper_PresserType" disabled="true">
+							<option value="">Select an option</option>
 							<option value="1">Spot Presser</option>
 							<option value="2">Presser Plate</option>
 							<option value="3">Bar Presser</option>
 						</select></div>
-					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_FoamType">Foam Type</label><select id="BlankerSeparatorUpper_FoamType" name="BlankerSeparatorUpper_FoamType" disabled="disabled">
-							<option selected="selected">No options available</option>
+					<div class="form-input-wrapper"><label for="BlankerSeparatorUpper_FoamType">Foam Type</label><select id="BlankerSeparatorUpper_FoamType" name="BlankerSeparatorUpper_FoamType" disabled="true">
+							<option>No options available</option>
 						</select></div>
 				</fieldset>
 			</fieldset>

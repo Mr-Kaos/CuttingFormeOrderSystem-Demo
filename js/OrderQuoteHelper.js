@@ -98,16 +98,22 @@ function validateDueDate(dateField, customer) {
 }
 
 /**
- * 
+ * Displays the delivery offset values for the selected customer.
+ * Used for demonstration purposes.
  * @param {*} element 
  */
 function displayDeliveryOffsets(element) {
-
+	let deliveryOffset = document.getElementById('deliveryOffset');
+	deliveryOffset.value = element.getAttribute('data-deliveryoffset');
+	let beginWorkOffset = document.getElementById('beginworkingoffset');
+	beginWorkOffset.value = element.getAttribute('data-beginworkingoffset');
+	let dueTime = document.getElementById('defaultduetime');
+	dueTime.value = element.getAttribute('data-defaultduetime');
 }
 
 function init() {
+	let products = document.getElementById("ProductItems");
 	let toggleDisplayBtn = document.getElementById("toggleExtraFields");
-	let orderInitialiserForm = document.getElementById("OrderInitialiser");
 	let customerDropdown = document.getElementById("Customer");
 	let dueDate = document.getElementById('DateDue');
 	// let calculateButtons = document.getElementsByClassName("btn-calculate");
@@ -117,16 +123,15 @@ function init() {
 		toggleDisplayBtn.addEventListener("click", toggleExtraFields);
 	}
 
+	customerDropdown.addEventListener('change', e => {
+		displayDeliveryOffsets(e.target.children[customerDropdown.selectedIndex]);
+	});
+
 	if (dueDate !== null) {
 		dueDate.addEventListener('change', function (e) {
 			validateDueDate(this, customerDropdown.children[customerDropdown.selectedIndex]);
 		});
 	}
-
-	// Add event listeners for the customer and machine type dropdowns to automatically submit the page when they are selected
-	orderInitialiserForm.addEventListener("change", e => {
-		orderInitialiserForm.submit();
-	});
 }
 
 window.addEventListener("load", init());
