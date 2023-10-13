@@ -77,6 +77,10 @@ function displayDeliveryOffsets(element) {
 function init() {
 	let toggleDisplayBtn = document.getElementById("toggleExtraFields");
 	let customerDropdown = document.getElementById("Customer");
+	let dueDate = document.getElementById('DateDue');
+	let deliveryOffset = document.getElementById('deliveryOffset');
+	let beginWorkOffset = document.getElementById('beginworkingoffset');
+	let dueTime = document.getElementById('defaultduetime');
 
 	if (toggleDisplayBtn !== null) {
 		toggleDisplayBtn.addEventListener("click", toggleExtraFields);
@@ -85,6 +89,14 @@ function init() {
 	customerDropdown.addEventListener('change', e => {
 		displayDeliveryOffsets(e.target.children[customerDropdown.selectedIndex]);
 	});
+
+	if (dueDate !== null) {
+		[customerDropdown, dueDate, deliveryOffset, beginWorkOffset, dueTime].forEach(element => {
+			element.addEventListener('change', function (e) {
+				validateDueDate(dueDate, deliveryOffset.value, beginWorkOffset.value, dueTime.value);
+			});
+		});
+	}
 }
 
 window.addEventListener("load", init());

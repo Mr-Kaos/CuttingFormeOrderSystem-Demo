@@ -11,6 +11,7 @@
 function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defaultDueTime) {
 	let dueDate = new Date(dateField.value);
 
+	console.log('sadasds');
 	// Determine what the deadline of the job would be based on the delivery offset
 	let deadline = new Date(dateField.value);
 	deadline.setDate(dueDate.getDate());
@@ -32,20 +33,3 @@ function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defau
 		appendErrorMessage(dateField, `Required Despatch date:\n ${deadline.toLocaleString()}\n`, ALERT_NONE);
 	}
 }
-
-function init() {
-	let dueDate = document.getElementById('DateDue');
-	let deliveryOffset = document.getElementById('deliveryOffset');
-	let beginWorkOffset = document.getElementById('beginworkingoffset');
-	let dueTime = document.getElementById('defaultduetime');
-
-	if (dueDate !== null) {
-		[dueDate, deliveryOffset, beginWorkOffset, dueTime].forEach(element => {
-			element.addEventListener('change', function (e) {
-				validateDueDate(dueDate, deliveryOffset.value, beginWorkOffset.value, dueTime.value);
-			});
-		});
-	}
-}
-
-window.addEventListener("load", init());
