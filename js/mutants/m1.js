@@ -10,14 +10,14 @@
  */
 function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defaultDueTime) {
 	let dueDate = new Date(dateField.value);
+	let warning = false;
 
-	console.log('sadasds');
 	// Determine what the deadline of the job would be based on the delivery offset
 	let deadline = new Date(dateField.value);
 	deadline.setDate(dueDate.getDate());
 	deadline.setHours(defaultDueTime.split(':')[0], defaultDueTime.split(':')[1]);
 
-	while (deliveryDayOffset > 0) {
+	while (deliveryDayOffset >= 0) {
 		deadline.setDate(deadline.getDate() - 1);
 		if (!(deadline.getDay() === 0 || deadline.getDay() === 6)) {
 			deliveryDayOffset -= 1;
@@ -27,9 +27,11 @@ function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defau
 	let difference = (deadline - Date.now()) / (1000 * 60 * 60 * 24);
 	// Check if the deadline can be met by the begin working day offset. If the difference is less than beginWorkingOffset, warn the user.
 	if (difference < beginWorkingOffset) {
+		warning = true;
 		appendErrorMessage(dateField, `The due date falls short of this customer's minimum required working days. You may have less time to complete this job than normal.\nRequired Despatch date: ${deadline.toLocaleString()}`, ALERT_WARN);
 	} else {
 		removeErrorMessage(dateField);
 		appendErrorMessage(dateField, `Required Despatch date:\n ${deadline.toLocaleString()}\n`, ALERT_NONE);
 	}
+	return { 'date': deadline.toLocaleString(), 'warning': warning };
 }
