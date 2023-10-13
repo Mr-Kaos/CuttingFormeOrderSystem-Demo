@@ -73,26 +73,25 @@ function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defau
 
 	// Determine what the deadline of the job would be based on the delivery offset
 	let deadline = new Date(dateField.value);
-	deadline.setDate(dueDate.getDate() - deliveryDayOffset);
+	deadline.setDate(dueDate.getDate());
 	deadline.setHours(defaultDueTime.split(':')[0], defaultDueTime.split(':')[1]);
 
-	let difference = (deadline - Date.now()) / (1000 * 60 * 60 * 24);
-	let weeks = (difference / 7) + (new Date(Date.now()).getDay() / 7);
-	difference -= Math.floor(weeks) * 2;
-
-	// Ensure the calculated deadline is on a business day. I.e. if the deadline falls on a weekend, set it to the friday beforehand
-	if (deadline.getDay() === 0) {
-		deadline.setDate(deadline.getDate() - 2);
-	} else if (deadline.getDay() === 6) {
+	while (deliveryDayOffset > 0) {
 		deadline.setDate(deadline.getDate() - 1);
+		if (!(deadline.getDay() === 0 || deadline.getDay() === 6)) {
+			deliveryDayOffset -= 1;
+		}
 	}
 
+	let difference = (deadline - Date.now()) / (1000 * 60 * 60 * 24);
+
+	console.log(difference, beginWorkingOffset);
 	// Check if the deadline can be met by the begin working day offset. If the difference is less than beginWorkingOffset, warn the user.
 	if (difference < beginWorkingOffset) {
-		appendErrorMessage(dateField, "The due date falls short of this customer's minimum required working days. You may have less time to complete this job than normal.\nRequired Despatch date:" + deadline.toDateString(), ALERT_WARN);
+		appendErrorMessage(dateField, `The due date falls short of this customer's minimum required working days. You may have less time to complete this job than normal.\nRequired Despatch date: ${deadline.toLocaleString()}`, ALERT_WARN);
 	} else {
 		removeErrorMessage(dateField);
-		appendErrorMessage(dateField, "Required Despatch date:\n" + deadline.toDateString() + "\n", ALERT_NONE);
+		appendErrorMessage(dateField, `Required Despatch date:\n ${deadline.toLocaleString()}\n`, ALERT_NONE);
 	}
 }
 
