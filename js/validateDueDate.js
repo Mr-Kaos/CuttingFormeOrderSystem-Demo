@@ -34,13 +34,14 @@ function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defau
 }
 
 function init() {
+	let customerDropdown = document.getElementById("Customer");
 	let dueDate = document.getElementById('DateDue');
 	let deliveryOffset = document.getElementById('deliveryOffset');
 	let beginWorkOffset = document.getElementById('beginworkingoffset');
 	let dueTime = document.getElementById('defaultduetime');
 
 	if (dueDate !== null) {
-		[dueDate, deliveryOffset, beginWorkOffset, dueTime].forEach(element => {
+		[customerDropdown, dueDate, deliveryOffset, beginWorkOffset, dueTime].forEach(element => {
 			element.addEventListener('change', function (e) {
 				validateDueDate(dueDate, deliveryOffset.value, beginWorkOffset.value, dueTime.value);
 			});
