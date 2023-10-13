@@ -66,6 +66,9 @@
 					<option value="m29">M29</option>
 					<option value="m30">M30</option>
 				</select>
+				<p>Press the button below to run an automated procedure that runs through all mutations and metamorphic relations.<br>The results will be outputted at the bottom of the page.</p>
+				<button id="testRun" type="button">Run Test Procedure</button>
+				<span id="testStatus"></span>
 			</div>
 		</div>
 		<div>
@@ -74,55 +77,19 @@
 				<label for="Customer">Customer</label>
 				<select id="Customer" name="Customer">
 					<option>Select an option</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="5" data-defaultduetime="16:00">A1 Cutting Formes</option>
 					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Abaris</option>
 					<option data-deliveryoffset="0" data-beginworkingoffset="7" data-defaultduetime="16:00">Abbe Corrugated</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="7" data-defaultduetime="16:00">Academy Graphics</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="7" data-defaultduetime="16:00">Acron Plastics P/L</option>
 					<option data-deliveryoffset="1" data-beginworkingoffset="7" data-defaultduetime="16:00">AMR Hewitts</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="7" data-defaultduetime="16:00">Any Color you like</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="7" data-defaultduetime="16:00">Bambra Press</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="7" data-defaultduetime="16:00">Bindweld Plastics</option>
 					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Boxes To Go</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">C.P. Gluing</option>
-					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Cartonlux</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Centre State Printing</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">CMYK Hub</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="13:00">Complete Rubber</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="4" data-defaultduetime="13:00">Darkos Packaging</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="4" data-defaultduetime="13:00">Duncan Packaging</option>
+					<option data-deliveryoffset="3" data-beginworkingoffset="6" data-defaultduetime="16:00">C.P. Gluing</option>
 					<option data-deliveryoffset="2" data-beginworkingoffset="7" data-defaultduetime="16:00">Echo Cartons</option>
-					<option data-deliveryoffset="2" data-beginworkingoffset="7" data-defaultduetime="16:00">Gibson Display &amp; Packaging</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Greenbean Packaging</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Highlight Printing</option>
 					<option data-deliveryoffset="0" data-beginworkingoffset="4" data-defaultduetime="16:00">Immij</option>
-					<option data-deliveryoffset="3" data-beginworkingoffset="6" data-defaultduetime="16:00">Inbox Group</option>
+					<option data-deliveryoffset="3" data-beginworkingoffset="7" data-defaultduetime="16:00">Inbox Group</option>
 					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">JacPak</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Kebet Corrugated Cartons</option>
 					<option data-deliveryoffset="0" data-beginworkingoffset="3" data-defaultduetime="12:00">Lakeside Packaging</option>
-					<option data-deliveryoffset="3" data-beginworkingoffset="6" data-defaultduetime="16:00">MAD MAN PRINTING</option>
 					<option data-deliveryoffset="2" data-beginworkingoffset="7" data-defaultduetime="16:00">Megara</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="7" data-defaultduetime="17:00">Mercury Walch</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="5" data-defaultduetime="17:00">Micor Packaging</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="5" data-defaultduetime="17:00">MIG Packaging</option>
 					<option data-deliveryoffset="1" data-beginworkingoffset="5" data-defaultduetime="17:00">Multi-Color Pty Ltd</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Network Pak</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Norwood Industries</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">OJI Cardboard Cartons Solutions</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="7" data-defaultduetime="17:00">Opal</option>
-					<option data-deliveryoffset="2" data-beginworkingoffset="7" data-defaultduetime="16:00">Park Douglas</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">PMS Lithography</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="17:00">Press Print Solutions</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="5" data-defaultduetime="17:00">Printgraphics</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Production Packaging</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Proficient Packaging</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="5" data-defaultduetime="16:00">Sovereign Press</option>
 					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Spectra Litho</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">Streamline Cartons</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="5" data-defaultduetime="16:00">Styleprint</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">WestRock</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="4" data-defaultduetime="16:00">WM Formecutting</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Zacpac</option>
 				</select>
 				<label for="Machine">Machine Type</label>
 				<select id="Machine" name="Machine" value="1">
