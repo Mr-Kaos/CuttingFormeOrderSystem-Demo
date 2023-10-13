@@ -63,13 +63,12 @@ function toggleProduct(productName) {
  * Checks if the date entered is valid against the customer's delivery day offset and working day offsets
  * If it is not, a warning message is displayed.
  * @param {Element} dateField The due date input element
- * @param {Element} customer The selected customer dropdown option
+ * @param {Element} customer The selected customer dropdown option. Contains the three variables 
  */
-function validateDueDate(dateField, customer) {
-	console.log(customer);
-	let deliveryDayOffset = customer.getAttribute('data-DeliveryOffset');
-	let beginWorkingOffset = customer.getAttribute('data-BeginWorkingOffset');
-	let defaultDueTime = customer.getAttribute('data-DefaultDueTime');
+function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defaultDueTime) {
+	// let deliveryDayOffset = customer.getAttribute('data-DeliveryOffset');
+	// let beginWorkingOffset = customer.getAttribute('data-BeginWorkingOffset');
+	// let defaultDueTime = customer.getAttribute('data-DefaultDueTime');
 	let dueDate = new Date(dateField.value);
 
 	// Determine what the deadline of the job would be based on the delivery offset
@@ -112,11 +111,12 @@ function displayDeliveryOffsets(element) {
 }
 
 function init() {
-	let products = document.getElementById("ProductItems");
 	let toggleDisplayBtn = document.getElementById("toggleExtraFields");
 	let customerDropdown = document.getElementById("Customer");
 	let dueDate = document.getElementById('DateDue');
-	// let calculateButtons = document.getElementsByClassName("btn-calculate");
+	let deliveryOffset = document.getElementById('deliveryOffset');
+	let beginWorkOffset = document.getElementById('beginworkingoffset');
+	let dueTime = document.getElementById('defaultduetime');
 	let i = 0;
 
 	if (toggleDisplayBtn !== null) {
@@ -128,8 +128,10 @@ function init() {
 	});
 
 	if (dueDate !== null) {
-		dueDate.addEventListener('change', function (e) {
-			validateDueDate(this, customerDropdown.children[customerDropdown.selectedIndex]);
+		[dueDate, deliveryOffset, beginWorkOffset, dueTime].forEach(element => {
+			element.addEventListener('change', function (e) {
+				validateDueDate(dueDate, deliveryOffset.value, beginWorkOffset.value, dueTime.value);
+			});
 		});
 	}
 }

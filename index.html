@@ -94,9 +94,9 @@
 					<legend>Delivery Offsets</legend>
 					<div class="form-input-wrapper">
 						<label for="deliveryOffset">Delivery Offset (Days)</label>
-						<input type="number" id="deliveryOffset">
+						<input type="number" id="deliveryOffset" min="0">
 						<label for="beginworkingoffset">Begin Work Offset (Days)</label>
-						<input type="number" id="beginworkingoffset">
+						<input type="number" id="beginworkingoffset" min="0">
 						<label for="defaultduetime">Default Due Time</label>
 						<input type="time" id="defaultduetime">
 					</div>
@@ -510,6 +510,7 @@
 			<button type="submit">Submit Order</button>
 			<button type="reset">Reset Order</button>
 		</form>
+		<p>Note: Submitting this form does nothing.</p>
 
 		<aside>
 			<h3>About this program</h3>
