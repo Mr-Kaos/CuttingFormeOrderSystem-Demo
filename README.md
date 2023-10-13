@@ -4,7 +4,7 @@
 
 This repository is used to demonstrate metamorphic testing through a web-based ordering system.
 
-The ordering system ordering system demonstrated has been designed for use in the tool and die making industry. The products listed on the page are products used in this industry.
+The ordering system demonstrated has been designed for use in the tool and die making industry. The products listed on the page are products used in this industry.
 
 This code has been adapted from an in-house project that connects to an SQL database. Because of this, the program here has been heavily modified and has had all necessary values typically retrieved from the database hard-coded and altered for anonymity.
 

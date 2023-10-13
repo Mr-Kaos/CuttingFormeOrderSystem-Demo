@@ -2,10 +2,11 @@
  * OrderQuoteHelper.js
  * Author: Kristian Oqueli Ambrose
  * Created: 09/03/2023
- * Modified: 21/09/2023
+ * Modified: 13/10/2023
  * 
  * Description:
  * This script aids in the creation of a new order or Quote in the War room system.
+ * This is an altered version of the original script used to demonstrate metamorphic testing with the validateDueDate function.
  */
 
 "use strict";
@@ -63,12 +64,11 @@ function toggleProduct(productName) {
  * Checks if the date entered is valid against the customer's delivery day offset and working day offsets
  * If it is not, a warning message is displayed.
  * @param {Element} dateField The due date input element
- * @param {Element} customer The selected customer dropdown option. Contains the three variables 
+ * @param {Number} deliveryDayOffset The number of days in advance to deliver the order
+ * @param {Number} beginWorkingOffset The number of days the order is expected to take to complete
+ * @param {String} defaultDueTime The default time of day in which order is due/needs to be dispatched
  */
 function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defaultDueTime) {
-	// let deliveryDayOffset = customer.getAttribute('data-DeliveryOffset');
-	// let beginWorkingOffset = customer.getAttribute('data-BeginWorkingOffset');
-	// let defaultDueTime = customer.getAttribute('data-DefaultDueTime');
 	let dueDate = new Date(dateField.value);
 
 	// Determine what the deadline of the job would be based on the delivery offset
