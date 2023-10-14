@@ -109,6 +109,7 @@
 				</select>
 				<p>Press the button below to run a test with the current values on the currently selected mutation.<br>After the test has been executed it will move to the next mutation. You will need to press the button again to run the next test.</p>
 				<button id="testRun" type="button">Run Test with this mutation</button>
+				<p>Press the following button to test all mutants.</p>
 				<button id="testRun" type="button" onclick="runTests()">Run All tests from current mutation</button>
 				<span id="testStatus"></span>
 			</div>
@@ -526,13 +527,14 @@
 		<p>Note: Submitting this form does nothing.</p>
 
 		<h2>Mutant Results</h2>
-		<div class="flex-container">
+		<div class="">
 			<table>
 				<thead>
 					<th>MR</th>
 					<th>Mutant ID</th>
+					<th>Inputs</th>
+					<th>Outputs</th>
 					<th>Killed?</th>
-					<th>Score</th>
 				</thead>
 				<tbody id="results_MR1">
 				</tbody>
@@ -541,8 +543,9 @@
 				<thead>
 					<th>MR</th>
 					<th>Mutant ID</th>
+					<th>Inputs</th>
+					<th>Outputs</th>
 					<th>Killed?</th>
-					<th>Score</th>
 				</thead>
 				<tbody id="results_MR2">
 				</tbody>
@@ -551,8 +554,9 @@
 				<thead>
 					<th>MR</th>
 					<th>Mutant ID</th>
+					<th>Inputs</th>
+					<th>Outputs</th>
 					<th>Killed?</th>
-					<th>Score</th>
 				</thead>
 				<tbody id="results_MR3">
 				</tbody>

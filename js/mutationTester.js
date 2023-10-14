@@ -27,15 +27,14 @@ function getScriptURL(name) {
 
 /**
  * Evaluates wether the two outputs from a test killed the mutant or not.
- * @param {Object} sourceTest 
  * @param {Object} followUpTest 
  */
-function compareTests(sourceTest, followUpTest, expected, MR, mutant) {
+function compareTests(testData) {
 	let killed = false;
-	if (followUpTest.date.toLocaleString() !== expected.toLocaleString()) {
+	if (testData.FO.date.toLocaleString() !== testData.SO_MR.toLocaleString()) {
 		killed = true;
 	}
-	outputResult(MR, mutant, killed);
+	outputResult(testData, killed);
 }
 
 function runTest() {
@@ -46,6 +45,8 @@ function runTest() {
 	let SO;
 	let FO;
 	let expected;
+	let testData = {relation: null, mutant: null, SI: null, FI: null, SO: null, FO: null, SO_MR: null, check: null};
+	testData.mutant = mutationSelect.value;
 
 	if (mutationSelect.selectedIndex !== -1) {
 		// make sure a customer is selected to prefill the values
@@ -70,49 +71,64 @@ function runTest() {
 			switch (MR) {
 				// MR 1: Divide delivery day offset by n
 				case 0:
+					let division = 2;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
 					// Apply the metamorphic relation to the delivery offset
-					FO = validateDueDate(dueDate, currentDate, deliveryOffset / 2, beginWorkOffset, dueTime);
+					FO = validateDueDate(dueDate, currentDate, deliveryOffset / division, beginWorkOffset, dueTime);
+					testData.FI = {dueDateValue, currentDate, deliveryOffset: (deliveryOffset / division), beginWorkOffset, dueTime};
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
-					expected.setDate(expected.getDate() + (deliveryOffset / 2));
-					compareTests(SO, FO, expected, 'MR1', mutationSelect.value);
+					expected.setDate(expected.getDate() + (deliveryOffset / division));
+
+					testData.relation = 'MR1';
+					testData.check = `/n`;
 					break MRSwitch;
 				// MR 2: Add n to all dates
 				case 1:
 					let dateOffset = 2;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
 					// Apply the metamorphic relation test to the current date and due date
 					let followUpDate = new Date(dueDate.value);
 					followUpDate.setDate(followUpDate.getDate() + dateOffset);
 					dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
 					FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() + dateOffset), deliveryOffset, beginWorkOffset, dueTime);
+					testData.FI = {dueDateValue: followUpDate, currentDate: currentDate.setDate(currentDate.getDate() + dateOffset), deliveryOffset, beginWorkOffset, dueTime};
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
 					expected.setDate(expected.getDate() + dateOffset);
-					// console.log(SO, FO, expected);
-					compareTests(SO, FO, expected, 'MR2', mutationSelect.value);
+
+					testData.relation = 'MR2';
+					testData.check = `+n`;
 					break MRSwitch;
 				// MR 3: Multiply all dates by -1
 				case 2:
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
 					// Apply the metamorphic relation to the current date and due date.
 					let followUpDate2 = new Date(dueDate.value);
 					followUpDate2.setDate(followUpDate2.getDate() * -1);
 					dueDate.value = followUpDate2.toLocaleString('sv').substring(0, 16);
 					FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() * -1), deliveryOffset, beginWorkOffset, dueTime);
+					testData.FI = {dueDateValue: followUpDate2, currentDate: currentDate.setDate(currentDate.getDate() * -1), deliveryOffset, beginWorkOffset, dueTime};
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
 					expected.setDate(expected.getDate() * -1);
-					compareTests(SO, FO, expected, 'MR3', mutationSelect.value);
+					testData.relation = 'MR3';
+					testData.check = `*-1`;
 					break MRSwitch;
 			}
+			testData.SO = SO;
+			testData.FO = FO;
+			testData.SO_MR = expected;
+			compareTests(testData);
 		}
 
 		mutationSelect.selectedIndex += 1;
@@ -123,8 +139,6 @@ function runTest() {
  * Runs all tests on all available mutants for each metamorphic relation.
  */
 function runTests() {
-	let mutationSelect = document.getElementById('mutationSelect');
-	let i = 0;
 	setInterval(function () {
 		runTest();
 	}, 1);
@@ -132,15 +146,19 @@ function runTests() {
 
 /**
  * Outputs the results of a test case to the output table at the bottom of the page.
- * @param {String} MR The MR ID
- * @param {String} mutantID The mutant ID
+ * @param {Object} data Data from the test performed. Contains all inputs for each test.
  * @param {Boolean} killed wether the mutant has been killed or not based on the metamorphic relation.
  */
-function outputResult(MR, mutantID, killed) {
-	let table = document.getElementById(`results_${MR}`);
+function outputResult(data, killed) {
+	let table = document.getElementById(`results_${data.relation}`);
 	let row = document.createElement('tr');
+	let SI = `<b>DueDate:</b> ${data.SI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.SI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.SI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.SI.beginWorkOffset}, <b>DueTime:</b> ${data.SI.dueTime}]`
+	let FI = `<b>DueDate:</b> ${data.FI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.SI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.SI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.SI.beginWorkOffset}, <b>DueTime:</b> ${data.SI.dueTime}]`
+	let SO = `<b>DispatchDate:</b> ${data.SO.date.toDateString()}, <b>TimeWarning?:</b> ${data.SO.warning}</b>`;
+	let FO = `<b>DispatchDate:</b> ${data.FO.date.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
+	let SO_MR = `<b>DispatchDate:</b> ${data.SO_MR.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
 
-	row.innerHTML = `<td>${MR}</td><td>${mutantID}</td><td>${killed ? ' &#10004;' : ''}</td><td></td>`;
+	row.innerHTML = `<td>${data.relation}</td><td>${data.mutant}</td><td>SI: ${SI}<br>FI: ${FI}</td><td>SO: ${SO}<br>SO${data.check}: ${SO_MR}<br>FO: ${FO}</td><td>${killed ? ' &#10004;' : ''}</td>`;
 	table.appendChild(row);
 }
 
