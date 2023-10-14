@@ -53,6 +53,7 @@ function runTest() {
 		displayDeliveryOffsets(customerDropdown.children[customerDropdown.selectedIndex]);
 	}
 
+	let currentDate = new Date(Date.now());
 	let dueDate = document.getElementById('DateDue');
 	let deliveryOffset = document.getElementById('deliveryOffset').value;
 	let beginWorkOffset = document.getElementById('beginworkingoffset').value;
@@ -64,27 +65,41 @@ function runTest() {
 	deliveryOffset = 2;
 
 	for (MR; MR < 3; MR++) {
+		console.log(MR, mutationSelect.value)
+		MRSwitch:
 		switch (MR) {
 			// MR 1: Divide delivery day offset by n
 			case 0:
-				SO = validateDueDate(dueDate, deliveryOffset, beginWorkOffset, dueTime);
-				FO = validateDueDate(dueDate, deliveryOffset / 2, beginWorkOffset, dueTime);
+				SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+				FO = validateDueDate(dueDate, currentDate, deliveryOffset / 2, beginWorkOffset, dueTime);
 
 				// check if the source input with its outputted date + the MR is the same as the follow-up output.
 				expected = new Date(SO.date);
 				expected.setDate(expected.getDate() + (deliveryOffset / 2));
 				compareTests(SO, FO, expected, 'MR1', mutationSelect.value);
-				break;
+				break MRSwitch;
 			// MR 2: Add n to all dates
 			case 1:
-			
-				break;
+				let dateOffset = 2;
+				SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+				let followUpDate = new Date(dueDate.value);
+				followUpDate.setDate(followUpDate.getDate() + dateOffset);
+				dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
+
+				FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() + dateOffset), deliveryOffset, beginWorkOffset, dueTime);
+
+
+				// check if the source input with its outputted date + the MR is the same as the follow-up output.
+				expected = new Date(SO.date);
+				expected.setDate(expected.getDate() + 1);
+				console.log(SO, FO, expected);
+				compareTests(SO, FO, expected, 'MR2', mutationSelect.value);
+				break MRSwitch;
 			// MR 3: Multiply all dates by -1
 			case 2:
-
-				break;
+				compareTests(SO, FO, expected, 'MR3', mutationSelect.value);
+				break MRSwitch;
 		}
-		break;
 	}
 
 	mutationSelect.selectedIndex += 1;
@@ -106,9 +121,9 @@ function runTests() {
 
 /**
  * Outputs the results of a test case to the output table at the bottom of the page.
- * @param {String} MR 
- * @param {String} mutantID 
- * @param {Boolean} killed 
+ * @param {String} MR The MR ID
+ * @param {String} mutantID The mutant ID
+ * @param {Boolean} killed wether the mutant has been killed or not based on the metamorphic relation.
  */
 function outputResult(MR, mutantID, killed) {
 	let table = document.getElementById(`results_${MR}`);

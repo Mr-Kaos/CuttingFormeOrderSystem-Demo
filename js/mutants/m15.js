@@ -8,7 +8,7 @@
  * @param {Number} beginWorkingOffset The number of days the order is expected to take to complete
  * @param {String} defaultDueTime The default time of day in which order is due/needs to be dispatched
  */
-function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defaultDueTime) {
+function validateDueDate(dateField, currentDate, deliveryDayOffset, beginWorkingOffset, defaultDueTime) {
 	let dueDate = new Date(dateField.value);
 	let warning = false;
 
@@ -24,7 +24,7 @@ function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defau
 		}
 	}
 
-	let difference = (deadline - Date.now()) - (1000 * 60 * 60 * 24);
+	let difference = (deadline - currentDate) - (1000 * 60 * 60 * 24);
 	// Check if the deadline can be met by the begin working day offset. If the difference is less than beginWorkingOffset, warn the user.
 	if (difference < beginWorkingOffset) {
 		warning = true;
