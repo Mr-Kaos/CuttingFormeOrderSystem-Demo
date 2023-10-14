@@ -10,6 +10,7 @@ let running = false;
 function loadScript(url) {
 	let head = document.head;
 	let script = document.createElement('script');
+	// let script = document.getElementById('function');
 	script.type = 'text/javascript';
 	script.src = url;
 	head.appendChild(script);
@@ -24,8 +25,69 @@ function getScriptURL(name) {
 	return `js/${script}.js`;
 }
 
-function compareTests(sourceTest, followUpTest) {
+/**
+ * Evaluates wether the two outputs from a test killed the mutant or not.
+ * @param {Object} sourceTest 
+ * @param {Object} followUpTest 
+ */
+function compareTests(sourceTest, followUpTest, expected, MR, mutant) {
+	let killed = false;
+	if (followUpTest.date.toLocaleString() !== expected.toLocaleString()) {
+		killed = true;
+	}
+	outputResult(MR, mutant, killed);
+}
 
+function runTest() {
+	let customerDropdown = document.getElementById("Customer");
+	let mutationSelect = document.getElementById('mutationSelect');
+	let dueDateValue = new Date();
+	let MR = 0;
+	let SO;
+	let FO;
+	let expected;
+
+	// make sure a customer is selected to prefill the values
+	if (customerDropdown.getAttribute('data-deliveryoffset') == null) {
+		customerDropdown.selectedIndex = 3;
+		displayDeliveryOffsets(customerDropdown.children[customerDropdown.selectedIndex]);
+	}
+
+	let dueDate = document.getElementById('DateDue');
+	let deliveryOffset = document.getElementById('deliveryOffset').value;
+	let beginWorkOffset = document.getElementById('beginworkingoffset').value;
+	let dueTime = document.getElementById('defaultduetime').value;
+	loadScript(getScriptURL(mutationSelect.value));
+
+	dueDateValue.setDate(dueDateValue.getDate() + 12);
+	dueDate.value = dueDateValue.toLocaleString('sv').substring(0, 16);
+	deliveryOffset = 2;
+
+	for (MR; MR < 3; MR++) {
+		switch (MR) {
+			// MR 1: Divide delivery day offset by n
+			case 0:
+				SO = validateDueDate(dueDate, deliveryOffset, beginWorkOffset, dueTime);
+				FO = validateDueDate(dueDate, deliveryOffset / 2, beginWorkOffset, dueTime);
+
+				// check if the source input with its outputted date + the MR is the same as the follow-up output.
+				expected = new Date(SO.date);
+				expected.setDate(expected.getDate() + (deliveryOffset / 2));
+				compareTests(SO, FO, expected, 'MR1', mutationSelect.value);
+				break;
+			// MR 2: Add n to all dates
+			case 1:
+			
+				break;
+			// MR 3: Multiply all dates by -1
+			case 2:
+
+				break;
+		}
+		break;
+	}
+
+	mutationSelect.selectedIndex += 1;
 }
 
 /**
@@ -37,58 +99,26 @@ function runTests() {
 	if (!running) {
 		running = true;
 		let customerDropdown = document.getElementById("Customer");
-		let MR = 0;
-		let mutant = 1;
-		let SO;
-		let FO;
-
-		for (MR; MR < 3; MR++) {
-			// set values for each input by selecting a random customer.
-			// let random = Math.floor((Math.random() * (customerDropdown.childElementCount - 1)) + 1);
-
-			// displayDeliveryOffsets(customerDropdown.children[random]);
-			customerDropdown.selectedIndex = 3;
-			displayDeliveryOffsets(customerDropdown.children[3]);
-
-			let dueDate = document.getElementById('DateDue');
-			let deliveryOffset = document.getElementById('deliveryOffset').value;
-			let beginWorkOffset = document.getElementById('beginworkingoffset').value;
-			let dueTime = document.getElementById('defaultduetime').value;
-
-			let dueDateValue = new Date();
-			dueDateValue.setDate(dueDateValue.getDate() + 12);
-			dueDate.value = dueDateValue.toLocaleString('sv').substring(0, 16);
-			deliveryOffset = 2;
-
-			switch (MR) {
-				// MR 1: Divide delivery day offset by n
-				case 0:
-					for (mutant = 1; mutant <= 30; mutant++) {
-						loadScript(getScriptURL(`m${mutant}`));
-
-						console.log(dueDate.value, deliveryOffset, beginWorkOffset, dueTime);
-						SO = validateDueDate(dueDate, deliveryOffset, beginWorkOffset, dueTime);
-						console.log(dueDate.value, deliveryOffset / 2, beginWorkOffset, dueTime);
-						FO = validateDueDate(dueDate, deliveryOffset / 2, beginWorkOffset, dueTime);
-						console.log(SO, FO);
-					}
-					break;
-				// MR 2: Add n to all dates
-				case 1:
-
-					break;
-				// MR 3: Multiply all dates by -1
-				case 2:
-
-					break;
-			}
-		}
 
 		running = false;
 	}
 }
 
+/**
+ * Outputs the results of a test case to the output table at the bottom of the page.
+ * @param {String} MR 
+ * @param {String} mutantID 
+ * @param {Boolean} killed 
+ */
+function outputResult(MR, mutantID, killed) {
+	let table = document.getElementById(`results_${MR}`);
+	let row = document.createElement('tr');
+	
+	row.innerHTML = `<td>${MR}</td><td>${mutantID}</td><td>${killed ? ' &#10004;' : ''}</td><td></td>`;
+	table.appendChild(row);
+}
+
 document.getElementById('mutationSelect').addEventListener('change', e => {
 	loadScript(getScriptURL(e.target.value));
 });
-document.getElementById('testRun').onclick = runTests;
+document.getElementById('testRun').onclick = runTest;

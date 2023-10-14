@@ -17,7 +17,7 @@ function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defau
 	deadline.setDate(dueDate.getDate());
 	deadline.setHours(defaultDueTime.split(':')[0], defaultDueTime.split(':')[1]);
 
-	while (deliveryDayOffset >= 0) {
+	while (deliveryDayOffset > 1) {
 		deadline.setDate(deadline.getDate() - 1);
 		if (!(deadline.getDay() === 0 || deadline.getDay() === 6)) {
 			deliveryDayOffset -= 1;

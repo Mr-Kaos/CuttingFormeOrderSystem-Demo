@@ -25,10 +25,51 @@
 		</ul>
 	</nav>
 	<main>
+		<div>
+			<h2>New Order</h2>
+			<p>Select a customer to create a new order.</p>
+		</div>
 		<div class="flex-container">
-			<div class="flex-col-half">
-				<h2>New Order</h2>
-				<p>Select a customer to create a new order.</p>
+			<div style="width:50%">
+				<form id="OrderInitialiser">
+					<h3>Select a customer and a machine</h3>
+					<label for="Customer">Customer</label>
+					<select id="Customer" name="Customer">
+						<option>Select an option</option>
+						<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Abaris</option>
+						<option data-deliveryoffset="0" data-beginworkingoffset="7" data-defaultduetime="16:00">Abbe Corrugated</option>
+						<option data-deliveryoffset="1" data-beginworkingoffset="7" data-defaultduetime="16:00">AMR Hewitts</option>
+						<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Boxes To Go</option>
+						<option data-deliveryoffset="3" data-beginworkingoffset="6" data-defaultduetime="16:00">C.P. Gluing</option>
+						<option data-deliveryoffset="2" data-beginworkingoffset="7" data-defaultduetime="16:00">Echo Cartons</option>
+						<option data-deliveryoffset="0" data-beginworkingoffset="4" data-defaultduetime="16:00">Immij</option>
+						<option data-deliveryoffset="3" data-beginworkingoffset="7" data-defaultduetime="16:00">Inbox Group</option>
+						<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">JacPak</option>
+						<option data-deliveryoffset="0" data-beginworkingoffset="3" data-defaultduetime="12:00">Lakeside Packaging</option>
+						<option data-deliveryoffset="2" data-beginworkingoffset="7" data-defaultduetime="16:00">Megara</option>
+						<option data-deliveryoffset="1" data-beginworkingoffset="5" data-defaultduetime="17:00">Multi-Color Pty Ltd</option>
+						<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Spectra Litho</option>
+					</select>
+					<label for="Machine">Machine Type</label>
+					<select id="Machine" name="Machine" value="1">
+						<option value="1">Flatbed</option>
+						<option value="2">Rotary</option>
+					</select>
+					<fieldset class="flex-container">
+						<legend>Delivery Offsets</legend>
+						<div class="form-input-wrapper">
+							<label for="deliveryOffset">Delivery Offset (Days)</label>
+							<input type="number" id="deliveryOffset" min="0">
+							<label for="beginworkingoffset">Begin Work Offset (Days)</label>
+							<input type="number" id="beginworkingoffset" min="0">
+							<label for="defaultduetime">Default Due Time</label>
+							<input type="time" id="defaultduetime">
+						</div>
+						<div class="form-input-wrapper">
+							<p>Use these inputs to change the offset values of the customer as if you were changing their preferences as stored in the database.</p>
+						</div>
+					</fieldset>
+				</form>
 			</div>
 			<div class="flex-col-half">
 				<p>Select a mutation in the dropdown below to apply it to the program.</p>
@@ -66,53 +107,10 @@
 					<option value="m29">M29</option>
 					<option value="m30">M30</option>
 				</select>
-				<p>Press the button below to run an automated procedure that runs through all mutations and metamorphic relations.<br>The results will be outputted at the bottom of the page.</p>
-				<button id="testRun" type="button">Run Test Procedure</button>
+				<p>Press the button below to run a test with the current values on the currently selected mutation.<br>After the test has been executed it will move to the next mutation. You will need to press the button again to run the next test.</p>
+				<button id="testRun" type="button">Run Test with this mutation</button>
 				<span id="testStatus"></span>
 			</div>
-		</div>
-		<div>
-			<form id="OrderInitialiser">
-				<h3>Select a customer and a machine</h3>
-				<label for="Customer">Customer</label>
-				<select id="Customer" name="Customer">
-					<option>Select an option</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Abaris</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="7" data-defaultduetime="16:00">Abbe Corrugated</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="7" data-defaultduetime="16:00">AMR Hewitts</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="6" data-defaultduetime="16:00">Boxes To Go</option>
-					<option data-deliveryoffset="3" data-beginworkingoffset="6" data-defaultduetime="16:00">C.P. Gluing</option>
-					<option data-deliveryoffset="2" data-beginworkingoffset="7" data-defaultduetime="16:00">Echo Cartons</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="4" data-defaultduetime="16:00">Immij</option>
-					<option data-deliveryoffset="3" data-beginworkingoffset="7" data-defaultduetime="16:00">Inbox Group</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="6" data-defaultduetime="16:00">JacPak</option>
-					<option data-deliveryoffset="0" data-beginworkingoffset="3" data-defaultduetime="12:00">Lakeside Packaging</option>
-					<option data-deliveryoffset="2" data-beginworkingoffset="7" data-defaultduetime="16:00">Megara</option>
-					<option data-deliveryoffset="1" data-beginworkingoffset="5" data-defaultduetime="17:00">Multi-Color Pty Ltd</option>
-					<option data-deliveryoffset="2" data-beginworkingoffset="6" data-defaultduetime="16:00">Spectra Litho</option>
-				</select>
-				<label for="Machine">Machine Type</label>
-				<select id="Machine" name="Machine" value="1">
-					<option value="1">Flatbed</option>
-					<option value="2">Rotary</option>
-				</select>
-
-				<fieldset class="flex-container">
-					<legend>Delivery Offsets</legend>
-					<div class="form-input-wrapper">
-						<label for="deliveryOffset">Delivery Offset (Days)</label>
-						<input type="number" id="deliveryOffset" min="0">
-						<label for="beginworkingoffset">Begin Work Offset (Days)</label>
-						<input type="number" id="beginworkingoffset" min="0">
-						<label for="defaultduetime">Default Due Time</label>
-						<input type="time" id="defaultduetime">
-					</div>
-					<div class="form-input-wrapper">
-						<p>Since this demo is self-contained, you can use these inputs to change the offset days of the customer as if you were changing their preferences as stored in the database.</p>
-						<p>When selecting a customer, their predefined values will be prefilled into here as if they were retrieved from a database.</p>
-					</div>
-				</fieldset>
-			</form>
 		</div>
 
 		<form id="NewOrder" method="post" action="#">
@@ -519,6 +517,39 @@
 		</form>
 		<p>Note: Submitting this form does nothing.</p>
 
+		<h2>Mutant Results</h2>
+		<div class="flex-container">
+			<table>
+				<thead>
+					<th>MR</th>
+					<th>Mutant ID</th>
+					<th>Killed?</th>
+					<th>Score</th>
+				</thead>
+				<tbody id="results_MR1">
+				</tbody>
+			</table>
+			<table>
+				<thead>
+					<th>MR</th>
+					<th>Mutant ID</th>
+					<th>Killed?</th>
+					<th>Score</th>
+				</thead>
+				<tbody id="results_MR2">
+				</tbody>
+			</table>
+			<table>
+				<thead>
+					<th>MR</th>
+					<th>Mutant ID</th>
+					<th>Killed?</th>
+					<th>Score</th>
+				</thead>
+				<tbody id="results_MR3">
+				</tbody>
+			</table>
+		</div>
 		<aside>
 			<h3>About this program</h3>
 			<p>This program is an excerpt from a larger program designed to manage the production of cutting forme manufacturing.</p>
@@ -534,6 +565,6 @@
 		<p>This page is made up of code adapted from my in-house "War Room" Job Management system.</p>
 	</footer>
 </body>
-<script defer="defer" src="js/validateDueDate.js"></script>
+<script id="function" defer="defer" src="js/validateDueDate.js"></script>
 
 </html>

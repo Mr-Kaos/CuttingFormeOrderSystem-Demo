@@ -33,5 +33,5 @@ function validateDueDate(dateField, deliveryDayOffset, beginWorkingOffset, defau
 		removeErrorMessage(dateField);
 		appendErrorMessage(dateField, `Required Despatch date:\n ${deadline.toLocaleString()}\n`, ALERT_NONE);
 	}
-	return { 'date': deadline.toLocaleString(), 'warning': warning };
+	return { 'date': deadline, 'warning': warning };
 }

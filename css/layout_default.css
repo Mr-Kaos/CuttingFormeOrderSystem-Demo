@@ -142,6 +142,10 @@ nav ul li:is(:focus, :hover, :active),
 	flex: 1 1 0;
 }
 
+.flex-col-third {
+	flex: 3 1 0;
+}
+
 .flex-col-half {
 	flex: 2 1 0;
 }
@@ -257,6 +261,41 @@ button:hover {
 	cursor: pointer;
 }
 
+table,
+tr,
+th,
+td {
+	border-collapse: collapse;
+	padding: 5px;
+}
+
+table {
+	width: fit-content;
+	margin: 0px 5px;
+}
+
+th {
+	background: var(--tbl-header);
+	border-bottom: var(--tbl-row-border);
+}
+
+td {
+	border-left: var(--tbl-row-border);
+}
+
+.disabled-row>td {
+	color: var(--disabled-input-text);
+	background-color: var(--disabledInputBG);
+}
+
+table tr:nth-child(even) {
+	background: var(--tbl-row-even);
+}
+
+table tr:nth-child(odd) {
+	background: var(--tbl-row-odd);
+}
+
 /* INPUT STYLES */
 
 label+input[type=text],
@@ -268,6 +307,7 @@ label+input[type=email],
 label+input[type=password],
 label+input[type=file],
 label+input[type=time],
+label+input[type=datetime-local],
 label+textarea,
 label+select {
 	display: block;
