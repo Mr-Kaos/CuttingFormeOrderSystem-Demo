@@ -107,11 +107,14 @@
 					<option value="m29">M29</option>
 					<option value="m30">M30</option>
 				</select>
-				<p>Press the button below to run a test with the current values on the currently selected mutation.<br>After the test has been executed it will move to the next mutation. You will need to press the button again to run the next test.</p>
+				<p>Press the button below to run a test with the current values on the currently selected mutation.<br>After the test has been executed it will move to the next mutation.</p>
 				<button id="testRun" type="button">Run Test with this mutation</button>
 				<p>Press the following button to test all mutants.</p>
 				<button id="testRun" type="button" onclick="runTests()">Run All tests from current mutation</button>
-				<span id="testStatus"></span>
+				<br>
+				<p>By default, inputs are randomised to ensure each test is unique. If you wish to enter you own values, check the box below.</p>
+				<label for="disableRandom">Disable Random Input Values</label>
+				<input id="disableRandom" type="checkbox">
 			</div>
 		</div>
 		<form id="NewOrder" method="post" action="#">

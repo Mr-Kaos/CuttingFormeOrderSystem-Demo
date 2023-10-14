@@ -6,6 +6,7 @@
 
 // Global variable to indicate if tests are being run. Used to prevent test runs from running simultaneously.
 let running = false;
+let testInterval = null;
 
 function loadScript(url) {
 	let head = document.head;
@@ -38,6 +39,7 @@ function compareTests(testData) {
 }
 
 function runTest() {
+	let randomInputBox = document.getElementById("disableRandom");
 	let customerDropdown = document.getElementById("Customer");
 	let mutationSelect = document.getElementById('mutationSelect');
 	let dueDateValue = new Date();
@@ -49,13 +51,16 @@ function runTest() {
 	testData.mutant = mutationSelect.value;
 
 	if (mutationSelect.selectedIndex !== -1) {
-		// make sure a customer is selected to prefill the values
-		if (customerDropdown.getAttribute('data-deliveryoffset') == null) {
-			customerDropdown.selectedIndex = 3;
+		// make sure a customer is selected to prefill the values.
+		// If no customer is selected or random inputs are enabled, choose a random customer.
+		if (!randomInputBox.checked && customerDropdown.getAttribute('data-deliveryoffset') == null) {
+			customerDropdown.selectedIndex = (Math.random() * (customerDropdown.childElementCount - 1)) + 1;
+			console.log(customerDropdown.selectedIndex);
 			displayDeliveryOffsets(customerDropdown.children[customerDropdown.selectedIndex]);
 		}
 
 		let currentDate = new Date(Date.now());
+			currentDate.setDate(currentDate.getDate() + Math.random() * 10);
 		let dueDate = document.getElementById('DateDue');
 		let deliveryOffset = document.getElementById('deliveryOffset').value;
 		let beginWorkOffset = document.getElementById('beginworkingoffset').value;
@@ -77,7 +82,7 @@ function runTest() {
 
 					// Apply the metamorphic relation to the delivery offset
 					FO = validateDueDate(dueDate, currentDate, deliveryOffset / division, beginWorkOffset, dueTime);
-					testData.FI = {dueDateValue, currentDate, deliveryOffset: (deliveryOffset / division), beginWorkOffset, dueTime};
+					testData.FI = {dueDateValue, currentDate, deliveryOffset: deliveryOffset / division, beginWorkOffset, dueTime};
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
@@ -97,7 +102,8 @@ function runTest() {
 					followUpDate.setDate(followUpDate.getDate() + dateOffset);
 					dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
 					FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() + dateOffset), deliveryOffset, beginWorkOffset, dueTime);
-					testData.FI = {dueDateValue: followUpDate, currentDate: currentDate.setDate(currentDate.getDate() + dateOffset), deliveryOffset, beginWorkOffset, dueTime};
+					currentDate.setDate(currentDate.getDate() + dateOffset);
+					testData.FI = {dueDateValue: followUpDate, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
@@ -116,7 +122,8 @@ function runTest() {
 					followUpDate2.setDate(followUpDate2.getDate() * -1);
 					dueDate.value = followUpDate2.toLocaleString('sv').substring(0, 16);
 					FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() * -1), deliveryOffset, beginWorkOffset, dueTime);
-					testData.FI = {dueDateValue: followUpDate2, currentDate: currentDate.setDate(currentDate.getDate() * -1), deliveryOffset, beginWorkOffset, dueTime};
+					currentDate.setDate(currentDate.getDate() * -1);
+					testData.FI = {dueDateValue: followUpDate2, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
@@ -132,6 +139,11 @@ function runTest() {
 		}
 
 		mutationSelect.selectedIndex += 1;
+	} else {
+		if (testInterval !== null) {
+			clearInterval(testInterval);
+			mutationSelect.selectedIndex = 0;
+		}
 	}
 }
 
@@ -139,7 +151,7 @@ function runTest() {
  * Runs all tests on all available mutants for each metamorphic relation.
  */
 function runTests() {
-	setInterval(function () {
+	testInterval = setInterval(function () {
 		runTest();
 	}, 1);
 }
@@ -152,13 +164,21 @@ function runTests() {
 function outputResult(data, killed) {
 	let table = document.getElementById(`results_${data.relation}`);
 	let row = document.createElement('tr');
-	let SI = `<b>DueDate:</b> ${data.SI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.SI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.SI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.SI.beginWorkOffset}, <b>DueTime:</b> ${data.SI.dueTime}]`
-	let FI = `<b>DueDate:</b> ${data.FI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.SI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.SI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.SI.beginWorkOffset}, <b>DueTime:</b> ${data.SI.dueTime}]`
-	let SO = `<b>DispatchDate:</b> ${data.SO.date.toDateString()}, <b>TimeWarning?:</b> ${data.SO.warning}</b>`;
-	let FO = `<b>DispatchDate:</b> ${data.FO.date.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
-	let SO_MR = `<b>DispatchDate:</b> ${data.SO_MR.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
+	// let SI = `<b>DueDate:</b> ${data.SI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.SI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.SI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.SI.beginWorkOffset}, <b>DueTime:</b> ${data.SI.dueTime}`
+	// let FI = `<b>DueDate:</b> ${data.FI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.FI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.FI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.FI.beginWorkOffset}, <b>DueTime:</b> ${data.FI.dueTime}`
+	// let SO = `<b>DispatchDate:</b> ${data.SO.date.toDateString()}, <b>TimeWarning?:</b> ${data.SO.warning}</b>`;
+	// let FO = `<b>DispatchDate:</b> ${data.FO.date.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
+	// let SO_MR = `<b>DispatchDate:</b> ${data.SO_MR.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
 
-	row.innerHTML = `<td>${data.relation}</td><td>${data.mutant}</td><td>SI: ${SI}<br>FI: ${FI}</td><td>SO: ${SO}<br>SO${data.check}: ${SO_MR}<br>FO: ${FO}</td><td>${killed ? ' &#10004;' : ''}</td>`;
+	// row.innerHTML = `<td>${data.relation}</td><td>${data.mutant}</td><td>SI: ${SI}<br>FI: ${FI}</td><td>SO: ${SO}<br>SO${data.check}: ${SO_MR}<br>FO: ${FO}</td><td>${killed ? ' &#10004;' : ''}</td>`;
+
+	let SI = `<b></b> ${data.SI.dueDateValue.toISOString()}, <b></b> ${data.SI.currentDate.toISOString()}, <b></b> ${data.SI.deliveryOffset}, <b></b> ${data.SI.beginWorkOffset}, <b></b> ${data.SI.dueTime}`
+	let FI = `<b></b> ${data.FI.dueDateValue.toISOString()}, <b></b> ${data.FI.currentDate.toISOString()}, <b></b> ${data.FI.deliveryOffset}, <b></b> ${data.FI.beginWorkOffset}, <b></b> ${data.FI.dueTime}`
+	let SO = `<b></b> ${data.SO.date.toDateString()}, <b></b> ${data.SO.warning}</b>`;
+	let FO = `<b></b> ${data.FO.date.toDateString()}, <b></b> ${data.FO.warning}</b>`;
+	let SO_MR = `<b></b> ${data.SO_MR.toDateString()}, <b></b> ${data.FO.warning}</b>`;
+
+	row.innerHTML = `<td>${data.relation}</td><td>${data.mutant}</td><td>${SI}<br>${FI}</td><td>${SO}<br>${FO}</td><td>${killed ? ' &#10004;' : ''}</td>`;
 	table.appendChild(row);
 }
 
