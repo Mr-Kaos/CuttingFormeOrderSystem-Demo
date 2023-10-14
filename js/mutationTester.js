@@ -47,74 +47,76 @@ function runTest() {
 	let FO;
 	let expected;
 
-	// make sure a customer is selected to prefill the values
-	if (customerDropdown.getAttribute('data-deliveryoffset') == null) {
-		customerDropdown.selectedIndex = 3;
-		displayDeliveryOffsets(customerDropdown.children[customerDropdown.selectedIndex]);
-	}
-
-	let currentDate = new Date(Date.now());
-	let dueDate = document.getElementById('DateDue');
-	let deliveryOffset = document.getElementById('deliveryOffset').value;
-	let beginWorkOffset = document.getElementById('beginworkingoffset').value;
-	let dueTime = document.getElementById('defaultduetime').value;
-	loadScript(getScriptURL(mutationSelect.value));
-
-	dueDateValue.setDate(dueDateValue.getDate() + 12);
-	dueDate.value = dueDateValue.toLocaleString('sv').substring(0, 16);
-	deliveryOffset = 2;
-
-	for (MR; MR < 3; MR++) {
-		MRSwitch:
-		switch (MR) {
-			// MR 1: Divide delivery day offset by n
-			case 0:
-				SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-
-				// Apply the metamorphic relation to the delivery offset
-				FO = validateDueDate(dueDate, currentDate, deliveryOffset / 2, beginWorkOffset, dueTime);
-
-				// check if the source input with its outputted date + the MR is the same as the follow-up output.
-				expected = new Date(SO.date);
-				expected.setDate(expected.getDate() + (deliveryOffset / 2));
-				compareTests(SO, FO, expected, 'MR1', mutationSelect.value);
-				break MRSwitch;
-			// MR 2: Add n to all dates
-			case 1:
-				let dateOffset = 2;
-				SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-
-				// Apply the metamorphic relation test to the current date and due date
-				let followUpDate = new Date(dueDate.value);
-				followUpDate.setDate(followUpDate.getDate() + dateOffset);
-				dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
-				FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() + dateOffset), deliveryOffset, beginWorkOffset, dueTime);
-
-				// check if the source input with its outputted date + the MR is the same as the follow-up output.
-				expected = new Date(SO.date);
-				expected.setDate(expected.getDate() + dateOffset);
-				console.log(SO, FO, expected);
-				compareTests(SO, FO, expected, 'MR2', mutationSelect.value);
-				break MRSwitch;
-			// MR 3: Multiply all dates by -1
-			case 2:
-				SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-
-				// Apply the metamorphic relation to the current date and due date.
-				let followUpDate2 = new Date(dueDate.value);
-				followUpDate2.setDate(followUpDate2.getDate() * -1);
-				dueDate.value = followUpDate2.toLocaleString('sv').substring(0, 16);
-				FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() * -1), deliveryOffset, beginWorkOffset, dueTime);
-
-				// check if the source input with its outputted date + the MR is the same as the follow-up output.
-				expected = new Date(SO.date);
-				expected.setDate(expected.getDate() * -1);
-				compareTests(SO, FO, expected, 'MR3', mutationSelect.value);
-				break MRSwitch;
+	if (mutationSelect.selectedIndex !== -1) {
+		// make sure a customer is selected to prefill the values
+		if (customerDropdown.getAttribute('data-deliveryoffset') == null) {
+			customerDropdown.selectedIndex = 3;
+			displayDeliveryOffsets(customerDropdown.children[customerDropdown.selectedIndex]);
 		}
-	}
 
-	mutationSelect.selectedIndex += 1;
+		let currentDate = new Date(Date.now());
+		let dueDate = document.getElementById('DateDue');
+		let deliveryOffset = document.getElementById('deliveryOffset').value;
+		let beginWorkOffset = document.getElementById('beginworkingoffset').value;
+		let dueTime = document.getElementById('defaultduetime').value;
+		loadScript(getScriptURL(mutationSelect.value));
+
+		dueDateValue.setDate(dueDateValue.getDate() + 12);
+		dueDate.value = dueDateValue.toLocaleString('sv').substring(0, 16);
+		deliveryOffset = 2;
+
+		for (MR; MR < 3; MR++) {
+			MRSwitch:
+			switch (MR) {
+				// MR 1: Divide delivery day offset by n
+				case 0:
+					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+
+					// Apply the metamorphic relation to the delivery offset
+					FO = validateDueDate(dueDate, currentDate, deliveryOffset / 2, beginWorkOffset, dueTime);
+
+					// check if the source input with its outputted date + the MR is the same as the follow-up output.
+					expected = new Date(SO.date);
+					expected.setDate(expected.getDate() + (deliveryOffset / 2));
+					compareTests(SO, FO, expected, 'MR1', mutationSelect.value);
+					break MRSwitch;
+				// MR 2: Add n to all dates
+				case 1:
+					let dateOffset = 2;
+					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+
+					// Apply the metamorphic relation test to the current date and due date
+					let followUpDate = new Date(dueDate.value);
+					followUpDate.setDate(followUpDate.getDate() + dateOffset);
+					dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
+					FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() + dateOffset), deliveryOffset, beginWorkOffset, dueTime);
+
+					// check if the source input with its outputted date + the MR is the same as the follow-up output.
+					expected = new Date(SO.date);
+					expected.setDate(expected.getDate() + dateOffset);
+					// console.log(SO, FO, expected);
+					compareTests(SO, FO, expected, 'MR2', mutationSelect.value);
+					break MRSwitch;
+				// MR 3: Multiply all dates by -1
+				case 2:
+					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+
+					// Apply the metamorphic relation to the current date and due date.
+					let followUpDate2 = new Date(dueDate.value);
+					followUpDate2.setDate(followUpDate2.getDate() * -1);
+					dueDate.value = followUpDate2.toLocaleString('sv').substring(0, 16);
+					FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() * -1), deliveryOffset, beginWorkOffset, dueTime);
+
+					// check if the source input with its outputted date + the MR is the same as the follow-up output.
+					expected = new Date(SO.date);
+					expected.setDate(expected.getDate() * -1);
+					compareTests(SO, FO, expected, 'MR3', mutationSelect.value);
+					break MRSwitch;
+			}
+		}
+
+		mutationSelect.selectedIndex += 1;
+	}
 }
 
 /**
@@ -122,13 +124,10 @@ function runTest() {
  */
 function runTests() {
 	let mutationSelect = document.getElementById('mutationSelect');
-
-	if (!running) {
-		running = true;
-		let customerDropdown = document.getElementById("Customer");
-
-		running = false;
-	}
+	let i = 0;
+	setInterval(function () {
+		runTest();
+	}, 1);
 }
 
 /**
@@ -140,7 +139,7 @@ function runTests() {
 function outputResult(MR, mutantID, killed) {
 	let table = document.getElementById(`results_${MR}`);
 	let row = document.createElement('tr');
-	
+
 	row.innerHTML = `<td>${MR}</td><td>${mutantID}</td><td>${killed ? ' &#10004;' : ''}</td><td></td>`;
 	table.appendChild(row);
 }
