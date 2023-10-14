@@ -65,12 +65,13 @@ function runTest() {
 	deliveryOffset = 2;
 
 	for (MR; MR < 3; MR++) {
-		console.log(MR, mutationSelect.value)
 		MRSwitch:
 		switch (MR) {
 			// MR 1: Divide delivery day offset by n
 			case 0:
 				SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+
+				// Apply the metamorphic relation to the delivery offset
 				FO = validateDueDate(dueDate, currentDate, deliveryOffset / 2, beginWorkOffset, dueTime);
 
 				// check if the source input with its outputted date + the MR is the same as the follow-up output.
@@ -82,21 +83,32 @@ function runTest() {
 			case 1:
 				let dateOffset = 2;
 				SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+
+				// Apply the metamorphic relation test to the current date and due date
 				let followUpDate = new Date(dueDate.value);
 				followUpDate.setDate(followUpDate.getDate() + dateOffset);
 				dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
-
 				FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() + dateOffset), deliveryOffset, beginWorkOffset, dueTime);
-
 
 				// check if the source input with its outputted date + the MR is the same as the follow-up output.
 				expected = new Date(SO.date);
-				expected.setDate(expected.getDate() + 1);
+				expected.setDate(expected.getDate() + dateOffset);
 				console.log(SO, FO, expected);
 				compareTests(SO, FO, expected, 'MR2', mutationSelect.value);
 				break MRSwitch;
 			// MR 3: Multiply all dates by -1
 			case 2:
+				SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+
+				// Apply the metamorphic relation to the current date and due date.
+				let followUpDate2 = new Date(dueDate.value);
+				followUpDate2.setDate(followUpDate2.getDate() * -1);
+				dueDate.value = followUpDate2.toLocaleString('sv').substring(0, 16);
+				FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() * -1), deliveryOffset, beginWorkOffset, dueTime);
+
+				// check if the source input with its outputted date + the MR is the same as the follow-up output.
+				expected = new Date(SO.date);
+				expected.setDate(expected.getDate() * -1);
 				compareTests(SO, FO, expected, 'MR3', mutationSelect.value);
 				break MRSwitch;
 		}
