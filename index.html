@@ -112,18 +112,20 @@
 				<span id="testStatus"></span>
 			</div>
 		</div>
-
 		<form id="NewOrder" method="post" action="#">
 			<h2>Create a new order</h2>
 			<fieldset>
 				<label for="toggleExtraFields">Toggle Extra Overrides</label>
 				<input type="checkbox" id="toggleExtraFields">
 			</fieldset>
-			<input id="CustomerId" name="CustomerId" type="hidden" value="192"> <input id="MachineType" name="MachineType" type="hidden" value="1">
+			<input id="CustomerId" name="CustomerId" type="hidden" value="192"><input id="MachineType" name="MachineType" type="hidden" value="1">
 			<fieldset class="flex-container">
 				<legend>Order Details</legend>
 				<div class="flex-col-quarter">
-					<label for="CADNumber">CAD Number</label><input id="CADNumber" name="CADNumber" type="text" maxlength="64"> <label for="OrderDescription">Description*</label><input id="OrderDescription" name="OrderDescription" type="text" maxlength="255" required="">
+					<label for="CADNumber">CAD Number</label>
+					<input id="CADNumber" name="CADNumber" type="text" maxlength="64">
+					<label for="OrderDescription">Description*</label>
+					<input id="OrderDescription" name="OrderDescription" type="text" maxlength="255" required="">
 				</div>
 				<div class="flex-col-quarter">
 					<label for="DateDue">Due Date*</label>
@@ -139,10 +141,10 @@
 					<div class="form-input-wrapper"><label for="BoardType">Board Type*</label>
 						<select id="BoardType" name="BoardType" required="1" modal="Modal_BoardType">
 							<option value="4">E Flute</option>
-							<option value="9">400µm </option>
-							<option value="10">450µm </option>
-							<option value="12">550µm </option>
-							<option value="15">700µm </option>
+							<option value="9">400µm</option>
+							<option value="10">450µm</option>
+							<option value="12">550µm</option>
+							<option value="15">700µm</option>
 						</select>
 					</div>
 				</div>

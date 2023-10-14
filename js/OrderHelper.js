@@ -96,6 +96,7 @@ function init() {
 	let deliveryOffset = document.getElementById('deliveryOffset');
 	let beginWorkOffset = document.getElementById('beginworkingoffset');
 	let dueTime = document.getElementById('defaultduetime');
+	dueDate.min = new Date(Date.now()).toLocaleString('sv').substring(0, 16);
 
 	if (toggleDisplayBtn !== null) {
 		toggleDisplayBtn.addEventListener("click", toggleExtraFields);
