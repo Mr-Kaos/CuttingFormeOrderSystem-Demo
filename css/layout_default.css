@@ -270,8 +270,8 @@ td {
 }
 
 table {
-	width: fit-content;
-	margin: 0px 1px;
+	width: 90%;
+	margin: 1px auto;
 }
 
 th {

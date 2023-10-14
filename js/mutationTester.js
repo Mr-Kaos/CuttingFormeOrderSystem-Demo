@@ -55,7 +55,6 @@ function runTest() {
 		// If no customer is selected or random inputs are enabled, choose a random customer.
 		if (!randomInputBox.checked && customerDropdown.getAttribute('data-deliveryoffset') == null) {
 			customerDropdown.selectedIndex = (Math.random() * (customerDropdown.childElementCount - 1)) + 1;
-			console.log(customerDropdown.selectedIndex);
 			displayDeliveryOffsets(customerDropdown.children[customerDropdown.selectedIndex]);
 		}
 
@@ -93,6 +92,7 @@ function runTest() {
 					break MRSwitch;
 				// MR 2: Add n to all dates
 				case 1:
+					// console.log(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
 					let dateOffset = 2;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
 					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
@@ -101,8 +101,9 @@ function runTest() {
 					let followUpDate = new Date(dueDate.value);
 					followUpDate.setDate(followUpDate.getDate() + dateOffset);
 					dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
-					FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() + dateOffset), deliveryOffset, beginWorkOffset, dueTime);
 					currentDate.setDate(currentDate.getDate() + dateOffset);
+					// console.log(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+					FO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
 					testData.FI = {dueDateValue: followUpDate, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
@@ -114,6 +115,7 @@ function runTest() {
 					break MRSwitch;
 				// MR 3: Multiply all dates by -1
 				case 2:
+					break;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
 					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
@@ -121,8 +123,8 @@ function runTest() {
 					let followUpDate2 = new Date(dueDate.value);
 					followUpDate2.setDate(followUpDate2.getDate() * -1);
 					dueDate.value = followUpDate2.toLocaleString('sv').substring(0, 16);
-					FO = validateDueDate(dueDate, currentDate.setDate(currentDate.getDate() * -1), deliveryOffset, beginWorkOffset, dueTime);
 					currentDate.setDate(currentDate.getDate() * -1);
+					FO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
 					testData.FI = {dueDateValue: followUpDate2, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
@@ -164,21 +166,21 @@ function runTests() {
 function outputResult(data, killed) {
 	let table = document.getElementById(`results_${data.relation}`);
 	let row = document.createElement('tr');
-	// let SI = `<b>DueDate:</b> ${data.SI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.SI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.SI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.SI.beginWorkOffset}, <b>DueTime:</b> ${data.SI.dueTime}`
-	// let FI = `<b>DueDate:</b> ${data.FI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.FI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.FI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.FI.beginWorkOffset}, <b>DueTime:</b> ${data.FI.dueTime}`
-	// let SO = `<b>DispatchDate:</b> ${data.SO.date.toDateString()}, <b>TimeWarning?:</b> ${data.SO.warning}</b>`;
-	// let FO = `<b>DispatchDate:</b> ${data.FO.date.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
-	// let SO_MR = `<b>DispatchDate:</b> ${data.SO_MR.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
+	let SI = `<b>DueDate:</b> ${data.SI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.SI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.SI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.SI.beginWorkOffset}, <b>DueTime:</b> ${data.SI.dueTime}`
+	let FI = `<b>DueDate:</b> ${data.FI.dueDateValue.toISOString()}, <b>CurrentDate:</b> ${data.FI.currentDate.toISOString()}, <b>DeliveryOffset:</b> ${data.FI.deliveryOffset}, <b>BeginWorkOffset:</b> ${data.FI.beginWorkOffset}, <b>DueTime:</b> ${data.FI.dueTime}`
+	let SO = `<b>DispatchDate:</b> ${data.SO.date.toDateString()}, <b>TimeWarning?:</b> ${data.SO.warning}</b>`;
+	let FO = `<b>DispatchDate:</b> ${data.FO.date.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
+	let SO_MR = `<b>DispatchDate:</b> ${data.SO_MR.toDateString()}, <b>TimeWarning?:</b> ${data.FO.warning}</b>`;
 
-	// row.innerHTML = `<td>${data.relation}</td><td>${data.mutant}</td><td>SI: ${SI}<br>FI: ${FI}</td><td>SO: ${SO}<br>SO${data.check}: ${SO_MR}<br>FO: ${FO}</td><td>${killed ? ' &#10004;' : ''}</td>`;
+	row.innerHTML = `<td>${data.relation}</td><td>${data.mutant}</td><td>SI: ${SI}<br>FI: ${FI}</td><td>SO: ${SO}<br>SO${data.check}: ${SO_MR}<br>FO: ${FO}</td><td>${killed ? ' &#10004;' : ''}</td>`;
 
-	let SI = `<b></b> ${data.SI.dueDateValue.toISOString()}, <b></b> ${data.SI.currentDate.toISOString()}, <b></b> ${data.SI.deliveryOffset}, <b></b> ${data.SI.beginWorkOffset}, <b></b> ${data.SI.dueTime}`
-	let FI = `<b></b> ${data.FI.dueDateValue.toISOString()}, <b></b> ${data.FI.currentDate.toISOString()}, <b></b> ${data.FI.deliveryOffset}, <b></b> ${data.FI.beginWorkOffset}, <b></b> ${data.FI.dueTime}`
-	let SO = `<b></b> ${data.SO.date.toDateString()}, <b></b> ${data.SO.warning}</b>`;
-	let FO = `<b></b> ${data.FO.date.toDateString()}, <b></b> ${data.FO.warning}</b>`;
-	let SO_MR = `<b></b> ${data.SO_MR.toDateString()}, <b></b> ${data.FO.warning}</b>`;
+	// let SI = `<b></b> ${data.SI.dueDateValue.toISOString()}, <b></b> ${data.SI.currentDate.toISOString()}, <b></b> ${data.SI.deliveryOffset}, <b></b> ${data.SI.beginWorkOffset}, <b></b> ${data.SI.dueTime}`
+	// let FI = `<b></b> ${data.FI.dueDateValue.toISOString()}, <b></b> ${data.FI.currentDate.toISOString()}, <b></b> ${data.FI.deliveryOffset}, <b></b> ${data.FI.beginWorkOffset}, <b></b> ${data.FI.dueTime}`
+	// let SO = `<b></b> ${data.SO.date.toDateString()}, <b></b> ${data.SO.warning}</b>`;
+	// let FO = `<b></b> ${data.FO.date.toDateString()}, <b></b> ${data.FO.warning}</b>`;
+	// let SO_MR = `<b></b> ${data.SO_MR.toDateString()}, <b></b> ${data.FO.warning}</b>`;
 
-	row.innerHTML = `<td>${data.relation}</td><td>${data.mutant}</td><td>${SI}<br>${FI}</td><td>${SO}<br>${FO}</td><td>${killed ? ' &#10004;' : ''}</td>`;
+	// row.innerHTML = `<td>${data.relation}</td><td>${data.mutant}</td><td>${SI}<br>${FI}</td><td>${SO_MR}<br>${FO}</td><td>${killed ? ' &#10004;' : ''}</td>`;
 	table.appendChild(row);
 }
 
