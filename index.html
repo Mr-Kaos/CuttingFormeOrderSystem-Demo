@@ -148,7 +148,12 @@
 				</div>
 			</fieldset>
 			<fieldset id="ProductItems" class="flex-grid">
-				<legend>Products</legend>
+				<legend>Products
+					<div>
+						<label for="hide_products">(Hide)</label>
+						<input type="checkbox" id="hide_products">
+					</div>
+				</legend>
 				<fieldset id="Prod_FlatbedDie">
 					<legend>Flatbed Die</legend><label for="Add_FlatbedDie">Add to Order</label><input id="hidden-Add_FlatbedDie" name="Add_FlatbedDie" type="hidden" onclick="toggleProduct('FlatbedDie')" value="0" disabled="true"><input id="Add_FlatbedDie" name="Add_FlatbedDie" type="checkbox" onclick="toggleProduct('FlatbedDie')">
 					<div class="form-input-wrapper"><label for="FlatbedDie_Modification">Modification</label><select id="FlatbedDie_Modification" name="FlatbedDie_Modification" disabled="true">

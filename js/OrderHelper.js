@@ -74,6 +74,21 @@ function displayDeliveryOffsets(element) {
 	dueTime.value = element.getAttribute('data-defaultduetime');
 }
 
+function toggleProducts(toggle) {
+	let products = document.getElementById('ProductItems').children;
+	let i = 0;
+
+	for (i; i < products.length; i++) {
+		if (products[i].tagName !== 'LEGEND') {
+			if (toggle.checked) {
+				products[i].classList.add('hidden');
+			} else {
+				products[i].classList.remove('hidden');
+			}
+		}
+	}
+}
+
 function init() {
 	let toggleDisplayBtn = document.getElementById("toggleExtraFields");
 	let customerDropdown = document.getElementById("Customer");
@@ -85,6 +100,8 @@ function init() {
 	if (toggleDisplayBtn !== null) {
 		toggleDisplayBtn.addEventListener("click", toggleExtraFields);
 	}
+
+	document.getElementById('hide_products').onclick = e => toggleProducts(e.target)
 
 	customerDropdown.addEventListener('change', e => {
 		displayDeliveryOffsets(e.target.children[customerDropdown.selectedIndex]);
