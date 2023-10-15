@@ -18,7 +18,7 @@ function validateDueDate(dateField, currentDate, deliveryDayOffset, beginWorking
 	deadline.setDate(dueDate.getDate());
 	deadline.setHours(defaultDueTime.split(':')[0], defaultDueTime.split(':')[1]);
 
-	while (deliveryDayOffset > 0) {
+	while (deliveryDayOffset > 0 && terminal > 0) {
 		deadline.setDate(deadline.getDate() - 1);
 		if (!(deadline.getDay() === 0 || deadline.getDay() === 6)) {
 			deliveryDayOffset -= 1;
@@ -30,7 +30,7 @@ function validateDueDate(dateField, currentDate, deliveryDayOffset, beginWorking
 	// Check if the deadline can be met by the begin working day offset. If the difference is less than beginWorkingOffset, warn the user.
 	if (terminal == 0) {
 		appendErrorMessage(dateField, 'Failed to calculate dispatch date');
-		warning = true;
+		return { 'date': deadline, 'warning': warning, 'loop': true };
 	} else if (difference < beginWorkingOffset) {
 		warning = true;
 		appendErrorMessage(dateField, `The due date falls short of this customer's minimum required working days. You may have less time to complete this job than normal.\nRequired Despatch date: ${deadline.toLocaleString()}`, ALERT_WARN);
@@ -38,5 +38,5 @@ function validateDueDate(dateField, currentDate, deliveryDayOffset, beginWorking
 		removeErrorMessage(dateField);
 		appendErrorMessage(dateField, `Required Despatch date:\n ${deadline.toLocaleString()}\n`, ALERT_NONE);
 	}
-	return { 'date': deadline, 'warning': warning };
+	return { 'date': deadline, 'warning': warning, 'loop': false };
 }
