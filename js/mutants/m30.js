@@ -11,7 +11,7 @@
 function validateDueDate(dateField, currentDate, deliveryDayOffset, beginWorkingOffset, defaultDueTime) {
 	let dueDate = new Date(dateField.value);
 	let warning = false;
-	let terminal = 99;
+	let terminal = 300;
 
 	// Determine what the deadline of the job would be based on the delivery offset
 	let deadline = new Date(dateField.value);
@@ -30,7 +30,6 @@ function validateDueDate(dateField, currentDate, deliveryDayOffset, beginWorking
 	// Check if the deadline can be met by the begin working day offset. If the difference is less than beginWorkingOffset, warn the user.
 	if (terminal == 0) {
 		appendErrorMessage(dateField, 'Failed to calculate dispatch date');
-console.log('err');
 		warning = true;
 	} else if (difference > beginWorkingOffset) {
 		warning = true;

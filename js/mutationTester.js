@@ -50,7 +50,7 @@ function runTest() {
 	let testData = {relation: null, mutant: null, SI: null, FI: null, SO: null, FO: null, SO_MR: null, check: null};
 	testData.mutant = mutationSelect.value;
 
-	if (mutationSelect.selectedIndex !== -1) {
+	if (mutationSelect.selectedIndex !== -1 && mutationSelect.selectedIndex !== 0) {
 		// make sure a customer is selected to prefill the values.
 		// If no customer is selected or random inputs are enabled, choose a random customer.
 		if (!randomInputBox.checked && customerDropdown.getAttribute('data-deliveryoffset') == null) {
@@ -59,7 +59,7 @@ function runTest() {
 		}
 
 		let currentDate = new Date(Date.now());
-			currentDate.setDate(currentDate.getDate() + Math.random() * 10);
+		currentDate.setDate(currentDate.getDate() + Math.random() * 10);
 		let dueDate = document.getElementById('DateDue');
 		let deliveryOffset = document.getElementById('deliveryOffset').value;
 		let beginWorkOffset = document.getElementById('beginworkingoffset').value;
@@ -92,7 +92,6 @@ function runTest() {
 					break MRSwitch;
 				// MR 2: Add n to all dates
 				case 1:
-					// console.log(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
 					let dateOffset = 2;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
 					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
@@ -102,7 +101,8 @@ function runTest() {
 					followUpDate.setDate(followUpDate.getDate() + dateOffset);
 					dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
 					currentDate.setDate(currentDate.getDate() + dateOffset);
-					// console.log(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
+					dueDateValue.setDate(dueDateValue.getDate() + dateOffset);
+
 					FO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
 					testData.FI = {dueDateValue: followUpDate, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
@@ -115,7 +115,6 @@ function runTest() {
 					break MRSwitch;
 				// MR 3: Multiply all dates by -1
 				case 2:
-					break;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
 					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
 
@@ -145,6 +144,10 @@ function runTest() {
 		if (testInterval !== null) {
 			clearInterval(testInterval);
 			mutationSelect.selectedIndex = 0;
+			testInterval = null;
+		}
+		if (mutationSelect.selectedIndex == 0) {
+			mutationSelect.selectedIndex = 1;
 		}
 	}
 }
