@@ -32,7 +32,7 @@ function getScriptURL(name) {
  */
 function compareTests(testData) {
 	let killed = false;
-	if (testData.FO.date.toLocaleString() !== testData.SO_MR.toLocaleString()) {
+	if (testData.FO.date.toLocaleString() !== testData.SO_MR.toLocaleString() || testData.FO.warning !== testData.SO.warning) {
 		killed = true;
 	}
 	outputResult(testData, killed);
@@ -42,12 +42,11 @@ function runTest() {
 	let randomInputBox = document.getElementById("disableRandom");
 	let customerDropdown = document.getElementById("Customer");
 	let mutationSelect = document.getElementById('mutationSelect');
-	let dueDateValue = new Date();
 	let MR = 0;
 	let SO;
 	let FO;
 	let expected;
-	let testData = {relation: null, mutant: null, SI: null, FI: null, SO: null, FO: null, SO_MR: null, check: null};
+	let testData = { relation: null, mutant: null, SI: null, FI: null, SO: null, FO: null, SO_MR: null, check: null };
 	testData.mutant = mutationSelect.value;
 
 	if (mutationSelect.selectedIndex !== -1 && mutationSelect.selectedIndex !== 0) {
@@ -61,14 +60,13 @@ function runTest() {
 		let currentDate = new Date(Date.now());
 		currentDate.setDate(currentDate.getDate() + Math.random() * 10);
 		let dueDate = document.getElementById('DateDue');
+		let dueDateValue = new Date();
+		dueDateValue.setDate(dueDateValue.getDate() + 12);
+		dueDate.value = dueDateValue.toLocaleString('sv').substring(0, 16);
 		let deliveryOffset = document.getElementById('deliveryOffset').value;
 		let beginWorkOffset = document.getElementById('beginworkingoffset').value;
 		let dueTime = document.getElementById('defaultduetime').value;
 		loadScript(getScriptURL(mutationSelect.value));
-
-		dueDateValue.setDate(dueDateValue.getDate() + 12);
-		dueDate.value = dueDateValue.toLocaleString('sv').substring(0, 16);
-		deliveryOffset = 2;
 
 		for (MR; MR < 3; MR++) {
 			MRSwitch:
@@ -77,11 +75,11 @@ function runTest() {
 				case 0:
 					let division = 2;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
+					testData.SI = { dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime };
 
 					// Apply the metamorphic relation to the delivery offset
 					FO = validateDueDate(dueDate, currentDate, deliveryOffset / division, beginWorkOffset, dueTime);
-					testData.FI = {dueDateValue, currentDate, deliveryOffset: deliveryOffset / division, beginWorkOffset, dueTime};
+					testData.FI = { dueDateValue, currentDate, deliveryOffset: deliveryOffset / division, beginWorkOffset, dueTime };
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
@@ -94,7 +92,7 @@ function runTest() {
 				case 1:
 					let dateOffset = 2;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
+					testData.SI = { dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime };
 
 					// Apply the metamorphic relation test to the current date and due date
 					let followUpDate = new Date(dueDate.value);
@@ -104,7 +102,7 @@ function runTest() {
 					dueDateValue.setDate(dueDateValue.getDate() + dateOffset);
 
 					FO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.FI = {dueDateValue: followUpDate, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime};
+					testData.FI = { dueDateValue: followUpDate, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime };
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
@@ -116,7 +114,7 @@ function runTest() {
 				// MR 3: Multiply all dates by -1
 				case 2:
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.SI = {dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime};
+					testData.SI = { dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime };
 
 					// Apply the metamorphic relation to the current date and due date.
 					let followUpDate2 = new Date(dueDate.value);
@@ -124,7 +122,7 @@ function runTest() {
 					dueDate.value = followUpDate2.toLocaleString('sv').substring(0, 16);
 					currentDate.setDate(currentDate.getDate() * -1);
 					FO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.FI = {dueDateValue: followUpDate2, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime};
+					testData.FI = { dueDateValue: followUpDate2, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime };
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
