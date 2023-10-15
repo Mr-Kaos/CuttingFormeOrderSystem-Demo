@@ -13,6 +13,12 @@ function validateDueDate(dateField, currentDate, deliveryDayOffset, beginWorking
 	let warning = false;
 	let terminal = 300;
 
+	if (currentDate.getDay() == 0) {
+		currentDate.setDate(currentDate.getDate() + 1);
+	} else if (currentDate.getDay() == 6) {
+		currentDate.setDate(currentDate.getDate() + 2);
+	}
+
 	// Determine what the deadline of the job would be based on the delivery offset
 	let deadline = new Date(dateField.value);
 	deadline.setDate(dueDate.getDate());

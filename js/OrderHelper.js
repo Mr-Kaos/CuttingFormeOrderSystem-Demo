@@ -111,7 +111,7 @@ function init() {
 	if (dueDate !== null) {
 		[customerDropdown, dueDate, deliveryOffset, beginWorkOffset, dueTime].forEach(element => {
 			element.addEventListener('change', function (e) {
-				validateDueDate(dueDate, Date.now(), deliveryOffset.value, beginWorkOffset.value, dueTime.value);
+				validateDueDate(dueDate, new Date(Date.now()), deliveryOffset.value, beginWorkOffset.value, dueTime.value);
 			});
 		});
 	}

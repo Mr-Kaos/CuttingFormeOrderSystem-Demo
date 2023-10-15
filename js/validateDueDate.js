@@ -4,6 +4,7 @@
  * Checks if the date entered is valid against the customer's delivery day offset and working day offsets
  * If it is not, a warning message is displayed. If the terminal value reaches zero, the loop is exited.
  * @param {Element} dateField The due date input element
+ * @param {Date} currentDate The current Date
  * @param {Number} deliveryDayOffset The number of days in advance to deliver the order
  * @param {Number} beginWorkingOffset The number of days the order is expected to take to complete
  * @param {String} defaultDueTime The default time of day in which order is due/needs to be dispatched
@@ -11,7 +12,13 @@
 function validateDueDate(dateField, currentDate, deliveryDayOffset, beginWorkingOffset, defaultDueTime) {
 	let dueDate = new Date(dateField.value);
 	let warning = false;
-	let terminal = 99;
+	let terminal = 300;
+
+	if (currentDate.getDay() == 0) {
+		currentDate.setDate(currentDate.getDate() + 1);
+	} else if (currentDate.getDay() == 6) {
+		currentDate.setDate(currentDate.getDate() + 2);
+	}
 
 	// Determine what the deadline of the job would be based on the delivery offset
 	let deadline = new Date(dateField.value);
