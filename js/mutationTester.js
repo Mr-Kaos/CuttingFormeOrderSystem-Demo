@@ -47,6 +47,8 @@ function runTest() {
 	if (dueDate.value == "") {
 		appendErrorMessage(dueDate, 'Please enter a date.');
 	} else if (mutationSelect.selectedIndex !== -1 && mutationSelect.selectedIndex !== 0) {
+		removeErrorMessage(document.getElementById('testRun'));
+
 		// make sure a customer is selected to prefill the values.
 		// If no customer is selected or random inputs are enabled, choose a random customer.
 		if (!randomInputBox.checked && customerDropdown.getAttribute('data-deliveryoffset') == null) {
@@ -57,8 +59,8 @@ function runTest() {
 		loadScript(getScriptURL(mutationSelect.value));
 
 		for (MR; MR < 3; MR++) {
-			let currentDate = new Date('2023-10-15');
-			// let currentDate = new Date(Date.now().valueOf());
+			// let currentDate = new Date('2023-10-15');
+			let currentDate = new Date(Date.now().valueOf());
 			// currentDate.setDate(currentDate.getDate() + Math.random() * 10);
 			let originalDueDate = dueDate.value;
 			let deliveryOffset = document.getElementById('deliveryOffset').value;
@@ -72,8 +74,6 @@ function runTest() {
 			let testData = { relation: null, mutant: null, SI: null, FI: null, SO: null, FO: null, SO_MR: null, check: null };
 			testData.mutant = mutationSelect.value;
 
-			// dueDateValue.setDate(dueDateValue.getDate() + 12);
-			// dueDate.value = dueDateValue.toLocaleString('sv').substring(0, 16);
 			MRSwitch:
 			switch (MR) {
 				// MR 1: Divide delivery day offset by n
@@ -142,13 +142,14 @@ function runTest() {
 			compareTests(testData);
 			dueDate.value = originalDueDate;
 		}
-
-		// mutationSelect.selectedIndex += 1;
 	} else {
 		if (testInterval !== null) {
 			clearInterval(testInterval);
 			mutationSelect.selectedIndex = 0;
 			testInterval = null;
+		}
+		if (mutationSelect.selectedIndex == 0) {
+			appendErrorMessage(document.getElementById('testRun'), 'Tests are disabled on the original program.');
 		}
 	}
 	loadScript(getScriptURL(mutationSelect.value));
@@ -193,6 +194,7 @@ function outputResult(data, killed) {
 }
 
 document.getElementById('mutationSelect').addEventListener('change', e => {
+	removeErrorMessage(document.getElementById('testRun'));
 	loadScript(getScriptURL(e.target.value));
 });
 document.getElementById('testRun').onclick = runTest;

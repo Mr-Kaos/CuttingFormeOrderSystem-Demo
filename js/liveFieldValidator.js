@@ -174,7 +174,7 @@ function appendErrorMessage(element, message, alertType = ALERT_ERROR) {
 		msgElement.className = `input-text${alertType}`;
 
 		// Find the associated fieldset of the input and style it accordingly.
-		if ((associatedFieldset = getInputFieldset(element)) !== null) {
+		if ((associatedFieldset = getInputFieldset(element)) !== undefined) {
 			associatedFieldset.classList.add(`input${alertType}`);
 		}
 	} else {
