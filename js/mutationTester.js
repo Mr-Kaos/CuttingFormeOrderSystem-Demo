@@ -62,6 +62,7 @@ function runTest() {
 			// let currentDate = new Date('2023-10-15');
 			let currentDate = new Date(Date.now().valueOf());
 			let currentDateCopy = new Date(currentDate);
+			let currentDateCopy2 = new Date(currentDate);
 			// currentDate.setDate(currentDate.getDate() + Math.random() * 10);
 			let originalDueDate = dueDate.value;
 			let deliveryOffset = document.getElementById('deliveryOffset').value;
@@ -108,9 +109,10 @@ function runTest() {
 					dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
 					currentDate.setDate(currentDate.getDate() + dateOffset);
 					dueDateValue.setDate(dueDateValue.getDate() + dateOffset);
+					currentDateCopy2.setDate(currentDateCopy2.getDate() + dateOffset);
 
 					FO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.FI = { dueDateValue: followUpDate, currentDate: currentDateCopy, deliveryOffset, beginWorkOffset, dueTime };
+					testData.FI = { dueDateValue: followUpDate, currentDate: currentDateCopy2, deliveryOffset, beginWorkOffset, dueTime };
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
@@ -130,8 +132,10 @@ function runTest() {
 					followUpDate.setDate(followUpDate.getDate() * -1);
 					dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
 					currentDate.setDate(currentDate.getDate() * -1);
+					currentDateCopy2.setDate(currentDateCopy.getDate() * -1);
+
 					FO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.FI = { dueDateValue: followUpDate, currentDate: currentDateCopy, deliveryOffset, beginWorkOffset, dueTime };
+					testData.FI = { dueDateValue: followUpDate, currentDate: currentDateCopy2, deliveryOffset, beginWorkOffset, dueTime };
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
