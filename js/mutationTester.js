@@ -61,6 +61,7 @@ function runTest() {
 		for (MR; MR < 3; MR++) {
 			// let currentDate = new Date('2023-10-15');
 			let currentDate = new Date(Date.now().valueOf());
+			let currentDateCopy = new Date(currentDate);
 			// currentDate.setDate(currentDate.getDate() + Math.random() * 10);
 			let originalDueDate = dueDate.value;
 			let deliveryOffset = document.getElementById('deliveryOffset').value;
@@ -80,11 +81,12 @@ function runTest() {
 				case 0:
 					let division = 2;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.SI = { dueDateValue, currentDate, deliveryOffset, beginWorkOffset, dueTime };
+					testData.SI = { dueDateValue, currentDate: currentDateCopy, deliveryOffset, beginWorkOffset, dueTime };
 
+					currentDate = new Date(currentDateCopy);
 					// Apply the metamorphic relation to the delivery offset
 					FO = validateDueDate(dueDate, currentDate, (deliveryOffset / division), beginWorkOffset, dueTime);
-					testData.FI = { dueDateValue, currentDate, deliveryOffset: (deliveryOffset / division), beginWorkOffset, dueTime };
+					testData.FI = { dueDateValue, currentDate: currentDateCopy, deliveryOffset: (deliveryOffset / division), beginWorkOffset, dueTime };
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
@@ -97,17 +99,18 @@ function runTest() {
 				case 1:
 					let dateOffset = 2;
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.SI = { dueDateValue: new Date(dueDateValue.valueOf()), currentDate, deliveryOffset, beginWorkOffset, dueTime };
+					testData.SI = { dueDateValue: new Date(dueDateValue.valueOf()), currentDate: currentDateCopy, deliveryOffset, beginWorkOffset, dueTime };
 
 					// Apply the metamorphic relation test to the current date and due date
 					// followUpDate = new Date(dueDate.value);
+					currentDate = new Date(currentDateCopy);
 					followUpDate.setDate(followUpDate.getDate() + dateOffset);
 					dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
 					currentDate.setDate(currentDate.getDate() + dateOffset);
 					dueDateValue.setDate(dueDateValue.getDate() + dateOffset);
 
 					FO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.FI = { dueDateValue: followUpDate, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime };
+					testData.FI = { dueDateValue: followUpDate, currentDate: currentDateCopy, deliveryOffset, beginWorkOffset, dueTime };
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
@@ -119,15 +122,16 @@ function runTest() {
 				// MR 3: Multiply all dates by -1
 				case 2:
 					SO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.SI = { dueDateValue: new Date(dueDateValue.valueOf()), currentDate, deliveryOffset, beginWorkOffset, dueTime };
+					testData.SI = { dueDateValue: new Date(dueDateValue.valueOf()), currentDate: currentDateCopy, deliveryOffset, beginWorkOffset, dueTime };
 
 					// Apply the metamorphic relation to the current date and due date.
 					// followUpDate = new Date(dueDate.value);
+					currentDate = new Date(currentDateCopy);
 					followUpDate.setDate(followUpDate.getDate() * -1);
 					dueDate.value = followUpDate.toLocaleString('sv').substring(0, 16);
 					currentDate.setDate(currentDate.getDate() * -1);
 					FO = validateDueDate(dueDate, currentDate, deliveryOffset, beginWorkOffset, dueTime);
-					testData.FI = { dueDateValue: followUpDate, currentDate: currentDate, deliveryOffset, beginWorkOffset, dueTime };
+					testData.FI = { dueDateValue: followUpDate, currentDate: currentDateCopy, deliveryOffset, beginWorkOffset, dueTime };
 
 					// check if the source input with its outputted date + the MR is the same as the follow-up output.
 					expected = new Date(SO.date);
